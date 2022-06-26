@@ -19,6 +19,7 @@
  */
 var app = require('/site/public/conf/settings.js').AppConfig.app;
 var utils = Packages.org.wso2.carbon.apimgt.impl.utils.APIUtil;
+var domainMappingUtils = Packages.org.wso2.carbon.apimgt.impl.utils.DomainMappingUtils;
 include("/services/constants.jag");
 
 /**
@@ -42,7 +43,7 @@ function getIDPCheckSessionEndpoint() {
 
 var getTenantBasePublisherContext = function () {
     var tenantDomain = getTenantDomain();
-    var tenantContext = utils.getTenantBasedPublisherContext(tenantDomain);
+    var tenantContext = domainMappingUtils.getTenantBasedPublisherContext(tenantDomain);
     if (tenantContext != null && tenantContext != " ") {
         return tenantContext
     } else {
@@ -52,7 +53,7 @@ var getTenantBasePublisherContext = function () {
 
 var getTenantBasedLoginCallBack = function () {
     var tenantDomain = getTenantDomain();
-    var publisherDomainMapping = utils.getTenantBasedPublisherDomainMapping(tenantDomain);
+    var publisherDomainMapping = domainMappingUtils.getTenantBasedPublisherDomainMapping(tenantDomain);
     if (publisherDomainMapping != null) {
         if (publisherDomainMapping.get('login') != null) {
             return publisherDomainMapping.get('login');
@@ -65,7 +66,7 @@ var getTenantBasedLoginCallBack = function () {
 
 var getTenantBasedLogoutCallBack = function () {
     var tenantDomain = getTenantDomain();
-    var publisherDomainMapping = utils.getTenantBasedPublisherDomainMapping(tenantDomain);
+    var publisherDomainMapping = domainMappingUtils.getTenantBasedPublisherDomainMapping(tenantDomain);
     if (publisherDomainMapping != null) {
         if (publisherDomainMapping.get('logout') != null) {
             return publisherDomainMapping.get('logout');

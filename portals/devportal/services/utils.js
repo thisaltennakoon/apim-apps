@@ -20,6 +20,7 @@
 var app = require('/site/public/theme/settings.js').Settings.app;
 
 var utils = Packages.org.wso2.carbon.apimgt.impl.utils.APIUtil;
+var domainMappingUtils = Packages.org.wso2.carbon.apimgt.impl.utils.DomainMappingUtils;
 include("/services/constants.jag");
 
 var getLoopbackOrigin = function() {
@@ -38,7 +39,7 @@ function getIDPCheckSessionEndpoint() {
 
 var getTenantBaseStoreContext = function() {
     var tenantDomain = getTenantDomain();
-    var tenantContext = utils.getTenantBasedDevPortalContext(tenantDomain);
+    var tenantContext = domainMappingUtils.getTenantBasedDevPortalContext(tenantDomain);
     if (tenantContext != null) {
         return tenantContext
     } else {
@@ -48,7 +49,7 @@ var getTenantBaseStoreContext = function() {
 
 var getTenantBasedLoginCallBack = function() {
     var tenantDomain = getTenantDomain();
-    var storeDomainMapping = utils.getTenantBasedStoreDomainMapping(tenantDomain);
+    var storeDomainMapping = domainMappingUtils.getTenantBasedStoreDomainMapping(tenantDomain);
     if (storeDomainMapping != null) {
        if (storeDomainMapping.get('login') != null) {
         return storeDomainMapping.get('login');
@@ -61,7 +62,7 @@ var getTenantBasedLoginCallBack = function() {
 
 var getTenantBasedLogoutCallBack = function() {
     var tenantDomain = getTenantDomain();
-    var storeDomainMapping = utils.getTenantBasedStoreDomainMapping(tenantDomain);
+    var storeDomainMapping = domainMappingUtils.getTenantBasedStoreDomainMapping(tenantDomain);
     if (storeDomainMapping != null) {
        if (storeDomainMapping.get('logout') != null) {
         return storeDomainMapping.get('logout');
@@ -98,7 +99,7 @@ var getCustomUrlEnabledDomain = function() {
 
 var getTenantBasedCustomUrl = function() {
     var tenantDomain = getTenantDomain();
-    var storeDomainMapping = utils.getTenantBasedStoreDomainMapping(tenantDomain);
+    var storeDomainMapping = domainMappingUtils.getTenantBasedStoreDomainMapping(tenantDomain);
     if (storeDomainMapping != null) {
         return "https://" + storeDomainMapping.get('customUrl');
     } else {
