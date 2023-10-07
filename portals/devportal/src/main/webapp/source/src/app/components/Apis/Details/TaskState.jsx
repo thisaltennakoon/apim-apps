@@ -17,7 +17,7 @@
  */
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import Alert from '@material-ui/lab/Alert';
+import Alert from 'mui/material/Alert';
 import { FormattedMessage } from 'react-intl';
 import CircularProgress from '@material-ui/core/CircularProgress';
 

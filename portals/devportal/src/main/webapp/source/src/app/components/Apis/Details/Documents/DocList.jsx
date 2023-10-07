@@ -25,7 +25,7 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import Autocomplete from '@mui/material/Autocomplete';
 import Details from 'AppComponents/Apis/Details/Documents/Details';
 import GenerateDocument from './GenerateDocument';
 

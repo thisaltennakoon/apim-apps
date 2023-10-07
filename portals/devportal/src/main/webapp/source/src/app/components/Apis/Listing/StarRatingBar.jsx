@@ -32,7 +32,7 @@ import Alert from 'AppComponents/Shared/Alert';
 import Api from 'AppData/api';
 import AuthManager from 'AppData/AuthManager';
 import StarRatingSummary from 'AppComponents/Apis/Details/StarRatingSummary';
-import Rating from '@material-ui/lab/Rating';
+import Rating from '@mui/material/Rating';
 import { FormattedMessage, injectIntl } from 'react-intl';
 
 const styles = (theme) => ({
