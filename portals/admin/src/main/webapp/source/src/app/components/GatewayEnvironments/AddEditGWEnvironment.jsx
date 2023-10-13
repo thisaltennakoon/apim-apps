@@ -19,10 +19,10 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import API from 'AppData/api';
 import PropTypes from 'prop-types';
-import TextField from '@material-ui/core/TextField';
+import TextField from '@mui/material/TextField';
 import { FormattedMessage, useIntl } from 'react-intl';
-import FormControl from '@material-ui/core/FormControl';
-import { makeStyles } from '@material-ui/core/styles';
+import FormControl from '@mui/material/FormControl';
+import makeStyles from '@mui/styles/makeStyles';
 import FormDialogBase from 'AppComponents/AdminPages/Addons/FormDialogBase';
 import Alert from 'AppComponents/Shared/Alert';
 import AddEditVhost from 'AppComponents/GatewayEnvironments/AddEditVhost';

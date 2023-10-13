@@ -19,14 +19,14 @@
 import React, { useState } from 'react';
 import API from 'AppData/api';
 import { useIntl, FormattedMessage } from 'react-intl';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 import ListBase from 'AppComponents/AdminPages/Addons/ListBase';
 import Delete from 'AppComponents/KeyManagers/DeleteKeyManager';
 import { Link as RouterLink } from 'react-router-dom';
 import Alert from 'AppComponents/Shared/Alert';
-import Switch from '@material-ui/core/Switch';
-import Button from '@material-ui/core/Button';
-import { Chip } from '@material-ui/core';
+import Switch from '@mui/material/Switch';
+import Button from '@mui/material/Button';
+import { Chip } from '@mui/material';
 
 /**
  * API call to get microgateway labels
