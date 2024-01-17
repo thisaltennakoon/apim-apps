@@ -16,34 +16,34 @@
  * under the License.
  */
 import React, {useReducer, useState} from 'react';
-import Box from '@material-ui/core/Box';
-import {withStyles} from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import Box from '@mui/material/Box';
+import withStyles from '@mui/styles/withStyles';
+import TextField from '@mui/material/TextField';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import Tooltip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton';
-import Icon from '@material-ui/core/Icon';
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import Icon from '@mui/material/Icon';
 import {FormattedMessage, useIntl} from 'react-intl';
 import PropTypes from 'prop-types';
 import ResourceNotFound from 'AppComponents/Base/Errors/ResourceNotFound';
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
 import ViewCurl from "AppComponents/Shared/AppsAndKeys/ViewCurl";
 import ViewToken from "AppComponents/Shared/AppsAndKeys/ViewToken";
-import DialogActions from "@material-ui/core/DialogActions";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Button from "@material-ui/core/Button";
+import DialogActions from "@mui/material/DialogActions";
+import CircularProgress from "@mui/material/CircularProgress";
+import Button from "@mui/material/Button";
 import Application from "AppData/Application";
 import Loading from "AppComponents/Base/Loading/Loading";
 import Alert from "AppComponents/Shared/Alert";
 import Tokens from "AppComponents/Shared/AppsAndKeys/Tokens";
-import {TableBody, TableCell, TableRow} from "@material-ui/core";
-import Table from "@material-ui/core/Table";
+import {TableBody, TableCell, TableRow} from "@mui/material";
+import Table from "@mui/material/Table";
 
 const styles = (theme) => ({
         FormControl: {
@@ -426,244 +426,242 @@ const TokenExchangeKeyConfiguration = (props) => {
         && keys.get("Resident Key Manager") || false;
     const consumerKey = csCkKeys && csCkKeys.consumerKey;
     const consumerSecret = csCkKeys && csCkKeys.consumerSecret;
-    return (
-        <>
-                    <Box display='flex' alignItems='center'>
-                        <Table className={classes.table}>
-                            <TableBody>
-                                <TableRow>
-                                    <TableCell component='th' scope='row'
-                                               className={[classes.leftCol, classes.tableHeader]}>
-                                        <FormattedMessage
-                                            id="application.productionKeys.oAuth.externalIdp.tokenGeneration.step1"
-                                            defaultMessage="Step 1:"
-                                        />
-                                    </TableCell>
-                                    <TableCell className={classes.tableHeader}>
-                                        <FormattedMessage
-                                            id='application.productionKeys.oAuth.externalIdp.tokenGeneration.step1.description'
-                                            defaultMessage={`Obtain an access token from {selectedIdpType}. `}
-                                            values={{selectedIdpType: keyManagerConfig.type}}
+    return <>
+                <Box display='flex' alignItems='center'>
+                    <Table className={classes.table}>
+                        <TableBody>
+                            <TableRow>
+                                <TableCell component='th' scope='row'
+                                           className={[classes.leftCol, classes.tableHeader]}>
+                                    <FormattedMessage
+                                        id="application.productionKeys.oAuth.externalIdp.tokenGeneration.step1"
+                                        defaultMessage="Step 1:"
+                                    />
+                                </TableCell>
+                                <TableCell className={classes.tableHeader}>
+                                    <FormattedMessage
+                                        id='application.productionKeys.oAuth.externalIdp.tokenGeneration.step1.description'
+                                        defaultMessage={`Obtain an access token from {selectedIdpType}. `}
+                                        values={{selectedIdpType: keyManagerConfig.type}}
 
-                                        />
+                                    />
 
-                                        <FormattedMessage
-                                            id='application.productionKeys.oAuth.externalIdp.tokenGeneration.audience'
-                                            defaultMessage='Use the audience value "{allowedAudience}", '
-                                            values={{allowedAudience: <b>{keyManagerConfig.alias}</b>}}
-                                        />
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell className={classes.leftCol}>
-                                        <FormattedMessage
-                                            id='application.productionKeys.oAuth.tokenEndpoint'
-                                            defaultMessage='Token Endpoint'
-                                        />
-                                    </TableCell>
-                                    <TableCell>
-                                        <FormattedMessage
-                                            id='application.productionKeys.oAuth.tokenEndpoint.value'
-                                            defaultMessage={'{tokenEndpoint}'}
-                                            values={{tokenEndpoint: keyManagerConfig.tokenEndpoint}}
-                                        />
+                                    <FormattedMessage
+                                        id='application.productionKeys.oAuth.externalIdp.tokenGeneration.audience'
+                                        defaultMessage='Use the audience value "{allowedAudience}", '
+                                        values={{allowedAudience: <b>{keyManagerConfig.alias}</b>}}
+                                    />
+                                </TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell className={classes.leftCol}>
+                                    <FormattedMessage
+                                        id='application.productionKeys.oAuth.tokenEndpoint'
+                                        defaultMessage='Token Endpoint'
+                                    />
+                                </TableCell>
+                                <TableCell>
+                                    <FormattedMessage
+                                        id='application.productionKeys.oAuth.tokenEndpoint.value'
+                                        defaultMessage={'{tokenEndpoint}'}
+                                        values={{tokenEndpoint: keyManagerConfig.tokenEndpoint}}
+                                    />
 
-                                        <Tooltip
-                                            title={
-                                                urlCopied
-                                                    ? intl.formatMessage({
-                                                        defaultMessage: 'Copied',
-                                                        id: 'Shared.AppsAndKeys.TokenExchangeKeyConfiguration.copied',
-                                                    })
-                                                    : intl.formatMessage({
-                                                        defaultMessage: 'Copy to clipboard',
-                                                        id: 'Shared.AppsAndKeys.TokenExchangeKeyConfiguration.copy.to.clipboard',
-                                                    })
-                                            }
-                                            placement='right'
-                                            className={classes.iconStyle}
-                                        >
-                                            <CopyToClipboard
-                                                text={keyManagerConfig.tokenEndpoint}
-                                                onCopy={onCopy}
-                                            >
-                                                <IconButton
-                                                    aria-label='Copy to clipboard'
-                                                    classes={{root: classes.iconButton}}
-                                                >
-                                                    <Icon color='secondary'>file_copy</Icon>
-                                                </IconButton>
-                                            </CopyToClipboard>
-                                        </Tooltip>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell component='th' scope='row'
-                                               className={[classes.leftCol, classes.tableHeader]}>
-                                        <FormattedMessage
-                                            id="application.productionKeys.oAuth.tokenGeneration.step2"
-                                            defaultMessage="Step 2:"
-                                        />
-                                    </TableCell>
-                                    <TableCell className={classes.tableHeader}>
-                                        <FormattedMessage
-                                            id='application.productionKeys.oAuth.tokenGeneration.step2.description'
-                                            defaultMessage='Obtain test token'
-                                        />
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell component='th' scope='row' className={classes.leftCol}>
-                                        <FormattedMessage
-                                            id='application.productionKeys.oAuth.externalIdp.tokenGeneration.token'
-                                            defaultMessage={`{selectedIdpType} Token`}
-                                            values={{selectedIdpType: keyManagerConfig.type}}
-
-                                        />
-                                        <span className={classes.error}> *</span>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Box maxWidth={600}>
-                                            <TextField
-                                                id='external-idp-token'
-                                                onChange={onExternalIDPTokenChange}
-                                                size="small"
-                                                fullWidth
-                                                rows={1}
-                                                value={externalIDPToken}
-                                                variant="outlined"
-                                                error={externalIDPTokenError !== ""}
-                                                FormHelperTextProps={{
-                                                    className: classes.helperText
-                                                }}
-                                                helperText={externalIDPTokenError === "" ?
-                                                    externalIDPTokenError :
-                                                    <div className={classes.helperTextError}>
-                                                        <p> {externalIDPTokenError} </p>
-                                                    </div>
-                                                }
-                                                className={classes.textField}
-                                                data-testid='external-idp-token'
-                                            />
-                                        </Box>
-                                    </TableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
-                    </Box>
-                    <Box>
-                        <div className={classes.inputWrapper}>
-                            <Grid container spacing={3}>
-                                <Grid item xs={12}>
-                                    <Dialog
-                                        fullScreen={fullScreen}
-                                        open={open}
-                                        onClose={handleClose}
-                                        aria-labelledby='responsive-dialog-title'
-                                        className={classes.dialogWrapper}
+                                    <Tooltip
+                                        title={
+                                            urlCopied
+                                                ? intl.formatMessage({
+                                                    defaultMessage: 'Copied',
+                                                    id: 'Shared.AppsAndKeys.TokenExchangeKeyConfiguration.copied',
+                                                })
+                                                : intl.formatMessage({
+                                                    defaultMessage: 'Copy to clipboard',
+                                                    id: 'Shared.AppsAndKeys.TokenExchangeKeyConfiguration.copy.to.clipboard',
+                                                })
+                                        }
+                                        placement='right'
+                                        className={classes.iconStyle}
                                     >
-                                        <DialogTitle id='responsive-dialog-title'>
-                                            {dialogHead}
-                                        </DialogTitle>
-                                        <DialogContent>
-                                            {(!showCurl && !isKeyJWT && !showSecretGen) && (
-                                                <DialogContentText>
-                                                    {(!showToken && isResidenceTokenAvailable) && (
-                                                        <Tokens
-                                                            updateAccessTokenRequest={updateAccessTokenRequest}
-                                                            accessTokenRequest={accessTokenRequest}
-                                                            subscriptionScopes={subscriptionScopes}
-                                                        />
-                                                    )}
-                                                    {(!showToken && !isResidenceTokenAvailable) && (
-                                                        <React.Fragment>
-                                                            <Typography>
-                                                                <FormattedMessage
-                                                                    id='Shared.AppsAndKeys.ViewCurl.error'
-                                                                    defaultMessage='Please generate the Consumer Key and Secret for Residence Key Manager with selecting the urn:ietf:params:oauth:grant-type:token-exchange grant type in
-                                                                            order to use the token Exchange Approach. '
-                                                                />
-                                                            </Typography>
-                                                        </React.Fragment>
-                                                    )}
-                                                    {showToken &&
-                                                    <ViewToken token={{...tokenResponse, isOauth: true}} isResidenceTokenAvailable={isResidenceTokenAvailable} isTokenExchange />}
-                                                </DialogContentText>
-                                            )}
-                                            {showCurl && (
-                                                <DialogContentText>
-                                                    <ViewCurl
-                                                        keys={{consumerKey, consumerSecret}}
-                                                        keyType={keyType}
-                                                        jwtToken={externalIDPToken}
-                                                        keyManagerConfig={keyManagerConfig}
-                                                        defaultTokenEndpoint={defaultTokenEndpoint}
+                                        <CopyToClipboard
+                                            text={keyManagerConfig.tokenEndpoint}
+                                            onCopy={onCopy}
+                                        >
+                                            <IconButton
+                                                aria-label='Copy to clipboard'
+                                                classes={{root: classes.iconButton}}
+                                                size="large">
+                                                <Icon color='secondary'>file_copy</Icon>
+                                            </IconButton>
+                                        </CopyToClipboard>
+                                    </Tooltip>
+                                </TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell component='th' scope='row'
+                                           className={[classes.leftCol, classes.tableHeader]}>
+                                    <FormattedMessage
+                                        id="application.productionKeys.oAuth.tokenGeneration.step2"
+                                        defaultMessage="Step 2:"
+                                    />
+                                </TableCell>
+                                <TableCell className={classes.tableHeader}>
+                                    <FormattedMessage
+                                        id='application.productionKeys.oAuth.tokenGeneration.step2.description'
+                                        defaultMessage='Obtain test token'
+                                    />
+                                </TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell component='th' scope='row' className={classes.leftCol}>
+                                    <FormattedMessage
+                                        id='application.productionKeys.oAuth.externalIdp.tokenGeneration.token'
+                                        defaultMessage={`{selectedIdpType} Token`}
+                                        values={{selectedIdpType: keyManagerConfig.type}}
+
+                                    />
+                                    <span className={classes.error}> *</span>
+                                </TableCell>
+                                <TableCell>
+                                    <Box maxWidth={600}>
+                                        <TextField
+                                            id='external-idp-token'
+                                            onChange={onExternalIDPTokenChange}
+                                            size="small"
+                                            fullWidth
+                                            rows={1}
+                                            value={externalIDPToken}
+                                            variant="outlined"
+                                            error={externalIDPTokenError !== ""}
+                                            FormHelperTextProps={{
+                                                className: classes.helperText
+                                            }}
+                                            helperText={externalIDPTokenError === "" ?
+                                                externalIDPTokenError :
+                                                <div className={classes.helperTextError}>
+                                                    <p> {externalIDPTokenError} </p>
+                                                </div>
+                                            }
+                                            className={classes.textField}
+                                            data-testid='external-idp-token'
+                                        />
+                                    </Box>
+                                </TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
+                </Box>
+                <Box>
+                    <div className={classes.inputWrapper}>
+                        <Grid container spacing={3}>
+                            <Grid item xs={12}>
+                                <Dialog
+                                    fullScreen={fullScreen}
+                                    open={open}
+                                    onClose={handleClose}
+                                    aria-labelledby='responsive-dialog-title'
+                                    className={classes.dialogWrapper}
+                                >
+                                    <DialogTitle id='responsive-dialog-title'>
+                                        {dialogHead}
+                                    </DialogTitle>
+                                    <DialogContent>
+                                        {(!showCurl && !isKeyJWT && !showSecretGen) && (
+                                            <DialogContentText>
+                                                {(!showToken && isResidenceTokenAvailable) && (
+                                                    <Tokens
+                                                        updateAccessTokenRequest={updateAccessTokenRequest}
+                                                        accessTokenRequest={accessTokenRequest}
+                                                        subscriptionScopes={subscriptionScopes}
                                                     />
-                                                </DialogContentText>
-                                            )}
-                                        </DialogContent>
-                                        <DialogActions>
-                                            {isUpdating && <CircularProgress size={24}/>}
-                                            {(!showToken && !showCurl && !showSecretGen && isResidenceTokenAvailable) && (
-                                                <Button onClick={generateAccessToken} color='primary'
-                                                        disabled={isUpdating}>
-                                                    <FormattedMessage
-                                                        id='Shared.AppsAndKeys.ViewKeys.consumer.generate.btn'
-                                                        defaultMessage='Generate'
-                                                    />
-                                                </Button>
-                                            )}
-                                            <Button onClick={handleClose} color='primary' autoFocus>
+                                                )}
+                                                {(!showToken && !isResidenceTokenAvailable) && (
+                                                    <React.Fragment>
+                                                        <Typography>
+                                                            <FormattedMessage
+                                                                id='Shared.AppsAndKeys.ViewCurl.error'
+                                                                defaultMessage='Please generate the Consumer Key and Secret for Residence Key Manager with selecting the urn:ietf:params:oauth:grant-type:token-exchange grant type in
+                                                                        order to use the token Exchange Approach. '
+                                                            />
+                                                        </Typography>
+                                                    </React.Fragment>
+                                                )}
+                                                {showToken &&
+                                                <ViewToken token={{...tokenResponse, isOauth: true}} isResidenceTokenAvailable={isResidenceTokenAvailable} isTokenExchange />}
+                                            </DialogContentText>
+                                        )}
+                                        {showCurl && (
+                                            <DialogContentText>
+                                                <ViewCurl
+                                                    keys={{consumerKey, consumerSecret}}
+                                                    keyType={keyType}
+                                                    jwtToken={externalIDPToken}
+                                                    keyManagerConfig={keyManagerConfig}
+                                                    defaultTokenEndpoint={defaultTokenEndpoint}
+                                                />
+                                            </DialogContentText>
+                                        )}
+                                    </DialogContent>
+                                    <DialogActions>
+                                        {isUpdating && <CircularProgress size={24}/>}
+                                        {(!showToken && !showCurl && !showSecretGen && isResidenceTokenAvailable) && (
+                                            <Button onClick={generateAccessToken} color='primary'
+                                                    disabled={isUpdating}>
                                                 <FormattedMessage
-                                                    id='Shared.AppsAndKeys.ViewKeys.consumer.close.btn'
-                                                    defaultMessage='Close'
+                                                    id='Shared.AppsAndKeys.ViewKeys.consumer.generate.btn'
+                                                    defaultMessage='Generate'
                                                 />
                                             </Button>
-                                        </DialogActions>
-                                    </Dialog>
-                                    <div className={classes.generateWrapper}>
-                                        <Grid className={classes.bottomInfo}>
+                                        )}
+                                        <Button onClick={handleClose} color='primary' autoFocus>
                                             <FormattedMessage
-                                                id='application.productionKeys.oAuth.externalIdp.tokenGeneration.token.description'
-                                                defaultMessage={`In Exchange token flow, A JWT token has to be generated from the {selectedIdpType}
-                                             idp and then exchange for a token with the Resident Key Manager which can used to invoke APIs`}
-                                                values={{selectedIdpType: keyManagerConfig.type}}
-                                            />
-                                        </Grid>
-                                        <Button
-                                            variant='outlined'
-                                            size='small'
-                                            color='primary'
-                                            className={classes.margin}
-                                            onClick={handleClickOpen}
-                                            disabled={externalIDPTokenError || externalIDPToken === ''}
-                                        >
-                                            <FormattedMessage
-                                                id='Shared.AppsAndKeys.ViewKeys.generate.access.token'
-                                                defaultMessage='Generate Access Token'
+                                                id='Shared.AppsAndKeys.ViewKeys.consumer.close.btn'
+                                                defaultMessage='Close'
                                             />
                                         </Button>
-                                        <Button
-                                            id='curl-to-generate-access-token-btn'
-                                            variant='outlined'
-                                            size='small'
-                                            color='primary'
-                                            className={classes.margin}
-                                            onClick={handleClickOpenCurl}
-                                            disabled={externalIDPTokenError || externalIDPToken === ''}
-                                        >
-                                            <FormattedMessage
-                                                id='Shared.AppsAndKeys.ViewKeys.curl.to.generate'
-                                                defaultMessage='CURL to Generate Access Token'
-                                            />
-                                        </Button>
-                                    </div>
-                                </Grid>
+                                    </DialogActions>
+                                </Dialog>
+                                <div className={classes.generateWrapper}>
+                                    <Grid className={classes.bottomInfo}>
+                                        <FormattedMessage
+                                            id='application.productionKeys.oAuth.externalIdp.tokenGeneration.token.description'
+                                            defaultMessage={`In Exchange token flow, A JWT token has to be generated from the {selectedIdpType}
+                                         idp and then exchange for a token with the Resident Key Manager which can used to invoke APIs`}
+                                            values={{selectedIdpType: keyManagerConfig.type}}
+                                        />
+                                    </Grid>
+                                    <Button
+                                        variant='outlined'
+                                        size='small'
+                                        color='primary'
+                                        className={classes.margin}
+                                        onClick={handleClickOpen}
+                                        disabled={externalIDPTokenError || externalIDPToken === ''}
+                                    >
+                                        <FormattedMessage
+                                            id='Shared.AppsAndKeys.ViewKeys.generate.access.token'
+                                            defaultMessage='Generate Access Token'
+                                        />
+                                    </Button>
+                                    <Button
+                                        id='curl-to-generate-access-token-btn'
+                                        variant='outlined'
+                                        size='small'
+                                        color='primary'
+                                        className={classes.margin}
+                                        onClick={handleClickOpenCurl}
+                                        disabled={externalIDPTokenError || externalIDPToken === ''}
+                                    >
+                                        <FormattedMessage
+                                            id='Shared.AppsAndKeys.ViewKeys.curl.to.generate'
+                                            defaultMessage='CURL to Generate Access Token'
+                                        />
+                                    </Button>
+                                </div>
                             </Grid>
-                        </div>
-                    </Box>
-            </>
-    );
+                        </Grid>
+                    </div>
+                </Box>
+        </>;
 }
 TokenExchangeKeyConfiguration.defaultProps = {
     notFound: false,

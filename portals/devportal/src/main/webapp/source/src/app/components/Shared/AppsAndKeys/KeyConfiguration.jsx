@@ -16,21 +16,21 @@
  * under the License.
  */
 import React, { useState } from 'react';
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 import cloneDeep from 'lodash.clonedeep';
-import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import withStyles from '@mui/styles/withStyles';
+import TextField from '@mui/material/TextField';
+import FormHelperText from '@mui/material/FormHelperText';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import Tooltip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton';
-import Icon from '@material-ui/core/Icon';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import Icon from '@mui/material/Icon';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
 import { FormattedMessage, useIntl } from 'react-intl';
 import Settings from 'Settings';
 import PropTypes from 'prop-types';
@@ -240,232 +240,230 @@ const KeyConfiguration = (props) => {
     );
 
     // Check for additional properties for token endpoint and revoke endpoints.
-    return (
-        <>
-            <Box display='flex' alignItems='center'>
-                <Table className={classes.table}>
-                    <TableBody>
-                        {(tokenEndpoint && tokenEndpoint !== '') && (
-                            <TableRow>
-                                <TableCell component='th' scope='row' className={classes.leftCol}>
-                                    <FormattedMessage
-                                        defaultMessage='Token Endpoint'
-                                        id='Shared.AppsAndKeys.KeyConfiguration.token.endpoint.label'
-                                    />
-                                </TableCell>
-                                <TableCell>
-                                    {tokenEndpoint}
-                                    <Tooltip
-                                        title={
-                                            urlCopied
-                                                ? intl.formatMessage({
-                                                    defaultMessage: 'Copied',
-                                                    id: 'Shared.AppsAndKeys.KeyConfiguration.copied',
-                                                })
-                                                : intl.formatMessage({
-                                                    defaultMessage: 'Copy to clipboard',
-                                                    id: 'Shared.AppsAndKeys.KeyConfiguration.copy.to.clipboard',
-                                                })
-                                        }
-                                        placement='right'
-                                        className={classes.iconStyle}
-                                    >
-                                        <CopyToClipboard
-                                            text={tokenEndpoint}
-                                            onCopy={onCopy}
-                                        >
-                                            <IconButton
-                                                aria-label='Copy to clipboard'
-                                                classes={{ root: classes.iconButton }}
-                                            >
-                                                <Icon color='secondary'>file_copy</Icon>
-                                            </IconButton>
-                                        </CopyToClipboard>
-                                    </Tooltip>
-                                </TableCell>
-                            </TableRow>
-                        )}
-                        {(revokeEndpoint && revokeEndpoint !== '') && (
-                            <TableRow>
-                                <TableCell component='th' scope='row' className={classes.leftCol}>
-                                    <FormattedMessage
-                                        defaultMessage='Revoke Endpoint'
-                                        id='Shared.AppsAndKeys.KeyConfiguration.revoke.endpoint.label'
-                                    />
-                                </TableCell>
-                                <TableCell>
-                                    {revokeEndpoint}
-                                    <Tooltip
-                                        title={
-                                            urlCopied
-                                                ? intl.formatMessage({
-                                                    defaultMessage: 'Copied',
-                                                    id: 'Shared.AppsAndKeys.KeyConfiguration.copied',
-                                                })
-                                                : intl.formatMessage({
-                                                    defaultMessage: 'Copy to clipboard',
-                                                    id: 'Shared.AppsAndKeys.KeyConfiguration.copy.to.clipboard',
-                                                })
-                                        }
-                                        placement='right'
-                                        className={classes.iconStyle}
-                                    >
-                                        <CopyToClipboard
-                                            text={revokeEndpoint}
-                                            onCopy={onCopy}
-                                        >
-                                            <IconButton
-                                                aria-label='Copy to clipboard'
-                                                classes={{ root: classes.iconButton }}
-                                            >
-                                                <Icon color='secondary'>file_copy</Icon>
-                                            </IconButton>
-                                        </CopyToClipboard>
-                                    </Tooltip>
-                                </TableCell>
-                            </TableRow>
-                        )}
-                        {(userInfoEndpoint && userInfoEndpoint !== '') && (
-                            <TableRow>
-                                <TableCell component='th' scope='row' className={classes.leftCol}>
-                                    <FormattedMessage
-                                        defaultMessage='User Info Endpoint'
-                                        id='Shared.AppsAndKeys.KeyConfiguration.userinfo.endpoint.label'
-                                    />
-                                </TableCell>
-                                <TableCell>
-                                    {userInfoEndpoint}
-                                    <Tooltip
-                                        title={
-                                            urlCopied
-                                                ? intl.formatMessage({
-                                                    defaultMessage: 'Copied',
-                                                    id: 'Shared.AppsAndKeys.KeyConfiguration.copied',
-                                                })
-                                                : intl.formatMessage({
-                                                    defaultMessage: 'Copy to clipboard',
-                                                    id: 'Shared.AppsAndKeys.KeyConfiguration.copy.to.clipboard',
-                                                })
-                                        }
-                                        placement='right'
-                                        className={classes.iconStyle}
-                                    >
-                                        <CopyToClipboard
-                                            text={userInfoEndpoint}
-                                            onCopy={onCopy}
-                                        >
-                                            <IconButton
-                                                aria-label='Copy to clipboard'
-                                                classes={{ root: classes.iconButton }}
-                                            >
-                                                <Icon color='secondary'>file_copy</Icon>
-                                            </IconButton>
-                                        </CopyToClipboard>
-                                    </Tooltip>
-                                </TableCell>
-                            </TableRow>
-                        )}
-                        {mode !== 'MAPPED' && (<><TableRow>
-                            <TableCell component='th' scope='row' className={classes.leftCol}>
-                                <FormattedMessage
-                                    id='Shared.AppsAndKeys.KeyConfiguration.grant.types'
-                                    defaultMessage='Grant Types'
-                                />
-
-                            </TableCell>
-                            <TableCell>
-                                <div className={classes.checkboxWrapperColumn} id='grant-types'>
-                                    {Object.keys(grantTypeDisplayListMap).map((key) => {
-                                        const value = grantTypeDisplayListMap[key];
-                                        return (
-                                            <FormControlLabel
-                                                control={(
-                                                    <Checkbox
-                                                        id={key}
-                                                        checked={!!(selectedGrantTypes
-                                                                && selectedGrantTypes.includes(key))}
-                                                        onChange={(e) => handleChange('grantType', e)}
-                                                        value={value}
-                                                        disabled={!isUserOwner}
-                                                        color='primary'
-                                                        data-testid={key}
-                                                    />
-                                                )}
-                                                label={value}
-                                                key={key}
-                                            />
-                                        );
-                                    })}
-                                </div>
-                                <FormHelperText>
-                                    <FormattedMessage
-                                        defaultMessage={`The application can use the following grant types to generate 
-                            Access Tokens. Based on the application requirement,you can enable or disable 
-                            grant types for this application.`}
-                                        id='Shared.AppsAndKeys.KeyConfiguration.the.application.can'
-                                    />
-                                </FormHelperText>
-
-                            </TableCell>
-                        </TableRow>
+    return <>
+        <Box display='flex' alignItems='center'>
+            <Table className={classes.table}>
+                <TableBody>
+                    {(tokenEndpoint && tokenEndpoint !== '') && (
                         <TableRow>
                             <TableCell component='th' scope='row' className={classes.leftCol}>
                                 <FormattedMessage
-                                    defaultMessage='Callback URL'
-                                    id='Shared.AppsAndKeys.KeyConfiguration.callback.url.label'
+                                    defaultMessage='Token Endpoint'
+                                    id='Shared.AppsAndKeys.KeyConfiguration.token.endpoint.label'
                                 />
-
                             </TableCell>
                             <TableCell>
-                                <Box maxWidth={600}>
-                                    <TextField
-                                        margin='dense'
-                                        id='callbackURL'
-                                        label={(
-                                            <FormattedMessage
-                                                defaultMessage='Callback URL'
-                                                id='Shared.AppsAndKeys.KeyConfiguration.callback.url.label'
-                                            />
-                                        )}
-                                        value={callbackUrl}
-                                        name='callbackURL'
-                                        onChange={(e) => handleChange('callbackUrl', e)}
-                                        helperText={callbackHelper || (
-                                            <FormattedMessage
-                                                defaultMessage={`Callback URL is a redirection URI in the client
-                            application which is used by the authorization server to send the
-                            client's user-agent (usually web browser) back after granting access.`}
-                                                id='Shared.AppsAndKeys.KeyConfCiguration.callback.url.helper.text'
-                                            />
-                                        )}
-                                        variant='outlined'
-                                        disabled={!isUserOwner
-                                            || (selectedGrantTypes && !selectedGrantTypes.includes('authorization_code')
-                                                && !selectedGrantTypes.includes('implicit'))}
-                                        error={callbackError}
-                                        placeholder={intl.formatMessage({
-                                            defaultMessage: 'http://url-to-webapp',
-                                            id: 'Shared.AppsAndKeys.KeyConfiguration.url.to.webapp',
-                                        })}
-                                        fullWidth
-                                    />
-                                </Box>
+                                {tokenEndpoint}
+                                <Tooltip
+                                    title={
+                                        urlCopied
+                                            ? intl.formatMessage({
+                                                defaultMessage: 'Copied',
+                                                id: 'Shared.AppsAndKeys.KeyConfiguration.copied',
+                                            })
+                                            : intl.formatMessage({
+                                                defaultMessage: 'Copy to clipboard',
+                                                id: 'Shared.AppsAndKeys.KeyConfiguration.copy.to.clipboard',
+                                            })
+                                    }
+                                    placement='right'
+                                    className={classes.iconStyle}
+                                >
+                                    <CopyToClipboard
+                                        text={tokenEndpoint}
+                                        onCopy={onCopy}
+                                    >
+                                        <IconButton
+                                            aria-label='Copy to clipboard'
+                                            classes={{ root: classes.iconButton }}
+                                            size="large">
+                                            <Icon color='secondary'>file_copy</Icon>
+                                        </IconButton>
+                                    </CopyToClipboard>
+                                </Tooltip>
                             </TableCell>
                         </TableRow>
-                        {applicationConfiguration.length > 0 && applicationConfiguration.map((config) => (
-                            <AppConfiguration
-                                config={config}
-                                previousValue={getPreviousValue(config)}
-                                isUserOwner={isUserOwner}
-                                handleChange={handleChange}
+                    )}
+                    {(revokeEndpoint && revokeEndpoint !== '') && (
+                        <TableRow>
+                            <TableCell component='th' scope='row' className={classes.leftCol}>
+                                <FormattedMessage
+                                    defaultMessage='Revoke Endpoint'
+                                    id='Shared.AppsAndKeys.KeyConfiguration.revoke.endpoint.label'
+                                />
+                            </TableCell>
+                            <TableCell>
+                                {revokeEndpoint}
+                                <Tooltip
+                                    title={
+                                        urlCopied
+                                            ? intl.formatMessage({
+                                                defaultMessage: 'Copied',
+                                                id: 'Shared.AppsAndKeys.KeyConfiguration.copied',
+                                            })
+                                            : intl.formatMessage({
+                                                defaultMessage: 'Copy to clipboard',
+                                                id: 'Shared.AppsAndKeys.KeyConfiguration.copy.to.clipboard',
+                                            })
+                                    }
+                                    placement='right'
+                                    className={classes.iconStyle}
+                                >
+                                    <CopyToClipboard
+                                        text={revokeEndpoint}
+                                        onCopy={onCopy}
+                                    >
+                                        <IconButton
+                                            aria-label='Copy to clipboard'
+                                            classes={{ root: classes.iconButton }}
+                                            size="large">
+                                            <Icon color='secondary'>file_copy</Icon>
+                                        </IconButton>
+                                    </CopyToClipboard>
+                                </Tooltip>
+                            </TableCell>
+                        </TableRow>
+                    )}
+                    {(userInfoEndpoint && userInfoEndpoint !== '') && (
+                        <TableRow>
+                            <TableCell component='th' scope='row' className={classes.leftCol}>
+                                <FormattedMessage
+                                    defaultMessage='User Info Endpoint'
+                                    id='Shared.AppsAndKeys.KeyConfiguration.userinfo.endpoint.label'
+                                />
+                            </TableCell>
+                            <TableCell>
+                                {userInfoEndpoint}
+                                <Tooltip
+                                    title={
+                                        urlCopied
+                                            ? intl.formatMessage({
+                                                defaultMessage: 'Copied',
+                                                id: 'Shared.AppsAndKeys.KeyConfiguration.copied',
+                                            })
+                                            : intl.formatMessage({
+                                                defaultMessage: 'Copy to clipboard',
+                                                id: 'Shared.AppsAndKeys.KeyConfiguration.copy.to.clipboard',
+                                            })
+                                    }
+                                    placement='right'
+                                    className={classes.iconStyle}
+                                >
+                                    <CopyToClipboard
+                                        text={userInfoEndpoint}
+                                        onCopy={onCopy}
+                                    >
+                                        <IconButton
+                                            aria-label='Copy to clipboard'
+                                            classes={{ root: classes.iconButton }}
+                                            size="large">
+                                            <Icon color='secondary'>file_copy</Icon>
+                                        </IconButton>
+                                    </CopyToClipboard>
+                                </Tooltip>
+                            </TableCell>
+                        </TableRow>
+                    )}
+                    {mode !== 'MAPPED' && (<><TableRow>
+                        <TableCell component='th' scope='row' className={classes.leftCol}>
+                            <FormattedMessage
+                                id='Shared.AppsAndKeys.KeyConfiguration.grant.types'
+                                defaultMessage='Grant Types'
                             />
-                        ))}
-                        </>)}
-                    </TableBody>
-                </Table>
-            </Box>
-        </>
-    );
+
+                        </TableCell>
+                        <TableCell>
+                            <div className={classes.checkboxWrapperColumn} id='grant-types'>
+                                {Object.keys(grantTypeDisplayListMap).map((key) => {
+                                    const value = grantTypeDisplayListMap[key];
+                                    return (
+                                        <FormControlLabel
+                                            control={(
+                                                <Checkbox
+                                                    id={key}
+                                                    checked={!!(selectedGrantTypes
+                                                            && selectedGrantTypes.includes(key))}
+                                                    onChange={(e) => handleChange('grantType', e)}
+                                                    value={value}
+                                                    disabled={!isUserOwner}
+                                                    color='primary'
+                                                    data-testid={key}
+                                                />
+                                            )}
+                                            label={value}
+                                            key={key}
+                                        />
+                                    );
+                                })}
+                            </div>
+                            <FormHelperText>
+                                <FormattedMessage
+                                    defaultMessage={`The application can use the following grant types to generate 
+                        Access Tokens. Based on the application requirement,you can enable or disable 
+                        grant types for this application.`}
+                                    id='Shared.AppsAndKeys.KeyConfiguration.the.application.can'
+                                />
+                            </FormHelperText>
+
+                        </TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell component='th' scope='row' className={classes.leftCol}>
+                            <FormattedMessage
+                                defaultMessage='Callback URL'
+                                id='Shared.AppsAndKeys.KeyConfiguration.callback.url.label'
+                            />
+
+                        </TableCell>
+                        <TableCell>
+                            <Box maxWidth={600}>
+                                <TextField
+                                    margin='dense'
+                                    id='callbackURL'
+                                    label={(
+                                        <FormattedMessage
+                                            defaultMessage='Callback URL'
+                                            id='Shared.AppsAndKeys.KeyConfiguration.callback.url.label'
+                                        />
+                                    )}
+                                    value={callbackUrl}
+                                    name='callbackURL'
+                                    onChange={(e) => handleChange('callbackUrl', e)}
+                                    helperText={callbackHelper || (
+                                        <FormattedMessage
+                                            defaultMessage={`Callback URL is a redirection URI in the client
+                        application which is used by the authorization server to send the
+                        client's user-agent (usually web browser) back after granting access.`}
+                                            id='Shared.AppsAndKeys.KeyConfCiguration.callback.url.helper.text'
+                                        />
+                                    )}
+                                    variant='outlined'
+                                    disabled={!isUserOwner
+                                        || (selectedGrantTypes && !selectedGrantTypes.includes('authorization_code')
+                                            && !selectedGrantTypes.includes('implicit'))}
+                                    error={callbackError}
+                                    placeholder={intl.formatMessage({
+                                        defaultMessage: 'http://url-to-webapp',
+                                        id: 'Shared.AppsAndKeys.KeyConfiguration.url.to.webapp',
+                                    })}
+                                    fullWidth
+                                />
+                            </Box>
+                        </TableCell>
+                    </TableRow>
+                    {applicationConfiguration.length > 0 && applicationConfiguration.map((config) => (
+                        <AppConfiguration
+                            config={config}
+                            previousValue={getPreviousValue(config)}
+                            isUserOwner={isUserOwner}
+                            handleChange={handleChange}
+                        />
+                    ))}
+                    </>)}
+                </TableBody>
+            </Table>
+        </Box>
+    </>;
 };
 KeyConfiguration.defaultProps = {
     notFound: false,

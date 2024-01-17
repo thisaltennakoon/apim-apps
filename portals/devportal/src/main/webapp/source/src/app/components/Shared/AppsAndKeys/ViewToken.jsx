@@ -17,14 +17,14 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@mui/styles/withStyles';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import Tooltip from '@material-ui/core/Tooltip';
-import FileCopy from '@material-ui/icons/FileCopy';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import FileCopy from '@mui/icons-material/FileCopy';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import FormHelperText from '@mui/material/FormHelperText';
+import IconButton from '@mui/material/IconButton';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import InlineMessage from '../InlineMessage';
 import ViewSecret from './ViewSecret';
@@ -151,117 +151,117 @@ class ViewToken extends React.Component {
             )
         } else {
             return (
-            <div className={classes.root}>
-                {consumerSecret && (
-                    <div className={classes.secretWrapper}>
-                        <ViewSecret secret={{consumerSecret}}/>
+                <div className={classes.root}>
+                    {consumerSecret && (
+                        <div className={classes.secretWrapper}>
+                            <ViewSecret secret={{consumerSecret}}/>
+                        </div>
+                    )}
+                    <InlineMessage type='warn'>
+                        <Typography variant='h5' component='h3'>
+                            {(token.isOauth) && (
+                                <FormattedMessage
+                                    id='Shared.AppsAndKeys.ViewToken.please.copy'
+                                    defaultMessage='Please Copy the Access Token'
+                                />
+                            )}
+                            {(!token.isOauth) && (
+                                <FormattedMessage
+                                    id='Shared.AppsAndKeys.ViewToken.please.copy.apikey'
+                                    defaultMessage='Please Copy the API Key'
+                                />
+                            )}
+                        </Typography>
+                        <Typography component='p'>
+                            <FormattedMessage
+                                id='Shared.AppsAndKeys.ViewToken.please.copy.help'
+                                defaultMessage={'If the token type is JWT or API Key, please copy this generated token value as it will be displayed only for'
+                                + ' the current browser session. '
+                                + '( The token will not be visible in the UI after the page is refreshed. )'}
+                            />
+                        </Typography>
+                    </InlineMessage>
+                    <div className={classes.epWrapper}>
+                        <label for='access-token' className={classes.prodLabel}>
+                            {(token.isOauth) && (
+                                <FormattedMessage
+                                    id='Shared.AppsAndKeys.ViewToken.access.token'
+                                    defaultMessage='Access Token'
+                                />
+                            )}
+                            {(!token.isOauth) && (
+                                <FormattedMessage
+                                    id='Shared.AppsAndKeys.ViewToken.apikey'
+                                    defaultMessage='API Key'
+                                />
+                            )}
+                        </label>
+                        <TextField
+                            defaultValue={token.accessToken}
+                            id='access-token'
+                            multiline
+                            fullWidth
+                            rows={4}
+                            InputProps={{
+                                disableUnderline: true,
+                                classes: {
+                                    root: classes.bootstrapRoot,
+                                    input: classes.bootstrapInput,
+                                },
+                            }}
+                            InputLabelProps={{
+                                shrink: true,
+                                className: classes.bootstrapFormLabel,
+                            }}
+                        />
+                        <Tooltip
+                            title={
+                                tokenCopied
+                                    ? intl.formatMessage({
+                                        defaultMessage: 'Copied',
+                                        id: 'Shared.AppsAndKeys.ViewToken.copied',
+                                    })
+                                    : intl.formatMessage({
+                                        defaultMessage: 'Copy to clipboard',
+                                        id: 'Shared.AppsAndKeys.ViewToken.copy.to.clipboard',
+                                    })
+                            }
+                            placement='right'
+                        >
+                            <CopyToClipboard text={token.accessToken} onCopy={this.onCopy('tokenCopied')}>
+                                <IconButton id = 'copy-to-clipbord-icon' aria-label='Copy to clipboard' size="large">
+                                    <FileCopy color='secondary'>file_copy</FileCopy>
+                                </IconButton>
+                            </CopyToClipboard>
+                        </Tooltip>
                     </div>
-                )}
-                <InlineMessage type='warn'>
-                    <Typography variant='h5' component='h3'>
-                        {(token.isOauth) && (
-                            <FormattedMessage
-                                id='Shared.AppsAndKeys.ViewToken.please.copy'
-                                defaultMessage='Please Copy the Access Token'
-                            />
-                        )}
-                        {(!token.isOauth) && (
-                            <FormattedMessage
-                                id='Shared.AppsAndKeys.ViewToken.please.copy.apikey'
-                                defaultMessage='Please Copy the API Key'
-                            />
-                        )}
-                    </Typography>
-                    <Typography component='p'>
+                    <FormHelperText>
                         <FormattedMessage
-                            id='Shared.AppsAndKeys.ViewToken.please.copy.help'
-                            defaultMessage={'If the token type is JWT or API Key, please copy this generated token value as it will be displayed only for'
-                            + ' the current browser session. '
-                            + '( The token will not be visible in the UI after the page is refreshed. )'}
+                            id='Shared.AppsAndKeys.ViewToken.info.first'
+                            defaultMessage='Above token has a validity period of '
                         />
-                    </Typography>
-                </InlineMessage>
-                <div className={classes.epWrapper}>
-                    <label for='access-token' className={classes.prodLabel}>
-                        {(token.isOauth) && (
+                        {token.validityTime}
+                        <FormattedMessage
+                            id='Shared.AppsAndKeys.ViewToken.info.second'
+                            defaultMessage=' seconds'
+                        />
+                        {token.isOauth && (
                             <FormattedMessage
-                                id='Shared.AppsAndKeys.ViewToken.access.token'
-                                defaultMessage='Access Token'
+                                id='Shared.AppsAndKeys.ViewToken.info.third'
+                                defaultMessage=' and the token has ('
                             />
                         )}
-                        {(!token.isOauth) && (
+                        {this.getTokeScopesString(token.tokenScopes)}
+                        {token.isOauth && (
                             <FormattedMessage
-                                id='Shared.AppsAndKeys.ViewToken.apikey'
-                                defaultMessage='API Key'
+                                id='Shared.AppsAndKeys.ViewToken.info.fourth'
+                                defaultMessage=') scopes'
                             />
                         )}
-                    </label>
-                    <TextField
-                        defaultValue={token.accessToken}
-                        id='access-token'
-                        multiline
-                        fullWidth
-                        rows={4}
-                        InputProps={{
-                            disableUnderline: true,
-                            classes: {
-                                root: classes.bootstrapRoot,
-                                input: classes.bootstrapInput,
-                            },
-                        }}
-                        InputLabelProps={{
-                            shrink: true,
-                            className: classes.bootstrapFormLabel,
-                        }}
-                    />
-                    <Tooltip
-                        title={
-                            tokenCopied
-                                ? intl.formatMessage({
-                                    defaultMessage: 'Copied',
-                                    id: 'Shared.AppsAndKeys.ViewToken.copied',
-                                })
-                                : intl.formatMessage({
-                                    defaultMessage: 'Copy to clipboard',
-                                    id: 'Shared.AppsAndKeys.ViewToken.copy.to.clipboard',
-                                })
-                        }
-                        placement='right'
-                    >
-                        <CopyToClipboard text={token.accessToken} onCopy={this.onCopy('tokenCopied')}>
-                            <IconButton id = 'copy-to-clipbord-icon' aria-label='Copy to clipboard'>
-                                <FileCopy color='secondary'>file_copy</FileCopy>
-                            </IconButton>
-                        </CopyToClipboard>
-                    </Tooltip>
+                        .
+                    </FormHelperText>
                 </div>
-                <FormHelperText>
-                    <FormattedMessage
-                        id='Shared.AppsAndKeys.ViewToken.info.first'
-                        defaultMessage='Above token has a validity period of '
-                    />
-                    {token.validityTime}
-                    <FormattedMessage
-                        id='Shared.AppsAndKeys.ViewToken.info.second'
-                        defaultMessage=' seconds'
-                    />
-                    {token.isOauth && (
-                        <FormattedMessage
-                            id='Shared.AppsAndKeys.ViewToken.info.third'
-                            defaultMessage=' and the token has ('
-                        />
-                    )}
-                    {this.getTokeScopesString(token.tokenScopes)}
-                    {token.isOauth && (
-                        <FormattedMessage
-                            id='Shared.AppsAndKeys.ViewToken.info.fourth'
-                            defaultMessage=') scopes'
-                        />
-                    )}
-                    .
-                </FormHelperText>
-            </div>
-        )};
+            );};
     }
 }
 
