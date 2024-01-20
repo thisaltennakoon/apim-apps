@@ -254,7 +254,7 @@ const KeyConfiguration = (props) => {
                             </TableCell>
                             <TableCell>
                                 {tokenEndpoint}
-                                <Tooltip
+                                <Tooltip disableInteractive
                                     title={
                                         urlCopied
                                             ? intl.formatMessage({
@@ -294,7 +294,7 @@ const KeyConfiguration = (props) => {
                             </TableCell>
                             <TableCell>
                                 {revokeEndpoint}
-                                <Tooltip
+                                <Tooltip disableInteractive
                                     title={
                                         urlCopied
                                             ? intl.formatMessage({
@@ -334,7 +334,7 @@ const KeyConfiguration = (props) => {
                             </TableCell>
                             <TableCell>
                                 {userInfoEndpoint}
-                                <Tooltip
+                                <Tooltip disableInteractive
                                     title={
                                         urlCopied
                                             ? intl.formatMessage({

@@ -39,7 +39,7 @@ const useStylesBootstrap = makeStyles((theme) => ({
 function BootstrapTooltip(props) {
     const classes = useStylesBootstrap();
 
-    return <Tooltip arrow classes={classes} {...props} />;
+    return <Tooltip disableInteractive arrow classes={classes} {...props} />;
 }
 const styles = (theme) => ({
     leftLInkText: {

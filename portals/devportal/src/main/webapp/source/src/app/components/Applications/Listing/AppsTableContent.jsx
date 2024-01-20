@@ -192,18 +192,20 @@ class AppsTableContent extends Component {
                                     >
                                         {(app.status === this.APPLICATION_STATES.APPROVED
                                         || app.status === this.APPLICATION_STATES.DELETE_PENDING) && (
-                                            <Tooltip title={isAppOwner
-                                                ? (
-                                                    <FormattedMessage
-                                                        id='Applications.Listing.AppsTableContent.edit.tooltip'
-                                                        defaultMessage='Edit'
-                                                    />
-                                                ) : (
-                                                    <FormattedMessage
-                                                        id='Applications.Listing.AppsTableContent.edit.tooltip.disabled.button'
-                                                        defaultMessage='Not allowed to modify shared applications'
-                                                    />
-                                                )}
+                                            <Tooltip
+                                                disableInteractive
+                                                title={isAppOwner
+                                                    ? (
+                                                        <FormattedMessage
+                                                            id='Applications.Listing.AppsTableContent.edit.tooltip'
+                                                            defaultMessage='Edit'
+                                                        />
+                                                    ) : (
+                                                        <FormattedMessage
+                                                            id='Applications.Listing.AppsTableContent.edit.tooltip.disabled.button'
+                                                            defaultMessage='Not allowed to modify shared applications'
+                                                        />
+                                                    )}
                                             >
                                                 <span>
                                                     <Link
@@ -224,17 +226,19 @@ class AppsTableContent extends Component {
                                         resourcePath={resourcePaths.SINGLE_APPLICATION}
                                         resourceMethod={resourceMethods.DELETE}
                                     >
-                                        <Tooltip title={isAppOwner ? (
-                                            <FormattedMessage
-                                                id='Applications.Listing.AppsTableContent.delete.tooltip'
-                                                defaultMessage='Delete'
-                                            />
-                                        ) : (
-                                            <FormattedMessage
-                                                id='Applications.Listing.AppsTableContent.delete.tooltip.disabled.button'
-                                                defaultMessage='Not allowed to delete shared applications'
-                                            />
-                                        )}
+                                        <Tooltip
+                                            disableInteractive
+                                            title={isAppOwner ? (
+                                                <FormattedMessage
+                                                    id='Applications.Listing.AppsTableContent.delete.tooltip'
+                                                    defaultMessage='Delete'
+                                                />
+                                            ) : (
+                                                <FormattedMessage
+                                                    id='Applications.Listing.AppsTableContent.delete.tooltip.disabled.button'
+                                                    defaultMessage='Not allowed to delete shared applications'
+                                                />
+                                            )}
                                         >
                                             <span>
                                                 <IconButton

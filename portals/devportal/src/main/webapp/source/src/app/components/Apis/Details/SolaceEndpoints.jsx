@@ -194,6 +194,7 @@ function SolaceEndpoints() {
                                                 />
                                                 <Avatar className={classes.avatar} sizes={30}>
                                                     <Tooltip
+                                                        disableInteractive
                                                         title={
                                                             urlCopied
                                                                 ? intl.formatMessage({
@@ -205,7 +206,6 @@ function SolaceEndpoints() {
                                                                     id: 'Apis.Details.Environments.copy.to.clipboard',
                                                                 })
                                                         }
-                                                        interactive
                                                         placement='right'
                                                         className={classes.iconStyle}
                                                     >

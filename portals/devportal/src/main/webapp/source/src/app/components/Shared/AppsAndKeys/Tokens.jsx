@@ -64,8 +64,7 @@ const MenuProps = {
     transformOrigin: {
         vertical: "top",
         horizontal: "left"
-    },
-    getContentAnchorEl: null,
+    }
 };
 
 /**

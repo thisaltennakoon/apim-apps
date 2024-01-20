@@ -125,7 +125,7 @@ const styles = (theme) => {
         }),
         pointerEvents: 'none' // Transparent to the hover style.
       },
-      '&$focused:after': {
+      '&.Mui-focused:after': {
         transform: 'scaleX(1)'
       },
       '&$error:after': {

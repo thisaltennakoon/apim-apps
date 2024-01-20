@@ -102,7 +102,7 @@ function ViewCurl(props) {
                         </div>
                     </div>
                     <div>
-                        <Tooltip
+                        <Tooltip disableInteractive
                             title={
                                 tokenCopied
                                     ? intl.formatMessage({
@@ -151,7 +151,7 @@ function ViewCurl(props) {
                         </div>
                     </div>
                     <div>
-                        <Tooltip
+                        <Tooltip disableInteractive
                             title={
                                 tokenCopied
                                     ? intl.formatMessage({
@@ -226,7 +226,7 @@ function ViewCurl(props) {
                             </div>
                         </div>
                         <div>
-                            <Tooltip
+                            <Tooltip disableInteractive
                                 title={
                                     tokenCopied
                                         ? intl.formatMessage({

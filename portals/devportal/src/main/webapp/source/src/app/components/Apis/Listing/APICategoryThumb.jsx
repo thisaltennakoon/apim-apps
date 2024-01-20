@@ -61,7 +61,7 @@ function APICategoryThumb(props) {
     }
     return (
         <Link to={categoryLink} className={classes.textWrapper}>
-            <Tooltip placement='right' title={category.description.length <= 50 ? '' : category.description}>
+            <Tooltip disableInteractive placement='right' title={category.description.length <= 50 ? '' : category.description}>
                 <ListItem button alignItems='flex-start'>
                     <ListItemIcon className='category-listing-icon'>
                         <Icon>label</Icon>

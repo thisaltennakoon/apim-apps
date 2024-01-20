@@ -796,7 +796,7 @@ class TokenManager extends React.Component {
         }
         return <>
             {(keyManagers && keyManagers.length > 1) && (
-                <AppBar position="static" color="default">
+                <AppBar position="static" color="default" enableColorOnDark>
                     <Tabs
                     value={selectedTab}
                     onChange={this.handleTabChange}

@@ -173,6 +173,7 @@ function SourceDownload(props) {
         api.type === 'SOAP') {
         return (
             <Tooltip
+                disableInteractive
                 title={(
                     <FormattedMessage
                         id='Apis.Details.Environments.download.wsdl'
@@ -200,6 +201,7 @@ function SourceDownload(props) {
         return (
             <Box display='flex' alignItems='center'>
                 <Tooltip
+                    disableInteractive
                     title={(
                         <FormattedMessage
                             id='Apis.Details.Environments.download.swagger'
@@ -223,6 +225,7 @@ function SourceDownload(props) {
                     </a>
                 </Tooltip>
                 <Tooltip
+                    disableInteractive
                     title={isTokenCopied
                         ? (
                             <FormattedMessage
@@ -256,6 +259,7 @@ function SourceDownload(props) {
     if (api.type === 'WS' || api.type === 'WEBSUB' || api.type === 'SSE' || api.type === 'ASYNC') {
         return (
             <Tooltip
+                disableInteractive
                 title={(
                     <FormattedMessage
                         id='Apis.Details.Environments.download.asyncapi'
@@ -283,6 +287,7 @@ function SourceDownload(props) {
     if (api.type === 'GRAPHQL') {
         return (
             <Tooltip
+                disableInteractive
                 title={(
                     <FormattedMessage
                         id='Apis.Details.Environments.download.graphQL'

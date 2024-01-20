@@ -622,6 +622,7 @@ class ApiConsole extends React.Component {
                                     </Button>
                                 </a>
                                 <Tooltip
+                                    disableInteractive
                                     title={urlCopied
                                         ? (
                                             <FormattedMessage

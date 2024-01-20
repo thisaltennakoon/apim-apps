@@ -467,7 +467,7 @@ const TokenExchangeKeyConfiguration = (props) => {
                                         values={{tokenEndpoint: keyManagerConfig.tokenEndpoint}}
                                     />
 
-                                    <Tooltip
+                                    <Tooltip disableInteractive
                                         title={
                                             urlCopied
                                                 ? intl.formatMessage({

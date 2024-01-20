@@ -20,7 +20,7 @@
 }
 
 #apim_elements button {
-    background-color: initial;
+    border-color: initial;
     background-image: none
 }
 
@@ -222,863 +222,863 @@
 }
 
 .sl-bg-transparent {
-    background-color: initial
+    border-color: initial
 }
 
 .sl-bg-current {
-    background-color: currentColor
+    border-color: currentColor
 }
 
 .sl-bg-lighten-100 {
-    background-color: var(--color-lighten-100)
+    border-color: var(--color-lighten-100)
 }
 
 .sl-bg-darken-100 {
-    background-color: var(--color-darken-100)
+    border-color: var(--color-darken-100)
 }
 
 .sl-bg-primary {
-    background-color: var(--color-primary)
+    border-color: var(--color-primary)
 }
 
 .sl-bg-primary-tint {
-    background-color: var(--color-primary-tint)
+    border-color: var(--color-primary-tint)
 }
 
 .sl-bg-primary-light {
-    background-color: var(--color-primary-light)
+    border-color: var(--color-primary-light)
 }
 
 .sl-bg-primary-dark {
-    background-color: var(--color-primary-dark)
+    border-color: var(--color-primary-dark)
 }
 
 .sl-bg-primary-darker {
-    background-color: var(--color-primary-darker)
+    border-color: var(--color-primary-darker)
 }
 
 .sl-bg-success {
-    background-color: var(--color-success)
+    border-color: var(--color-success)
 }
 
 .sl-bg-success-tint {
-    background-color: var(--color-success-tint)
+    border-color: var(--color-success-tint)
 }
 
 .sl-bg-success-light {
-    background-color: var(--color-success-light)
+    border-color: var(--color-success-light)
 }
 
 .sl-bg-success-dark {
-    background-color: var(--color-success-dark)
+    border-color: var(--color-success-dark)
 }
 
 .sl-bg-success-darker {
-    background-color: var(--color-success-darker)
+    border-color: var(--color-success-darker)
 }
 
 .sl-bg-warning {
-    background-color: var(--color-warning)
+    border-color: var(--color-warning)
 }
 
 .sl-bg-warning-tint {
-    background-color: var(--color-warning-tint)
+    border-color: var(--color-warning-tint)
 }
 
 .sl-bg-warning-light {
-    background-color: var(--color-warning-light)
+    border-color: var(--color-warning-light)
 }
 
 .sl-bg-warning-dark {
-    background-color: var(--color-warning-dark)
+    border-color: var(--color-warning-dark)
 }
 
 .sl-bg-warning-darker {
-    background-color: var(--color-warning-darker)
+    border-color: var(--color-warning-darker)
 }
 
 .sl-bg-danger {
-    background-color: var(--color-danger)
+    border-color: var(--color-danger)
 }
 
 .sl-bg-danger-tint {
-    background-color: var(--color-danger-tint)
+    border-color: var(--color-danger-tint)
 }
 
 .sl-bg-danger-light {
-    background-color: var(--color-danger-light)
+    border-color: var(--color-danger-light)
 }
 
 .sl-bg-danger-dark {
-    background-color: var(--color-danger-dark)
+    border-color: var(--color-danger-dark)
 }
 
 .sl-bg-danger-darker {
-    background-color: var(--color-danger-darker)
+    border-color: var(--color-danger-darker)
 }
 
 .sl-bg-code {
-    background-color: var(--color-code)
+    border-color: var(--color-code)
 }
 
 .sl-bg-on-code {
-    background-color: var(--color-on-code)
+    border-color: var(--color-on-code)
 }
 
 .sl-bg-on-primary {
-    background-color: var(--color-on-primary)
+    border-color: var(--color-on-primary)
 }
 
 .sl-bg-on-success {
-    background-color: var(--color-on-success)
+    border-color: var(--color-on-success)
 }
 
 .sl-bg-on-warning {
-    background-color: var(--color-on-warning)
+    border-color: var(--color-on-warning)
 }
 
 .sl-bg-on-danger {
-    background-color: var(--color-on-danger)
+    border-color: var(--color-on-danger)
 }
 
 .sl-bg-canvas-50 {
-    background-color: var(--color-canvas-50)
+    border-color: var(--color-canvas-50)
 }
 
 .sl-bg-canvas-100 {
-    background-color: var(--color-canvas-100)
+    border-color: var(--color-canvas-100)
 }
 
 .sl-bg-canvas-200 {
-    background-color: var(--color-canvas-200)
+    border-color: var(--color-canvas-200)
 }
 
 .sl-bg-canvas-300 {
-    background-color: var(--color-canvas-300)
+    border-color: var(--color-canvas-300)
 }
 
 .sl-bg-canvas-400 {
-    background-color: var(--color-canvas-400)
+    border-color: var(--color-canvas-400)
 }
 
 .sl-bg-canvas-500 {
-    background-color: var(--color-canvas-500)
+    border-color: var(--color-canvas-500)
 }
 
 .sl-bg-canvas-pure {
-    background-color: var(--color-canvas-pure)
+    border-color: var(--color-canvas-pure)
 }
 
 .sl-bg-canvas {
-    background-color: var(--color-canvas)
+    border-color: var(--color-canvas)
 }
 
 .sl-bg-canvas-tint {
-    background-color: var(--color-canvas-tint)
+    border-color: var(--color-canvas-tint)
 }
 
 .sl-bg-canvas-dialog {
-    background-color: var(--color-canvas-dialog)
+    border-color: var(--color-canvas-dialog)
 }
 
 .sl-bg-body {
-    background-color: var(--color-text)
+    border-color: var(--color-text)
 }
 
 .sl-bg-body-muted {
-    background-color: var(--color-text-muted)
+    border-color: var(--color-text-muted)
 }
 
 .sl-bg-body-light {
-    background-color: var(--color-text-light)
+    border-color: var(--color-text-light)
 }
 
 .hover\:sl-bg-transparent:hover {
-    background-color: initial
+    border-color: initial
 }
 
 .hover\:sl-bg-current:hover {
-    background-color: currentColor
+    border-color: currentColor
 }
 
 .hover\:sl-bg-lighten-100:hover {
-    background-color: var(--color-lighten-100)
+    border-color: var(--color-lighten-100)
 }
 
 .hover\:sl-bg-darken-100:hover {
-    background-color: var(--color-darken-100)
+    border-color: var(--color-darken-100)
 }
 
 .hover\:sl-bg-primary:hover {
-    background-color: var(--color-primary)
+    border-color: var(--color-primary)
 }
 
 .hover\:sl-bg-primary-tint:hover {
-    background-color: var(--color-primary-tint)
+    border-color: var(--color-primary-tint)
 }
 
 .hover\:sl-bg-primary-light:hover {
-    background-color: var(--color-primary-light)
+    border-color: var(--color-primary-light)
 }
 
 .hover\:sl-bg-primary-dark:hover {
-    background-color: var(--color-primary-dark)
+    border-color: var(--color-primary-dark)
 }
 
 .hover\:sl-bg-primary-darker:hover {
-    background-color: var(--color-primary-darker)
+    border-color: var(--color-primary-darker)
 }
 
 .hover\:sl-bg-success:hover {
-    background-color: var(--color-success)
+    border-color: var(--color-success)
 }
 
 .hover\:sl-bg-success-tint:hover {
-    background-color: var(--color-success-tint)
+    border-color: var(--color-success-tint)
 }
 
 .hover\:sl-bg-success-light:hover {
-    background-color: var(--color-success-light)
+    border-color: var(--color-success-light)
 }
 
 .hover\:sl-bg-success-dark:hover {
-    background-color: var(--color-success-dark)
+    border-color: var(--color-success-dark)
 }
 
 .hover\:sl-bg-success-darker:hover {
-    background-color: var(--color-success-darker)
+    border-color: var(--color-success-darker)
 }
 
 .hover\:sl-bg-warning:hover {
-    background-color: var(--color-warning)
+    border-color: var(--color-warning)
 }
 
 .hover\:sl-bg-warning-tint:hover {
-    background-color: var(--color-warning-tint)
+    border-color: var(--color-warning-tint)
 }
 
 .hover\:sl-bg-warning-light:hover {
-    background-color: var(--color-warning-light)
+    border-color: var(--color-warning-light)
 }
 
 .hover\:sl-bg-warning-dark:hover {
-    background-color: var(--color-warning-dark)
+    border-color: var(--color-warning-dark)
 }
 
 .hover\:sl-bg-warning-darker:hover {
-    background-color: var(--color-warning-darker)
+    border-color: var(--color-warning-darker)
 }
 
 .hover\:sl-bg-danger:hover {
-    background-color: var(--color-danger)
+    border-color: var(--color-danger)
 }
 
 .hover\:sl-bg-danger-tint:hover {
-    background-color: var(--color-danger-tint)
+    border-color: var(--color-danger-tint)
 }
 
 .hover\:sl-bg-danger-light:hover {
-    background-color: var(--color-danger-light)
+    border-color: var(--color-danger-light)
 }
 
 .hover\:sl-bg-danger-dark:hover {
-    background-color: var(--color-danger-dark)
+    border-color: var(--color-danger-dark)
 }
 
 .hover\:sl-bg-danger-darker:hover {
-    background-color: var(--color-danger-darker)
+    border-color: var(--color-danger-darker)
 }
 
 .hover\:sl-bg-code:hover {
-    background-color: var(--color-code)
+    border-color: var(--color-code)
 }
 
 .hover\:sl-bg-on-code:hover {
-    background-color: var(--color-on-code)
+    border-color: var(--color-on-code)
 }
 
 .hover\:sl-bg-on-primary:hover {
-    background-color: var(--color-on-primary)
+    border-color: var(--color-on-primary)
 }
 
 .hover\:sl-bg-on-success:hover {
-    background-color: var(--color-on-success)
+    border-color: var(--color-on-success)
 }
 
 .hover\:sl-bg-on-warning:hover {
-    background-color: var(--color-on-warning)
+    border-color: var(--color-on-warning)
 }
 
 .hover\:sl-bg-on-danger:hover {
-    background-color: var(--color-on-danger)
+    border-color: var(--color-on-danger)
 }
 
 .hover\:sl-bg-canvas-50:hover {
-    background-color: var(--color-canvas-50)
+    border-color: var(--color-canvas-50)
 }
 
 .hover\:sl-bg-canvas-100:hover {
-    background-color: var(--color-canvas-100)
+    border-color: var(--color-canvas-100)
 }
 
 .hover\:sl-bg-canvas-200:hover {
-    background-color: var(--color-canvas-200)
+    border-color: var(--color-canvas-200)
 }
 
 .hover\:sl-bg-canvas-300:hover {
-    background-color: var(--color-canvas-300)
+    border-color: var(--color-canvas-300)
 }
 
 .hover\:sl-bg-canvas-400:hover {
-    background-color: var(--color-canvas-400)
+    border-color: var(--color-canvas-400)
 }
 
 .hover\:sl-bg-canvas-500:hover {
-    background-color: var(--color-canvas-500)
+    border-color: var(--color-canvas-500)
 }
 
 .hover\:sl-bg-canvas-pure:hover {
-    background-color: var(--color-canvas-pure)
+    border-color: var(--color-canvas-pure)
 }
 
 .hover\:sl-bg-canvas:hover {
-    background-color: var(--color-canvas)
+    border-color: var(--color-canvas)
 }
 
 .hover\:sl-bg-canvas-tint:hover {
-    background-color: var(--color-canvas-tint)
+    border-color: var(--color-canvas-tint)
 }
 
 .hover\:sl-bg-canvas-dialog:hover {
-    background-color: var(--color-canvas-dialog)
+    border-color: var(--color-canvas-dialog)
 }
 
 .hover\:sl-bg-body:hover {
-    background-color: var(--color-text)
+    border-color: var(--color-text)
 }
 
 .hover\:sl-bg-body-muted:hover {
-    background-color: var(--color-text-muted)
+    border-color: var(--color-text-muted)
 }
 
 .hover\:sl-bg-body-light:hover {
-    background-color: var(--color-text-light)
+    border-color: var(--color-text-light)
 }
 
 .focus\:sl-bg-transparent:focus {
-    background-color: initial
+    border-color: initial
 }
 
 .focus\:sl-bg-current:focus {
-    background-color: currentColor
+    border-color: currentColor
 }
 
 .focus\:sl-bg-lighten-100:focus {
-    background-color: var(--color-lighten-100)
+    border-color: var(--color-lighten-100)
 }
 
 .focus\:sl-bg-darken-100:focus {
-    background-color: var(--color-darken-100)
+    border-color: var(--color-darken-100)
 }
 
 .focus\:sl-bg-primary:focus {
-    background-color: var(--color-primary)
+    border-color: var(--color-primary)
 }
 
 .focus\:sl-bg-primary-tint:focus {
-    background-color: var(--color-primary-tint)
+    border-color: var(--color-primary-tint)
 }
 
 .focus\:sl-bg-primary-light:focus {
-    background-color: var(--color-primary-light)
+    border-color: var(--color-primary-light)
 }
 
 .focus\:sl-bg-primary-dark:focus {
-    background-color: var(--color-primary-dark)
+    border-color: var(--color-primary-dark)
 }
 
 .focus\:sl-bg-primary-darker:focus {
-    background-color: var(--color-primary-darker)
+    border-color: var(--color-primary-darker)
 }
 
 .focus\:sl-bg-success:focus {
-    background-color: var(--color-success)
+    border-color: var(--color-success)
 }
 
 .focus\:sl-bg-success-tint:focus {
-    background-color: var(--color-success-tint)
+    border-color: var(--color-success-tint)
 }
 
 .focus\:sl-bg-success-light:focus {
-    background-color: var(--color-success-light)
+    border-color: var(--color-success-light)
 }
 
 .focus\:sl-bg-success-dark:focus {
-    background-color: var(--color-success-dark)
+    border-color: var(--color-success-dark)
 }
 
 .focus\:sl-bg-success-darker:focus {
-    background-color: var(--color-success-darker)
+    border-color: var(--color-success-darker)
 }
 
 .focus\:sl-bg-warning:focus {
-    background-color: var(--color-warning)
+    border-color: var(--color-warning)
 }
 
 .focus\:sl-bg-warning-tint:focus {
-    background-color: var(--color-warning-tint)
+    border-color: var(--color-warning-tint)
 }
 
 .focus\:sl-bg-warning-light:focus {
-    background-color: var(--color-warning-light)
+    border-color: var(--color-warning-light)
 }
 
 .focus\:sl-bg-warning-dark:focus {
-    background-color: var(--color-warning-dark)
+    border-color: var(--color-warning-dark)
 }
 
 .focus\:sl-bg-warning-darker:focus {
-    background-color: var(--color-warning-darker)
+    border-color: var(--color-warning-darker)
 }
 
 .focus\:sl-bg-danger:focus {
-    background-color: var(--color-danger)
+    border-color: var(--color-danger)
 }
 
 .focus\:sl-bg-danger-tint:focus {
-    background-color: var(--color-danger-tint)
+    border-color: var(--color-danger-tint)
 }
 
 .focus\:sl-bg-danger-light:focus {
-    background-color: var(--color-danger-light)
+    border-color: var(--color-danger-light)
 }
 
 .focus\:sl-bg-danger-dark:focus {
-    background-color: var(--color-danger-dark)
+    border-color: var(--color-danger-dark)
 }
 
 .focus\:sl-bg-danger-darker:focus {
-    background-color: var(--color-danger-darker)
+    border-color: var(--color-danger-darker)
 }
 
 .focus\:sl-bg-code:focus {
-    background-color: var(--color-code)
+    border-color: var(--color-code)
 }
 
 .focus\:sl-bg-on-code:focus {
-    background-color: var(--color-on-code)
+    border-color: var(--color-on-code)
 }
 
 .focus\:sl-bg-on-primary:focus {
-    background-color: var(--color-on-primary)
+    border-color: var(--color-on-primary)
 }
 
 .focus\:sl-bg-on-success:focus {
-    background-color: var(--color-on-success)
+    border-color: var(--color-on-success)
 }
 
 .focus\:sl-bg-on-warning:focus {
-    background-color: var(--color-on-warning)
+    border-color: var(--color-on-warning)
 }
 
 .focus\:sl-bg-on-danger:focus {
-    background-color: var(--color-on-danger)
+    border-color: var(--color-on-danger)
 }
 
 .focus\:sl-bg-canvas-50:focus {
-    background-color: var(--color-canvas-50)
+    border-color: var(--color-canvas-50)
 }
 
 .focus\:sl-bg-canvas-100:focus {
-    background-color: var(--color-canvas-100)
+    border-color: var(--color-canvas-100)
 }
 
 .focus\:sl-bg-canvas-200:focus {
-    background-color: var(--color-canvas-200)
+    border-color: var(--color-canvas-200)
 }
 
 .focus\:sl-bg-canvas-300:focus {
-    background-color: var(--color-canvas-300)
+    border-color: var(--color-canvas-300)
 }
 
 .focus\:sl-bg-canvas-400:focus {
-    background-color: var(--color-canvas-400)
+    border-color: var(--color-canvas-400)
 }
 
 .focus\:sl-bg-canvas-500:focus {
-    background-color: var(--color-canvas-500)
+    border-color: var(--color-canvas-500)
 }
 
 .focus\:sl-bg-canvas-pure:focus {
-    background-color: var(--color-canvas-pure)
+    border-color: var(--color-canvas-pure)
 }
 
 .focus\:sl-bg-canvas:focus {
-    background-color: var(--color-canvas)
+    border-color: var(--color-canvas)
 }
 
 .focus\:sl-bg-canvas-tint:focus {
-    background-color: var(--color-canvas-tint)
+    border-color: var(--color-canvas-tint)
 }
 
 .focus\:sl-bg-canvas-dialog:focus {
-    background-color: var(--color-canvas-dialog)
+    border-color: var(--color-canvas-dialog)
 }
 
 .focus\:sl-bg-body:focus {
-    background-color: var(--color-text)
+    border-color: var(--color-text)
 }
 
 .focus\:sl-bg-body-muted:focus {
-    background-color: var(--color-text-muted)
+    border-color: var(--color-text-muted)
 }
 
 .focus\:sl-bg-body-light:focus {
-    background-color: var(--color-text-light)
+    border-color: var(--color-text-light)
 }
 
 .active\:sl-bg-transparent:active {
-    background-color: initial
+    border-color: initial
 }
 
 .active\:sl-bg-current:active {
-    background-color: currentColor
+    border-color: currentColor
 }
 
 .active\:sl-bg-lighten-100:active {
-    background-color: var(--color-lighten-100)
+    border-color: var(--color-lighten-100)
 }
 
 .active\:sl-bg-darken-100:active {
-    background-color: var(--color-darken-100)
+    border-color: var(--color-darken-100)
 }
 
 .active\:sl-bg-primary:active {
-    background-color: var(--color-primary)
+    border-color: var(--color-primary)
 }
 
 .active\:sl-bg-primary-tint:active {
-    background-color: var(--color-primary-tint)
+    border-color: var(--color-primary-tint)
 }
 
 .active\:sl-bg-primary-light:active {
-    background-color: var(--color-primary-light)
+    border-color: var(--color-primary-light)
 }
 
 .active\:sl-bg-primary-dark:active {
-    background-color: var(--color-primary-dark)
+    border-color: var(--color-primary-dark)
 }
 
 .active\:sl-bg-primary-darker:active {
-    background-color: var(--color-primary-darker)
+    border-color: var(--color-primary-darker)
 }
 
 .active\:sl-bg-success:active {
-    background-color: var(--color-success)
+    border-color: var(--color-success)
 }
 
 .active\:sl-bg-success-tint:active {
-    background-color: var(--color-success-tint)
+    border-color: var(--color-success-tint)
 }
 
 .active\:sl-bg-success-light:active {
-    background-color: var(--color-success-light)
+    border-color: var(--color-success-light)
 }
 
 .active\:sl-bg-success-dark:active {
-    background-color: var(--color-success-dark)
+    border-color: var(--color-success-dark)
 }
 
 .active\:sl-bg-success-darker:active {
-    background-color: var(--color-success-darker)
+    border-color: var(--color-success-darker)
 }
 
 .active\:sl-bg-warning:active {
-    background-color: var(--color-warning)
+    border-color: var(--color-warning)
 }
 
 .active\:sl-bg-warning-tint:active {
-    background-color: var(--color-warning-tint)
+    border-color: var(--color-warning-tint)
 }
 
 .active\:sl-bg-warning-light:active {
-    background-color: var(--color-warning-light)
+    border-color: var(--color-warning-light)
 }
 
 .active\:sl-bg-warning-dark:active {
-    background-color: var(--color-warning-dark)
+    border-color: var(--color-warning-dark)
 }
 
 .active\:sl-bg-warning-darker:active {
-    background-color: var(--color-warning-darker)
+    border-color: var(--color-warning-darker)
 }
 
 .active\:sl-bg-danger:active {
-    background-color: var(--color-danger)
+    border-color: var(--color-danger)
 }
 
 .active\:sl-bg-danger-tint:active {
-    background-color: var(--color-danger-tint)
+    border-color: var(--color-danger-tint)
 }
 
 .active\:sl-bg-danger-light:active {
-    background-color: var(--color-danger-light)
+    border-color: var(--color-danger-light)
 }
 
 .active\:sl-bg-danger-dark:active {
-    background-color: var(--color-danger-dark)
+    border-color: var(--color-danger-dark)
 }
 
 .active\:sl-bg-danger-darker:active {
-    background-color: var(--color-danger-darker)
+    border-color: var(--color-danger-darker)
 }
 
 .active\:sl-bg-code:active {
-    background-color: var(--color-code)
+    border-color: var(--color-code)
 }
 
 .active\:sl-bg-on-code:active {
-    background-color: var(--color-on-code)
+    border-color: var(--color-on-code)
 }
 
 .active\:sl-bg-on-primary:active {
-    background-color: var(--color-on-primary)
+    border-color: var(--color-on-primary)
 }
 
 .active\:sl-bg-on-success:active {
-    background-color: var(--color-on-success)
+    border-color: var(--color-on-success)
 }
 
 .active\:sl-bg-on-warning:active {
-    background-color: var(--color-on-warning)
+    border-color: var(--color-on-warning)
 }
 
 .active\:sl-bg-on-danger:active {
-    background-color: var(--color-on-danger)
+    border-color: var(--color-on-danger)
 }
 
 .active\:sl-bg-canvas-50:active {
-    background-color: var(--color-canvas-50)
+    border-color: var(--color-canvas-50)
 }
 
 .active\:sl-bg-canvas-100:active {
-    background-color: var(--color-canvas-100)
+    border-color: var(--color-canvas-100)
 }
 
 .active\:sl-bg-canvas-200:active {
-    background-color: var(--color-canvas-200)
+    border-color: var(--color-canvas-200)
 }
 
 .active\:sl-bg-canvas-300:active {
-    background-color: var(--color-canvas-300)
+    border-color: var(--color-canvas-300)
 }
 
 .active\:sl-bg-canvas-400:active {
-    background-color: var(--color-canvas-400)
+    border-color: var(--color-canvas-400)
 }
 
 .active\:sl-bg-canvas-500:active {
-    background-color: var(--color-canvas-500)
+    border-color: var(--color-canvas-500)
 }
 
 .active\:sl-bg-canvas-pure:active {
-    background-color: var(--color-canvas-pure)
+    border-color: var(--color-canvas-pure)
 }
 
 .active\:sl-bg-canvas:active {
-    background-color: var(--color-canvas)
+    border-color: var(--color-canvas)
 }
 
 .active\:sl-bg-canvas-tint:active {
-    background-color: var(--color-canvas-tint)
+    border-color: var(--color-canvas-tint)
 }
 
 .active\:sl-bg-canvas-dialog:active {
-    background-color: var(--color-canvas-dialog)
+    border-color: var(--color-canvas-dialog)
 }
 
 .active\:sl-bg-body:active {
-    background-color: var(--color-text)
+    border-color: var(--color-text)
 }
 
 .active\:sl-bg-body-muted:active {
-    background-color: var(--color-text-muted)
+    border-color: var(--color-text-muted)
 }
 
 .active\:sl-bg-body-light:active {
-    background-color: var(--color-text-light)
+    border-color: var(--color-text-light)
 }
 
 .disabled\:sl-bg-transparent:disabled {
-    background-color: initial
+    border-color: initial
 }
 
 .disabled\:sl-bg-current:disabled {
-    background-color: currentColor
+    border-color: currentColor
 }
 
 .disabled\:sl-bg-lighten-100:disabled {
-    background-color: var(--color-lighten-100)
+    border-color: var(--color-lighten-100)
 }
 
 .disabled\:sl-bg-darken-100:disabled {
-    background-color: var(--color-darken-100)
+    border-color: var(--color-darken-100)
 }
 
 .disabled\:sl-bg-primary:disabled {
-    background-color: var(--color-primary)
+    border-color: var(--color-primary)
 }
 
 .disabled\:sl-bg-primary-tint:disabled {
-    background-color: var(--color-primary-tint)
+    border-color: var(--color-primary-tint)
 }
 
 .disabled\:sl-bg-primary-light:disabled {
-    background-color: var(--color-primary-light)
+    border-color: var(--color-primary-light)
 }
 
 .disabled\:sl-bg-primary-dark:disabled {
-    background-color: var(--color-primary-dark)
+    border-color: var(--color-primary-dark)
 }
 
 .disabled\:sl-bg-primary-darker:disabled {
-    background-color: var(--color-primary-darker)
+    border-color: var(--color-primary-darker)
 }
 
 .disabled\:sl-bg-success:disabled {
-    background-color: var(--color-success)
+    border-color: var(--color-success)
 }
 
 .disabled\:sl-bg-success-tint:disabled {
-    background-color: var(--color-success-tint)
+    border-color: var(--color-success-tint)
 }
 
 .disabled\:sl-bg-success-light:disabled {
-    background-color: var(--color-success-light)
+    border-color: var(--color-success-light)
 }
 
 .disabled\:sl-bg-success-dark:disabled {
-    background-color: var(--color-success-dark)
+    border-color: var(--color-success-dark)
 }
 
 .disabled\:sl-bg-success-darker:disabled {
-    background-color: var(--color-success-darker)
+    border-color: var(--color-success-darker)
 }
 
 .disabled\:sl-bg-warning:disabled {
-    background-color: var(--color-warning)
+    border-color: var(--color-warning)
 }
 
 .disabled\:sl-bg-warning-tint:disabled {
-    background-color: var(--color-warning-tint)
+    border-color: var(--color-warning-tint)
 }
 
 .disabled\:sl-bg-warning-light:disabled {
-    background-color: var(--color-warning-light)
+    border-color: var(--color-warning-light)
 }
 
 .disabled\:sl-bg-warning-dark:disabled {
-    background-color: var(--color-warning-dark)
+    border-color: var(--color-warning-dark)
 }
 
 .disabled\:sl-bg-warning-darker:disabled {
-    background-color: var(--color-warning-darker)
+    border-color: var(--color-warning-darker)
 }
 
 .disabled\:sl-bg-danger:disabled {
-    background-color: var(--color-danger)
+    border-color: var(--color-danger)
 }
 
 .disabled\:sl-bg-danger-tint:disabled {
-    background-color: var(--color-danger-tint)
+    border-color: var(--color-danger-tint)
 }
 
 .disabled\:sl-bg-danger-light:disabled {
-    background-color: var(--color-danger-light)
+    border-color: var(--color-danger-light)
 }
 
 .disabled\:sl-bg-danger-dark:disabled {
-    background-color: var(--color-danger-dark)
+    border-color: var(--color-danger-dark)
 }
 
 .disabled\:sl-bg-danger-darker:disabled {
-    background-color: var(--color-danger-darker)
+    border-color: var(--color-danger-darker)
 }
 
 .disabled\:sl-bg-code:disabled {
-    background-color: var(--color-code)
+    border-color: var(--color-code)
 }
 
 .disabled\:sl-bg-on-code:disabled {
-    background-color: var(--color-on-code)
+    border-color: var(--color-on-code)
 }
 
 .disabled\:sl-bg-on-primary:disabled {
-    background-color: var(--color-on-primary)
+    border-color: var(--color-on-primary)
 }
 
 .disabled\:sl-bg-on-success:disabled {
-    background-color: var(--color-on-success)
+    border-color: var(--color-on-success)
 }
 
 .disabled\:sl-bg-on-warning:disabled {
-    background-color: var(--color-on-warning)
+    border-color: var(--color-on-warning)
 }
 
 .disabled\:sl-bg-on-danger:disabled {
-    background-color: var(--color-on-danger)
+    border-color: var(--color-on-danger)
 }
 
 .disabled\:sl-bg-canvas-50:disabled {
-    background-color: var(--color-canvas-50)
+    border-color: var(--color-canvas-50)
 }
 
 .disabled\:sl-bg-canvas-100:disabled {
-    background-color: var(--color-canvas-100)
+    border-color: var(--color-canvas-100)
 }
 
 .disabled\:sl-bg-canvas-200:disabled {
-    background-color: var(--color-canvas-200)
+    border-color: var(--color-canvas-200)
 }
 
 .disabled\:sl-bg-canvas-300:disabled {
-    background-color: var(--color-canvas-300)
+    border-color: var(--color-canvas-300)
 }
 
 .disabled\:sl-bg-canvas-400:disabled {
-    background-color: var(--color-canvas-400)
+    border-color: var(--color-canvas-400)
 }
 
 .disabled\:sl-bg-canvas-500:disabled {
-    background-color: var(--color-canvas-500)
+    border-color: var(--color-canvas-500)
 }
 
 .disabled\:sl-bg-canvas-pure:disabled {
-    background-color: var(--color-canvas-pure)
+    border-color: var(--color-canvas-pure)
 }
 
 .disabled\:sl-bg-canvas:disabled {
-    background-color: var(--color-canvas)
+    border-color: var(--color-canvas)
 }
 
 .disabled\:sl-bg-canvas-tint:disabled {
-    background-color: var(--color-canvas-tint)
+    border-color: var(--color-canvas-tint)
 }
 
 .disabled\:sl-bg-canvas-dialog:disabled {
-    background-color: var(--color-canvas-dialog)
+    border-color: var(--color-canvas-dialog)
 }
 
 .disabled\:sl-bg-body:disabled {
-    background-color: var(--color-text)
+    border-color: var(--color-text)
 }
 
 .disabled\:sl-bg-body-muted:disabled {
-    background-color: var(--color-text-muted)
+    border-color: var(--color-text-muted)
 }
 
 .disabled\:sl-bg-body-light:disabled {
-    background-color: var(--color-text-light)
+    border-color: var(--color-text-light)
 }
 
 .sl-bg-none {
@@ -10101,7 +10101,7 @@
 
 .sl-transition {
     transition-duration: .15s;
-    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-property: border-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
     transition-timing-function: cubic-bezier(.4, 0, .2, 1)
 }
 
@@ -11695,7 +11695,7 @@
 }
 
 .sl-avatar--with-bg:before {
-    background-color: var(--avatar-bg-color);
+    border-color: var(--avatar-bg-color);
     bottom: 0;
     content: " ";
     left: 0;
@@ -11806,7 +11806,7 @@
 }
 
 .sl-menu--pointer-interactions .sl-menu-item:not(.sl-menu-item--disabled):hover {
-    background-color: var(--color-primary);
+    border-color: var(--color-primary);
     color: var(--color-on-primary)
 }
 
@@ -11834,7 +11834,7 @@
 }
 
 .sl-menu-item--focused {
-    background-color: var(--color-primary);
+    border-color: var(--color-primary);
     color: var(--color-on-primary)
 }
 
@@ -11852,7 +11852,7 @@
 }
 
 .sl-menu-item--submenu-active {
-    background-color: var(--color-primary-tint)
+    border-color: var(--color-primary-tint)
 }
 
 .sl-menu-item__title-wrapper {
@@ -12066,7 +12066,7 @@
 }
 
 .sl-prose ul:not(.contains-task-list) li:before {
-    background-color: var(--color-text);
+    border-color: var(--color-text);
     border-radius: 50%;
     content: "";
     height: .375em;
@@ -12183,7 +12183,7 @@
 }
 
 .sl-prose tbody tr:nth-child(2n) {
-    background-color: var(--color-canvas-tint)
+    border-color: var(--color-canvas-tint)
 }
 
 .sl-prose td {
@@ -12343,7 +12343,7 @@
 }
 
 .sl-switch .sl-switch__indicator {
-    transition: background-color .1s cubic-bezier(.4, 1, .75, .9)
+    transition: border-color .1s cubic-bezier(.4, 1, .75, .9)
 }
 
 .sl-switch .sl-switch__indicator .sl-switch__icon {
@@ -12351,7 +12351,7 @@
 }
 
 .sl-switch .sl-switch__indicator:before {
-    background-color: var(--color-canvas);
+    border-color: var(--color-canvas);
     border-radius: 50%;
     content: "";
     height: calc(100% - 4px);
@@ -12363,11 +12363,11 @@
 }
 
 .sl-switch input:checked:disabled~.sl-switch__indicator {
-    background-color: var(--color-primary-light)
+    border-color: var(--color-primary-light)
 }
 
 .sl-switch input:checked~.sl-switch__indicator {
-    background-color: var(--color-primary)
+    border-color: var(--color-primary)
 }
 
 .sl-switch input:checked~.sl-switch__indicator .sl-switch__icon {
@@ -12421,7 +12421,7 @@
 
 #apim_elements input,
 #apim_elements textarea {
-    background-color: initial
+    border-color: initial
 }
 
 .sl-focus-ring {

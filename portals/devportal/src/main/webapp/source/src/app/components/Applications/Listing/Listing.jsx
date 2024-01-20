@@ -476,7 +476,7 @@ class Listing extends Component {
                     </Box>
                 </div>
                 <Paper className={classes.paper}>
-                    <AppBar className={classes.searchBar} position='static' color='default' elevation={0}>
+                    <AppBar className={classes.searchBar} position='static' color='default' elevation={0} enableColorOnDark>
                         <Toolbar>
                             <Grid container spacing={2} alignItems='center'>
                                 <Grid item>
@@ -503,10 +503,12 @@ class Listing extends Component {
                                         onKeyPress={this.handleSearchKeyPress}
                                     />
                                     {query.length > 0 && (
-                                        <Tooltip title={intl.formatMessage({
-                                            defaultMessage: 'Clear Search',
-                                            id: 'Applications.Listing.Listing.clear.search',
-                                        })}
+                                        <Tooltip
+                                            disableInteractive
+                                            title={intl.formatMessage({
+                                                defaultMessage: 'Clear Search',
+                                                id: 'Applications.Listing.Listing.clear.search',
+                                            })}
                                         >
                                             <IconButton
                                                 aria-label='delete'

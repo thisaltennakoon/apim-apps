@@ -765,8 +765,8 @@ function TryOutController(props) {
                                             />
                                         </Button>
                                         <Tooltip
+                                            disableInteractive
                                             placement='right'
-                                            interactive
                                             title={(
                                                 <FormattedMessage
                                                     id='Apis.Details.TryOutConsole.access.token.tooltip'

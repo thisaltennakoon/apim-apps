@@ -61,6 +61,7 @@ function CustomPadLock(props) {
                 </Grid>
                 <Grid item justifyContent='flex-end' alignItems='right'>
                     <Tooltip
+                        disableInteractive
                         title={
                             (securityEnabled)
                                 ? (

@@ -404,7 +404,7 @@
 div.image-load-animation1 {
   width: 40px;
   height: 145px;
-  background-color: #efefef;
+  border-color: #efefef;
   position: absolute;
   -webkit-animation-name: image-load-animation1; /* Safari 4.0 - 8.0 */
   -webkit-animation-duration: 2s; /* Safari 4.0 - 8.0 */
@@ -415,7 +415,7 @@ div.image-load-animation1 {
 div.image-load-animation2 {
   width: 40px;
   height: 145px;
-  background-color: #efefef;
+  border-color: #efefef;
   position: absolute;
   -webkit-animation-name: image-load-animation2; /* Safari 4.0 - 8.0 */
   -webkit-animation-duration: 2s; /* Safari 4.0 - 8.0 */
@@ -426,14 +426,14 @@ div.image-load-animation2 {
 
 /* Standard syntax */
 @keyframes image-load-animation1 {
-  0%   {background-color:#efefef; left:0px; top:0px;}
-  70%  {background-color:#e3e3e3; left:160px; top:0px;}
-  100% {background-color:#efefef; left:0px; top:0px;}
+  0%   {border-color:#efefef; left:0px; top:0px;}
+  70%  {border-color:#e3e3e3; left:160px; top:0px;}
+  100% {border-color:#efefef; left:0px; top:0px;}
 }
 @keyframes image-load-animation2 {
-  0%   {background-color:#efefef; left:100px; top:0px;}
-  75%  {background-color:#e3e3e3; left:160px; top:0px;}
-  100% {background-color:#efefef; left:0px; top:0px;}
+  0%   {border-color:#efefef; left:100px; top:0px;}
+  75%  {border-color:#e3e3e3; left:160px; top:0px;}
+  100% {border-color:#efefef; left:0px; top:0px;}
 }
 body {
   margin: 0;
@@ -477,7 +477,7 @@ a {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 .markdown-content-wrapper thead tr {
-  background-color: #009879;
+  border-color: #009879;
   color: #ffffff;
   text-align: left;
 }
@@ -489,7 +489,7 @@ a {
   border-bottom: 1px solid #dddddd;
 }
 .markdown-content-wrapper tbody tr:nth-of-type(even) {
-  background-color: #f3f3f3;
+  border-color: #f3f3f3;
 }
 .markdown-content-wrapper tbody tr:last-of-type {
   border-bottom: 2px solid #009879;

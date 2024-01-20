@@ -163,7 +163,7 @@ class ViewSecret extends React.Component {
                             className: classes.bootstrapFormLabel,
                         }}
                     />
-                    <Tooltip
+                    <Tooltip disableInteractive
                         title={
                             secretCopied
                                 ? intl.formatMessage({

@@ -254,7 +254,7 @@ const apiKeyRestrictions = (props) => {
                     <ListItem>
                       <ListItemText primary={ip} />
                       <ListItemSecondaryAction>
-                        <Tooltip title={
+                        <Tooltip disableInteractive title={
                           intl.formatMessage({
                             defaultMessage: 'Delete task',
                             id: 'Shared.ApiKeyRestriction.key.restrictions.delete.task.tooltip',
@@ -346,7 +346,7 @@ const apiKeyRestrictions = (props) => {
                     <ListItem>
                       <ListItemText primary={referer} />
                       <ListItemSecondaryAction>
-                        <Tooltip title={
+                        <Tooltip disableInteractive title={
                           intl.formatMessage({
                             defaultMessage: 'Delete task',
                             id: 'Shared.ApiKeyRestriction.key.restrictions.delete.task.tooltip',

@@ -27,6 +27,8 @@ import './customPolyfill';
 // What about production? # https://github.com/gaearon/react-hot-loader#what-about-production
 const HotApp = hot(DevPortal);
 ReactDOM.render(
-    <HotApp />,
+    <React.StrictMode>
+        <HotApp />
+    </React.StrictMode>,
     document.getElementById('react-root'),
 );

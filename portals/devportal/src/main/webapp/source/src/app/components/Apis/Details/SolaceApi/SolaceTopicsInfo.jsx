@@ -394,6 +394,7 @@ function SolaceTopicsInfo() {
                                     />
                                     <Avatar className={classes.avatar} sizes={30}>
                                         <Tooltip
+                                            disableInteractive
                                             title={
                                                 urlCopied
                                                     ? intl.formatMessage({
@@ -405,7 +406,6 @@ function SolaceTopicsInfo() {
                                                         id: 'Apis.Details.Environments.copy.to.clipboard',
                                                     })
                                             }
-                                            interactive
                                             placement='right'
                                             className={classes.iconStyle}
                                         >
@@ -451,6 +451,7 @@ function SolaceTopicsInfo() {
                                                     />
                                                     <Avatar className={classes.avatar} sizes={30}>
                                                         <Tooltip
+                                                            disableInteractive
                                                             title={
                                                                 topicCopied
                                                                     ? intl.formatMessage({
@@ -462,7 +463,6 @@ function SolaceTopicsInfo() {
                                                                         id: 'Apis.Details.PubTopic.copy.to.clipboard',
                                                                     })
                                                             }
-                                                            interactive
                                                             placement='right'
                                                             className={classes.iconStyle}
                                                         >
@@ -520,6 +520,7 @@ function SolaceTopicsInfo() {
                                                     />
                                                     <Avatar className={classes.avatar} sizes={30}>
                                                         <Tooltip
+                                                            disableInteractive
                                                             title={
                                                                 topicCopied
                                                                     ? intl.formatMessage({
@@ -531,7 +532,6 @@ function SolaceTopicsInfo() {
                                                                         id: 'Apis.Details.SubTopic.copy.to.clipboard',
                                                                     })
                                                             }
-                                                            interactive
                                                             placement='right'
                                                             className={classes.iconStyle}
                                                         >

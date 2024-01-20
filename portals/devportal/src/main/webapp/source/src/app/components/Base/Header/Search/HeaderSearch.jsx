@@ -315,7 +315,7 @@ class HeaderSearch extends React.Component {
                      }}
                  />
                  <Tooltip
-                     interactive
+                     disableInteractive
                      id='searchTooltip'
                      placement='top'
                      classes={{

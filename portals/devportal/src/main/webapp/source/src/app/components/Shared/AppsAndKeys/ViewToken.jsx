@@ -214,7 +214,7 @@ class ViewToken extends React.Component {
                                 className: classes.bootstrapFormLabel,
                             }}
                         />
-                        <Tooltip
+                        <Tooltip disableInteractive
                             title={
                                 tokenCopied
                                     ? intl.formatMessage({

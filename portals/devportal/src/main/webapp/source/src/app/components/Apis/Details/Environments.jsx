@@ -127,6 +127,7 @@ function Environments(props) {
                 })}
             ${(defaultVersionURLs.https || defaultVersionURLs.http || defaultVersionURLs.ws || defaultVersionURLs.wss)}`}
                     <Tooltip
+                        disableInteractive
                         title={
                             urlCopied
                                 ? intl.formatMessage({
@@ -138,7 +139,6 @@ function Environments(props) {
                                     id: 'Apis.Details.Environments.copy.to.clipboard',
                                 })
                         }
-                        interactive
                         placement='right'
                         className={classes.iconStyle}
                     >
@@ -208,6 +208,7 @@ function Environments(props) {
                             <Box display='flex' flexDirection='column' width='100%'>
                                 <Box py={0.5} display='flex' alignItems='center' width='100%' flexDirection='row'>
                                     <Tooltip
+                                        disableInteractive
                                         title={(
                                             <Typography color='inherit'>
                                                 {(api.type === 'GRAPHQL')
@@ -236,6 +237,7 @@ function Environments(props) {
                                     </Tooltip>
                                     <Avatar className={classes.avatar} sizes={30}>
                                         <Tooltip
+                                            disableInteractive
                                             title={
                                                 urlCopied
                                                     ? intl.formatMessage({
@@ -247,7 +249,6 @@ function Environments(props) {
                                                         id: 'Apis.Details.Environments.copy.to.clipboard',
                                                     })
                                             }
-                                            interactive
                                             placement='right'
                                             className={classes.iconStyle}
                                         >
@@ -273,6 +274,7 @@ function Environments(props) {
                                     <Box pt={0.5} display='flex' alignItems='center' width='100%' flexDirection='row'>
                                         <>
                                             <Tooltip
+                                                disableInteractive
                                                 title={(
                                                     <Typography color='inherit'>
                                                         {intl.formatMessage({
@@ -294,6 +296,7 @@ function Environments(props) {
                                             </Tooltip>
                                             <Avatar className={classes.avatar} sizes={30}>
                                                 <Tooltip
+                                                    disableInteractive
                                                     title={urlCopied
                                                         ? intl.formatMessage({
                                                             defaultMessage: 'Copied',
@@ -303,7 +306,6 @@ function Environments(props) {
                                                             defaultMessage: 'Copy to clipboard',
                                                             id: 'Apis.Details.Environments.copy.to.clipboard',
                                                         })}
-                                                    interactive
                                                     placement='right'
                                                     className={classes.iconStyle}
                                                 >
@@ -347,6 +349,7 @@ function Environments(props) {
                             <Box display='flex' flexDirection='column' width='100%'>
                                 <Box py={0.5} display='flex' alignItems='center' width='100%' flexDirection='row'>
                                     <Tooltip
+                                        disableInteractive
                                         title={(
                                             <Typography color='inherit'>
                                                 {intl.formatMessage({
@@ -366,6 +369,7 @@ function Environments(props) {
                                     </Tooltip>
                                     <Avatar className={classes.avatar} sizes={30}>
                                         <Tooltip
+                                            disableInteractive
                                             title={
                                                 urlCopied
                                                     ? intl.formatMessage({
@@ -377,7 +381,6 @@ function Environments(props) {
                                                         id: 'Apis.Details.Environments.copy.to.clipboard',
                                                     })
                                             }
-                                            interactive
                                             placement='right'
                                             className={classes.iconStyle}
                                         >
@@ -399,6 +402,7 @@ function Environments(props) {
                                         <Box pt={0.5} display='flex' alignItems='center' width='100%' flexDirection='row'>
                                             <>
                                                 <Tooltip
+                                                    disableInteractive
                                                     title={(
                                                         <Typography color='inherit'>
                                                             {intl.formatMessage({
@@ -418,6 +422,7 @@ function Environments(props) {
                                                 </Tooltip>
                                                 <Avatar className={classes.avatar} sizes={30}>
                                                     <Tooltip
+                                                        disableInteractive
                                                         title={urlCopied
                                                             ? intl.formatMessage({
                                                                 defaultMessage: 'Copied',
@@ -427,7 +432,6 @@ function Environments(props) {
                                                                 defaultMessage: 'Copy to clipboard',
                                                                 id: 'Apis.Details.Environments.copy.to.clipboard',
                                                             })}
-                                                        interactive
                                                         placement='right'
                                                         className={classes.iconStyle}
                                                     >

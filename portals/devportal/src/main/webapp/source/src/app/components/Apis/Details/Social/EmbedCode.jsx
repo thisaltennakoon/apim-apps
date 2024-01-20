@@ -98,6 +98,7 @@ function EmbedCode(props) {
                         <code>{embedCode}</code>
                     </div>
                     <Tooltip
+                        disableInteractive
                         title={
                             codeCopied
                                 ? intl.formatMessage({

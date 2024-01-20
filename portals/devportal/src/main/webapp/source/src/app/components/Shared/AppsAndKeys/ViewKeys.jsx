@@ -328,7 +328,7 @@ class ViewKeys extends React.Component {
                             readOnly: true,
                             endAdornment: (
                                 <InputAdornment position='end'>
-                                    <Tooltip
+                                    <Tooltip disableInteractive
                                         title={
                                             keyCopied
                                                 ? intl.formatMessage({
@@ -399,7 +399,7 @@ class ViewKeys extends React.Component {
                                             size="large">
                                             {showCS ? <Icon>visibility_off</Icon> : <Icon>visibility</Icon>}
                                         </IconButton>
-                                        <Tooltip
+                                        <Tooltip disableInteractive
                                             title={
                                                 secretCopied
                                                     ? intl.formatMessage({
