@@ -18,7 +18,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
+import { createTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 import MUIDataTable from 'mui-datatables';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import merge from 'lodash.merge';
@@ -217,7 +217,7 @@ class ApiTableView extends React.Component {
         }
         const systemTheme = merge({}, DefaultConfigurations, Configurations, { custom: cloneDeep(theme.custom) });
         const dataTableTheme = merge({}, muiTheme, systemTheme, themeAdditions);
-        return createMuiTheme(dataTableTheme);
+        return createTheme(dataTableTheme);
     };
 
     // get data

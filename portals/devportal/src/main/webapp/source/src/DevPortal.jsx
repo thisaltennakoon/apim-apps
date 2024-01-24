@@ -28,7 +28,7 @@ import merge from 'lodash.merge';
 import cloneDeep from 'lodash.clonedeep';
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import { MuiThemeProvider as ThemeProviderWithMui, createMuiTheme } from '@material-ui/core/styles';
+import { MuiThemeProvider as ThemeProviderWithMui, createTheme } from '@material-ui/core/styles';
 import { ThemeProvider as ThemeProviderPlain } from '@material-ui/core/styles';
 import Utils from 'AppData/Utils';
 import Settings from 'Settings';
@@ -339,7 +339,7 @@ class DevPortal extends React.Component {
                     <Helmet>
                         <title>{this.getTitle(theme)}</title>
                     </Helmet>
-                    <MuiThemeProvider theme={createMuiTheme(theme)}>
+                    <MuiThemeProvider theme={createTheme(theme)}>
                         <StylesProvider jss={jss}>
                             {this.loadCustomCSS(theme)}
                             <BrowserRouter basename={context}>
