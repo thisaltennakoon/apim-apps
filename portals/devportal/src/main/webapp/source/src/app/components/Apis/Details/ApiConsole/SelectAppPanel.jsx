@@ -2,23 +2,9 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import {
     Grid, FormControl, FormControlLabel, RadioGroup, Radio, Typography,
-} from '@material-ui/core';
-import MenuItem from '@material-ui/core/MenuItem';
-import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-
-const styles = (theme) => ({
-    centerItems: {
-        margin: 'auto',
-    },
-    tryoutHeading: {
-        display: 'block',
-        fontWeight: 400,
-    },
-    menuItem: {
-        color: theme.palette.getContrastText(theme.palette.background.paper),
-    },
-});
+} from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
+import TextField from '@mui/material/TextField';
 
 const SelectAppPanel = (props) => {
     let {
@@ -26,7 +12,7 @@ const SelectAppPanel = (props) => {
     } = props;
 
     const {
-        subscriptions, handleChanges, classes,
+        subscriptions, handleChanges,
     } = props;
 
     /**
@@ -51,7 +37,13 @@ const SelectAppPanel = (props) => {
     };
     return (
         <>
-            <Grid x={12} md={6} className={classes.centerItems}>
+            <Grid
+                x={12}
+                md={6}
+                sx={{
+                    margin: 'auto',
+                }}
+            >
                 <TextField
                     fullWidth
                     id='selected-application'
@@ -79,15 +71,32 @@ const SelectAppPanel = (props) => {
                         <MenuItem
                             value={sub.applicationInfo.applicationId}
                             key={sub.applicationInfo.applicationId}
-                            className={classes.menuItem}
+                            sx={(theme) => ({
+                                color: theme.palette.getContrastText(theme.palette.background.paper),
+                            })}
                         >
                             {sub.applicationInfo.name}
                         </MenuItem>
                     ))}
                 </TextField>
             </Grid>
-            <Grid x={12} md={6} className={classes.centerItems}>
-                <Typography variant='h6' component='label' id='key-type' color='textSecondary' className={classes.tryoutHeading}>
+            <Grid
+                x={12}
+                md={6}
+                sx={{
+                    margin: 'auto',
+                }}
+            >
+                <Typography
+                    variant='h6'
+                    component='label'
+                    id='key-type'
+                    color='textSecondary'
+                    sx={{
+                        display: 'block',
+                        fontWeight: 400,
+                    }}
+                >
                     <FormattedMessage
                         id='Apis.Details.ApiConsole.SelectAppPanel.select.key.type.heading'
                         defaultMessage='Key Type'
@@ -134,4 +143,4 @@ const SelectAppPanel = (props) => {
     );
 };
 
-export default withStyles(styles)(SelectAppPanel);
+export default SelectAppPanel;
