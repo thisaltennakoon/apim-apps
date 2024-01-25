@@ -18,27 +18,26 @@
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
-// import withStyles from '@mui/styles/withStyles';
-import Icon from '@mui/material/Icon';
+import { withStyles } from '@material-ui/core/styles';
+import Icon from '@material-ui/core/Icon';
 import AuthManager from 'AppData/AuthManager';
-import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 import postmanIcon from '@iconify/icons-simple-icons/postman';
 import { Icon as Icons } from '@iconify/react';
 import fileDownload from 'js-file-download';
 import openapiToPostman from 'openapi-to-postmanv2';
 import swaggerToPostman from 'swagger2-postman2-converter';
-// import FileCopyIcon from '@mui/icons-material/FileCopy';
-// import CopyToClipboard from 'react-copy-to-clipboard';
-// import Tooltip from '@material-ui/core/Tooltip';
-// import Tooltip from '@mui/material/Tooltip';
-import CloudDownloadRounded from '@mui/icons-material/CloudDownloadRounded';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
+import CopyToClipboard from 'react-copy-to-clipboard';
+import Tooltip from '@material-ui/core/Tooltip';
+import CloudDownloadRounded from '@material-ui/icons/CloudDownloadRounded';
 import queryString from 'query-string';
 import Settings from 'Settings';
-// import Utils from 'AppData/Utils';
+import Utils from 'AppData/Utils';
 import { ApiContext } from '../ApiContext';
 import Progress from '../../../Shared/Progress';
 import Api from '../../../../data/api';
@@ -50,37 +49,37 @@ import Application from '../../../../data/Application';
  * @inheritdoc
  * @param {*} theme theme
  */
-// const styles = (theme) => ({
-//     iconify: {
-//         marginRight: 10,
-//         font: 24,
-//     },
-//     buttonIcon: {
-//         marginRight: 10,
-//     },
-//     paper: {
-//         margin: theme.spacing(1),
-//         padding: theme.spacing(1),
-//     },
-//     grid: {
-//         marginTop: theme.spacing(4),
-//         marginBottom: theme.spacing(4),
-//         paddingRight: theme.spacing(2),
-//         justifyContent: 'center',
-//     },
-//     userNotificationPaper: {
-//         padding: theme.spacing(2),
-//     },
-//     titleSub: {
-//         marginLeft: theme.spacing(2),
-//         paddingTop: theme.spacing(2),
-//         paddingBottom: theme.spacing(2),
-//         color: theme.palette.getContrastText(theme.palette.background.default),
-//     },
-//     swaggerUIPaper: {
-//         backgroundColor: theme.custom.apiDetailPages.swaggerUIBackground,
-//     },
-// });
+const styles = (theme) => ({
+    iconify: {
+        marginRight: 10,
+        font: 24,
+    },
+    buttonIcon: {
+        marginRight: 10,
+    },
+    paper: {
+        margin: theme.spacing(1),
+        padding: theme.spacing(1),
+    },
+    grid: {
+        marginTop: theme.spacing(4),
+        marginBottom: theme.spacing(4),
+        paddingRight: theme.spacing(2),
+        justifyContent: 'center',
+    },
+    userNotificationPaper: {
+        padding: theme.spacing(2),
+    },
+    titleSub: {
+        marginLeft: theme.spacing(2),
+        paddingTop: theme.spacing(2),
+        paddingBottom: theme.spacing(2),
+        color: theme.palette.getContrastText(theme.palette.background.default),
+    },
+    swaggerUIPaper: {
+        backgroundColor: theme.custom.apiDetailPages.swaggerUIBackground,
+    },
+});
 
 /**
  *
@@ -106,10 +105,10 @@ class ApiConsole extends React.Component {
             productionApiKey: '',
             sandboxApiKey: '',
             selectedKeyManager: 'Resident Key Manager',
-            // urlCopied: false,
-            // accessTokenPart: Utils.getCookieWithoutEnvironment('WSO2_AM_TOKEN_1_Default'),
-            // tenant: '',
-            // selectedAttribute: null,
+            urlCopied: false,
+            accessTokenPart: Utils.getCookieWithoutEnvironment('WSO2_AM_TOKEN_1_Default'),
+            tenant: '',
+            selectedAttribute: null,
             advAuthHeader: 'Authorization',
             advAuthHeaderValue: '',
             selectedEndpoint: 'PRODUCTION',
@@ -132,7 +131,7 @@ class ApiConsole extends React.Component {
         this.setAdvAuthHeader = this.setAdvAuthHeader.bind(this);
         this.setAdvAuthHeaderValue = this.setAdvAuthHeaderValue.bind(this);
         this.setSelectedEndpoint = this.setSelectedEndpoint.bind(this);
-        // this.onCopy = this.onCopy.bind(this);
+        this.onCopy = this.onCopy.bind(this);
     }
 
     /**
@@ -149,22 +148,22 @@ class ApiConsole extends React.Component {
         let productionAccessToken;
         let sandboxAccessToken;
         const { app: { customUrl: { tenantDomain: customUrlEnabledDomain } } } = Settings;
-        // let tenantDomain = '';
+        let tenantDomain = '';
         if (customUrlEnabledDomain !== 'null') {
-            // tenantDomain = customUrlEnabledDomain;
+            tenantDomain = customUrlEnabledDomain;
         } else {
             const { location } = window;
             if (location) {
                 const { tenant } = queryString.parse(location.search);
                 if (tenant) {
-                    // tenantDomain = tenant;
+                    tenantDomain = tenant;
                 }
             }
         }
-        // this.setState({ tenant: tenantDomain });
+        this.setState({ tenant: tenantDomain });
         this.apiClient = new Api();
         const promiseAPI = this.apiClient.getAPIById(apiID);
-        // let selectedAttribute = null;
+        let selectedAttribute = null;
 
         promiseAPI
             .then((apiResponse) => {
@@ -180,10 +179,10 @@ class ApiConsole extends React.Component {
                 }
                 if (environments && environments.length > 0) {
                     selectedEnvironment = environments[0].name;
-                    // selectedAttribute = 'environmentName';
+                    selectedAttribute = 'environmentName';
                     return this.apiClient.getSwaggerByAPIIdAndEnvironment(apiID, selectedEnvironment);
                 } else {
-                    // selectedAttribute = '';
+                    selectedAttribute = '';
                     return this.apiClient.getSwaggerByAPIId(apiID);
                 }
             })
@@ -203,7 +202,7 @@ class ApiConsole extends React.Component {
                     sandboxAccessToken,
                     selectedEnvironment,
                     securitySchemeType: defaultSecurityScheme,
-                    // selectedAttribute,
+                    selectedAttribute,
                 });
                 if (user != null) {
                     return this.apiClient.getSubscriptions(apiID);
@@ -472,28 +471,29 @@ class ApiConsole extends React.Component {
         });
     }
 
-    // onCopy = () => {
-    //     this.setState({
-    //         urlCopied: true,
-    //     });
-    //     const caller = function () {
-    //         this.setState({ urlCopied: false });
-    //     };
-    //     setTimeout(caller, 2000);
-    // }
+    onCopy = () => {
+        this.setState({
+            urlCopied: true,
+        });
+        const caller = function () {
+            this.setState({ urlCopied: false });
+        };
+        setTimeout(caller, 2000);
+    }
 
     /**
      * @inheritdoc
      * @memberof ApiConsole
      */
     render() {
-        // const { classes } = this.props;
+        const { classes } = this.props;
         const {
             api, notFound, swagger, securitySchemeType, selectedEnvironment, environments, scopes,
-            username, password, productionAccessToken, sandboxAccessToken, selectedKeyType,
+            username, password, productionAccessToken, sandboxAccessToken, selectedKeyType, accessTokenPart,
             sandboxApiKey, productionApiKey, selectedKeyManager, advAuthHeader, advAuthHeaderValue, selectedEndpoint,
+            urlCopied, tenant, selectedAttribute,
         } = this.state;
-        // const { location } = window;
+        const { location } = window;
         const user = AuthManager.getUser();
         const downloadSwagger = JSON.stringify({ ...swagger });
         const downloadLink = 'data:text/json;charset=utf-8, ' + encodeURIComponent(downloadSwagger);
@@ -540,26 +540,11 @@ class ApiConsole extends React.Component {
         }
         return (
             <>
-                <Paper sx={{
-                    margin: 1,
-                    padding: 1,
-                }}
-                >
-                    <Grid
-                        container
-                        sx={{
-                            marginTop: 4,
-                            marginBottom: 4,
-                            paddingRight: 2,
-                            justifyContent: 'center',
-                        }}
-                    >
+                <Paper className={classes.paper}>
+                    <Grid container className={classes.grid}>
                         {!user && (!api.advertiseInfo || !api.advertiseInfo.advertised) && (
                             <Grid item md={6}>
-                                <Paper sx={{
-                                    padding: 2,
-                                }}
-                                >
+                                <Paper className={classes.userNotificationPaper}>
                                     <Typography variant='h5' component='h3'>
                                         <Icon>info</Icon>
                                         {' '}
@@ -619,14 +604,7 @@ class ApiConsole extends React.Component {
                             <Grid xs={7} item />
                             <Grid xs={2} item>
                                 <Button size='small' onClick={() => this.convertToPostman(downloadSwagger)}>
-                                    <Icons
-                                        icon={postmanIcon}
-                                        width={30}
-                                        height={30}
-                                        sx={{
-                                            marginRight: 10,
-                                        }}
-                                    />
+                                    <Icons icon={postmanIcon} width={30} height={30} className={classes.buttonIcon} />
                                     <FormattedMessage
                                         id='Apis.Details.APIConsole.APIConsole.download.postman'
                                         defaultMessage='Postman collection'
@@ -636,52 +614,46 @@ class ApiConsole extends React.Component {
                             <Grid xs={3} item>
                                 <a href={downloadLink} download={fileName}>
                                     <Button size='small'>
-                                        <CloudDownloadRounded sx={{
-                                            marginRight: 10,
-                                        }}
-                                        />
+                                        <CloudDownloadRounded className={classes.buttonIcon} />
                                         <FormattedMessage
                                             id='Apis.Details.APIConsole.APIConsole.download.swagger'
                                             defaultMessage='Swagger ( /swagger.json )'
                                         />
                                     </Button>
                                 </a>
-                                {/* <Tooltip */}
-                                {/*    title={urlCopied */}
-                                {/*        ? ( */}
-                                {/*            <FormattedMessage */}
-                                {/*                id='Apis.Details.Swagger.URL.copied' */}
-                                {/*                defaultMessage='Copied' */}
-                                {/*            /> */}
-                                {/*        ) */}
-                                {/*        : ( */}
-                                {/*            <FormattedMessage */}
-                                {/*                id='Apis.Details.Swagger.URL.copy.to.clipboard' */}
-                                {/*                defaultMessage='Copy to clipboard' */}
-                                {/*            /> */}
-                                {/*        )} */}
-                                {/*    placement='top' */}
-                                {/* > */}
-                                {/*     <CopyToClipboard */}
-                                {/*        text={location.origin + '/api/am/devportal/v3/apis/' + api.id + '/swagger?accessToken=' */}
-                                {/*        + accessTokenPart + '&X-WSO2-Tenant-Q=' + tenant + '&' + selectedAttribute + '=' */}
-                                {/*        + selectedEnvironment} */}
-                                {/*        onCopy={this.onCopy} */}
-                                {/*        size='small' */}
-                                {/*     > */}
-                                {/*        <Button aria-label='Copy to clipboard' className={classes.button}> */}
-                                {/*            <FileCopyIcon className={classes.buttonIcon} /> */}
-                                {/*        </Button> */}
-                                {/*     </CopyToClipboard> */}
-                                {/* </Tooltip> */}
+                                <Tooltip
+                                    title={urlCopied
+                                        ? (
+                                            <FormattedMessage
+                                                id='Apis.Details.Swagger.URL.copied'
+                                                defaultMessage='Copied'
+                                            />
+                                        )
+                                        : (
+                                            <FormattedMessage
+                                                id='Apis.Details.Swagger.URL.copy.to.clipboard'
+                                                defaultMessage='Copy to clipboard'
+                                            />
+                                        )}
+                                    placement='top'
+                                >
+                                    <CopyToClipboard
+                                        text={location.origin + '/api/am/devportal/v3/apis/' + api.id + '/swagger?accessToken='
+                                        + accessTokenPart + '&X-WSO2-Tenant-Q=' + tenant + '&' + selectedAttribute + '='
+                                        + selectedEnvironment}
+                                        onCopy={this.onCopy}
+                                        size='small'
+                                    >
+                                        <Button aria-label='Copy to clipboard' className={classes.button}>
+                                            <FileCopyIcon className={classes.buttonIcon} />
+                                        </Button>
+                                    </CopyToClipboard>
+                                </Tooltip>
                             </Grid>
                         </Grid>
                     )}
                 </Paper>
-                <Paper sx={{
-                    backgroundColor: '#efefef',
-                }}
-                >
+                <Paper className={classes.swaggerUIPaper}>
                     <SwaggerUI
                         api={this.state.api}
                         accessTokenProvider={this.accessTokenProvider}
@@ -708,4 +680,4 @@ ApiConsole.propTypes = {
 
 ApiConsole.contextType = ApiContext;
 
-export default ApiConsole;
+export default withStyles(styles)(ApiConsole);
