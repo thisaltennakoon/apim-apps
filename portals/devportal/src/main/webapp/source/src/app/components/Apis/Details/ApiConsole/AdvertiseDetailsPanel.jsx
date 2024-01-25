@@ -28,7 +28,6 @@ import AlertTitle from '@mui/material/AlertTitle';
 
 const AdvertiseDetailsPanel = (props) => {
     const {
-        classes,
         advAuthHeader,
         advAuthHeaderValue,
         handleChanges,
@@ -61,14 +60,29 @@ const AdvertiseDetailsPanel = (props) => {
     });
 
     return (
-        <Box display='block' justifyContent='center' className={classes.authHeader}>
-            <Grid x={12} md={6} className={classes.centerItems}>
+        <Box
+            display='block'
+            justifyContent='center'
+            sx={{
+                marginBottom: '20px',
+            }}
+        >
+            <Grid
+                x={12}
+                md={6}
+                sx={{
+                    margin: 'auto',
+                }}
+            >
                 <Typography
                     variant='h6'
                     component='label'
                     id='authentication-heading'
                     color='textSecondary'
-                    className={classes.tryoutHeading}
+                    sx={{
+                        fontWeight: 400,
+                        display: 'block',
+                    }}
                 >
                     <FormattedMessage
                         id='Apis.Details.ApiConsole.AdvertiseDetailsPanel.authentication.heading'
@@ -76,7 +90,20 @@ const AdvertiseDetailsPanel = (props) => {
                     />
                 </Typography>
             </Grid>
-            <Grid container spacing={2} x={8} md={6} direction='row' className={classes.tokenType}>
+            <Grid
+                container
+                spacing={2}
+                x={8}
+                md={6}
+                direction='row'
+                sx={{
+                    margin: 'auto',
+                    display: 'flex',
+                    '& .MuiButton-contained.Mui-disabled span.MuiButton-label': {
+                        color: '#6d6d6d',
+                    },
+                }}
+            >
                 <Grid xs={6} md={4} style={{ paddingLeft: 0 }} item>
                     <TextField
                         margin='normal'
@@ -112,13 +139,22 @@ const AdvertiseDetailsPanel = (props) => {
                     />
                 </Grid>
             </Grid>
-            <Grid x={12} md={6} className={classes.centerItems}>
+            <Grid
+                x={12}
+                md={6}
+                sx={{
+                    margin: 'auto',
+                }}
+            >
                 <Typography
                     variant='h6'
                     component='label'
                     id='key-type'
                     color='textSecondary'
-                    className={classes.tryoutHeading}
+                    sx={{
+                        fontWeight: 400,
+                        display: 'block',
+                    }}
                 >
                     <FormattedMessage
                         id='Apis.Details.ApiConsole.AdvertiseDetailsPanel.endpoint.heading'
@@ -150,7 +186,9 @@ const AdvertiseDetailsPanel = (props) => {
                     {advertiseInfo.apiExternalProductionEndpoint && (
                         <MenuItem
                             value='PRODUCTION'
-                            className={classes.menuItem}
+                            sx={(theme) => ({
+                                color: theme.palette.getContrastText(theme.palette.background.paper),
+                            })}
                         >
                             Production
                         </MenuItem>
@@ -158,7 +196,9 @@ const AdvertiseDetailsPanel = (props) => {
                     {advertiseInfo.apiExternalSandboxEndpoint && (
                         <MenuItem
                             value='SANDBOX'
-                            className={classes.menuItem}
+                            sx={(theme) => ({
+                                color: theme.palette.getContrastText(theme.palette.background.paper),
+                            })}
                         >
                             Sandbox
                         </MenuItem>
@@ -166,7 +206,14 @@ const AdvertiseDetailsPanel = (props) => {
                 </TextField>
             </Grid>
             {(availableTransports || securitySchemes || authorizationHeader) && (
-                <Grid x={12} md={6} className={classes.centerItems} style={{ marginTop: '10px' }}>
+                <Grid
+                    x={12}
+                    md={6}
+                    sx={{
+                        margin: 'auto',
+                    }}
+                    style={{ marginTop: '10px' }}
+                >
                     <MuiAlert severity='info'>
                         <AlertTitle>
                             <FormattedMessage

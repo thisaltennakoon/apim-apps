@@ -20,105 +20,31 @@ import React, {
     useEffect, useState,
 } from 'react';
 import { FormattedMessage } from 'react-intl';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import TextField from '@mui/material/TextField';
 import {
     Radio, RadioGroup, FormControlLabel, FormControl, CircularProgress, Tooltip,
-} from '@material-ui/core';
-import HelpOutline from '@material-ui/icons/HelpOutline';
-import IconButton from '@material-ui/core/IconButton';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Icon from '@material-ui/core/Icon';
+} from '@mui/material';
+import HelpOutline from '@mui/icons-material/HelpOutline';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import Icon from '@mui/material/Icon';
 import AuthManager from 'AppData/AuthManager';
-import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
-import WarningIcon from '@material-ui/icons/Warning';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import MenuItem from '@mui/material/MenuItem';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import WarningIcon from '@mui/icons-material/Warning';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import AdvertiseDetailsPanel from 'AppComponents/Apis/Details/ApiConsole/AdvertiseDetailsPanel';
 import Progress from '../../../Shared/Progress';
 import Api from '../../../../data/api';
 import Application from '../../../../data/Application';
 import SelectAppPanel from './SelectAppPanel';
-
-/**
- * @inheritdoc
- * @param {*} theme theme
- */
-const styles = makeStyles((theme) => ({
-    centerItems: {
-        margin: 'auto',
-    },
-    tokenType: {
-        margin: 'auto',
-        display: 'flex',
-        '& .MuiButton-contained.Mui-disabled span.MuiButton-label': {
-            color: '#6d6d6d',
-        },
-    },
-    paper: {
-        margin: theme.spacing(1),
-        padding: theme.spacing(1),
-    },
-    grid: {
-        marginTop: theme.spacing(4),
-        marginBottom: theme.spacing(4),
-        paddingRight: theme.spacing(2),
-        justifyContent: 'center',
-    },
-    tryoutHeading: {
-        fontWeight: 400,
-        display: 'block',
-    },
-    genKeyButton: {
-        width: theme.spacing(20),
-        height: theme.spacing(5),
-        marginTop: theme.spacing(2.5),
-        marginLeft: theme.spacing(2),
-        '&:disabled': {
-            cursor: 'not-allowed',
-            background: theme.palette.grey[50],
-        },
-    },
-    gatewayEnvironment: {
-        marginTop: theme.spacing(4),
-    },
-    categoryHeading: {
-        marginBottom: theme.spacing(2),
-        marginLeft: theme.spacing(-5),
-    },
-    tooltip: {
-        marginLeft: theme.spacing(1),
-    },
-    menuItem: {
-        color: theme.palette.getContrastText(theme.palette.background.paper),
-    },
-    warningIcon: {
-        color: '#ff9a00',
-        fontSize: 25,
-        marginRight: 10,
-    },
-    loadMoreLink: {
-        textDecoration: 'none',
-        margin: 'auto',
-        display: 'flex',
-        justifyContent: 'center',
-    },
-    link: {
-        color: theme.palette.getContrastText(theme.palette.background.default),
-        cursor: 'pointer',
-    },
-    authHeader: {
-        marginBottom: '20px',
-    },
-}));
 
 /**
  * TryOut component
@@ -138,7 +64,6 @@ function TryOutController(props) {
     let { selectedKeyManager } = props;
     selectedKeyManager = selectedKeyManager || 'Resident Key Manager';
 
-    const classes = styles();
     const [showToken, setShowToken] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [isUpdating, setIsUpdating] = useState(false);
@@ -477,7 +402,13 @@ function TryOutController(props) {
 
     return (
         <>
-            <Grid x={12} md={6} className={classes.centerItems}>
+            <Grid
+                x={12}
+                md={6}
+                sx={{
+                    margin: 'auto',
+                }}
+            >
                 <Box>
                     {securitySchemeType !== 'TEST' && (!api.advertiseInfo || !api.advertiseInfo.advertised) && (
                         <>
@@ -492,7 +423,12 @@ function TryOutController(props) {
                                         )}
                                         {(selectedKMObject && !selectedKMObject.enabled) && (
                                             <>
-                                                <WarningIcon className={classes.warningIcon} />
+                                                <WarningIcon sx={{
+                                                    color: '#ff9a00',
+                                                    fontSize: 25,
+                                                    marginRight: 10,
+                                                }}
+                                                />
                                                 <div>
                                                     <FormattedMessage
                                                         id='Apis.Details.ApiConsole.TryOutController.default.km.msg.two'
@@ -517,7 +453,15 @@ function TryOutController(props) {
                     {((isApiKeyEnabled || isBasicAuthEnabled || isOAuthEnabled) && showSecurityType)
                         && (!api.advertiseInfo || !api.advertiseInfo.advertised) && (
                         <>
-                            <Typography variant='h5' component='h2' color='textPrimary' className={classes.categoryHeading}>
+                            <Typography
+                                variant='h5'
+                                component='h2'
+                                color='textPrimary'
+                                sx={{
+                                    marginBottom: 2,
+                                    marginLeft: -5,
+                                }}
+                            >
                                 <FormattedMessage
                                     id='api.console.security.heading'
                                     defaultMessage='Security'
@@ -528,7 +472,10 @@ function TryOutController(props) {
                                 component='label'
                                 id='security-type'
                                 color='textSecondary'
-                                className={classes.tryoutHeading}
+                                sx={{
+                                    fontWeight: 400,
+                                    display: 'block',
+                                }}
                             >
                                 <FormattedMessage
                                     id='api.console.security.type.heading'
@@ -601,11 +548,27 @@ function TryOutController(props) {
                         )}
                     {subscriptions && subscriptions.length === 0 && securitySchemeType !== 'TEST'
                         && (!api.advertiseInfo || !api.advertiseInfo.advertised) ? (
-                            <Grid x={8} md={6} className={classes.tokenType} item>
+                            <Grid
+                                x={8}
+                                md={6}
+                                sx={{
+                                    margin: 'auto',
+                                    display: 'flex',
+                                    '& .MuiButton-contained.Mui-disabled span.MuiButton-label': {
+                                        color: '#6d6d6d',
+                                    },
+                                }}
+                                item
+                            >
                                 <Box mb={1} alignItems='center'>
                                     <Typography variant='body1'>
                                         <Box display='flex'>
-                                            <WarningIcon className={classes.warningIcon} />
+                                            <WarningIcon sx={{
+                                                color: '#ff9a00',
+                                                fontSize: 25,
+                                                marginRight: 10,
+                                            }}
+                                            />
                                             <div>
                                                 <FormattedMessage
                                                     id='Apis.Details.ApiConsole.ApiConsole.subscribe.to.application'
@@ -619,11 +582,27 @@ function TryOutController(props) {
                         ) : (
                             (!ksGenerated && securitySchemeType === 'OAUTH') && (!api.advertiseInfo
                                 || !api.advertiseInfo.advertised) && (
-                                <Grid x={8} md={6} className={classes.tokenType} item>
+                                <Grid
+                                    x={8}
+                                    md={6}
+                                    sx={{
+                                        margin: 'auto',
+                                        display: 'flex',
+                                        '& .MuiButton-contained.Mui-disabled span.MuiButton-label': {
+                                            color: '#6d6d6d',
+                                        },
+                                    }}
+                                    item
+                                >
                                     <Box mb={1} alignItems='center'>
                                         <Typography variant='body1'>
                                             <Box display='flex'>
-                                                <WarningIcon className={classes.warningIcon} />
+                                                <WarningIcon sx={{
+                                                    color: '#ff9a00',
+                                                    fontSize: 25,
+                                                    marginRight: 10,
+                                                }}
+                                                />
                                                 <div>
                                                     <FormattedMessage
                                                         id='Apis.Details.ApiConsole.ApiConsole.keys.not.generated'
@@ -640,7 +619,18 @@ function TryOutController(props) {
                         )}
                     {(!api.advertiseInfo || !api.advertiseInfo.advertised) ? (
                         <Box display='block' justifyContent='center'>
-                            <Grid x={8} md={6} className={classes.tokenType} item>
+                            <Grid
+                                x={8}
+                                md={6}
+                                sx={{
+                                    margin: 'auto',
+                                    display: 'flex',
+                                    '& .MuiButton-contained.Mui-disabled span.MuiButton-label': {
+                                        color: '#6d6d6d',
+                                    },
+                                }}
+                                item
+                            >
                                 {securitySchemeType === 'BASIC' && (
                                     <>
                                         <Grid x={12} md={12} item>
@@ -682,6 +672,7 @@ function TryOutController(props) {
                                                                 edge='end'
                                                                 aria-label='toggle password visibility'
                                                                 onClick={() => setShowPassword(!showPassword)}
+                                                                size='large'
                                                             >
                                                                 {showPassword ? <Visibility /> : <VisibilityOff />}
                                                             </IconButton>
@@ -723,6 +714,7 @@ function TryOutController(props) {
                                                         edge='end'
                                                         aria-label='Toggle token visibility'
                                                         onClick={handleClickShowToken}
+                                                        size='large'
                                                     >
                                                         {showToken ? <Icon>visibility_off</Icon>
                                                             : <Icon>visibility</Icon>}
@@ -749,7 +741,16 @@ function TryOutController(props) {
                                             onClick={securitySchemeType === 'API-KEY' ? generateApiKey
                                                 : generateAccessToken}
                                             variant='contained'
-                                            className={classes.genKeyButton}
+                                            sx={(theme) => ({
+                                                width: 20,
+                                                height: 5,
+                                                marginTop: 2.5,
+                                                marginLeft: 2,
+                                                '&:disabled': {
+                                                    cursor: 'not-allowed',
+                                                    background: theme.palette.grey[50],
+                                                },
+                                            })}
                                             disabled={!user || (subscriptions && subscriptions.length === 0)
                                                         || (!ksGenerated && securitySchemeType === 'OAUTH')}
                                             id='gen-test-key'
@@ -778,6 +779,7 @@ function TryOutController(props) {
                                             <Box m={1} mt={2}>
                                                 <IconButton
                                                     aria-label='Use existing Access Token or generate a new Test Key'
+                                                    size='large'
                                                 >
                                                     <HelpOutline />
                                                 </IconButton>
@@ -789,7 +791,6 @@ function TryOutController(props) {
                         </Box>
                     ) : (
                         <AdvertiseDetailsPanel
-                            classes={classes}
                             advAuthHeader={advAuthHeader}
                             advAuthHeaderValue={advAuthHeaderValue}
                             handleChanges={handleChanges}
@@ -798,7 +799,13 @@ function TryOutController(props) {
                         />
                     )}
                     {(!api.advertiseInfo || !api.advertiseInfo.advertised) && (
-                        <Box display='flex' justifyContent='center' className={classes.gatewayEnvironment}>
+                        <Box
+                            display='flex'
+                            justifyContent='center'
+                            sx={{
+                                marginTop: 4,
+                            }}
+                        >
                             <Grid xs={12} md={6} item>
                                 {(environments && environments.length > 0) && (
                                     <>
@@ -806,7 +813,10 @@ function TryOutController(props) {
                                             variant='h5'
                                             component='h3'
                                             color='textPrimary'
-                                            className={classes.categoryHeading}
+                                            sx={{
+                                                marginBottom: 2,
+                                                marginLeft: -5,
+                                            }}
                                         >
                                             <FormattedMessage
                                                 id='api.console.gateway.heading'
@@ -836,7 +846,13 @@ function TryOutController(props) {
                                             variant='outlined'
                                         >
                                             {environments && environments.length > 0 && (
-                                                <MenuItem value='' disabled className={classes.menuItem}>
+                                                <MenuItem
+                                                    value=''
+                                                    disabled
+                                                    sx={(theme) => ({
+                                                        color: theme.palette.getContrastText(theme.palette.background.paper),
+                                                    })}
+                                                >
                                                     <em>
                                                         <FormattedMessage
                                                             id='api.gateways'
@@ -850,7 +866,9 @@ function TryOutController(props) {
                                                     <MenuItem
                                                         value={env.name}
                                                         key={env.name}
-                                                        className={classes.menuItem}
+                                                        sx={(theme) => ({
+                                                            color: theme.palette.getContrastText(theme.palette.background.paper),
+                                                        })}
                                                     >
                                                         {env.displayName}
                                                     </MenuItem>
@@ -858,9 +876,23 @@ function TryOutController(props) {
                                         </TextField>
                                         {api && api.type === 'GRAPHQL' && (
                                             <>
-                                                <Typography className={classes.verticalSpace} variant='body1'>
+                                                <Typography
+                                                    sx={{
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                    }}
+                                                    variant='body1'
+                                                >
                                                     <a
-                                                        className={classes.link + ' ' + classes.loadMoreLink}
+                                                        className={(theme) => ({
+                                                            color: theme.palette.getContrastText(theme.palette.background.default),
+                                                            cursor: 'pointer',
+                                                        } + ' ' + {
+                                                            textDecoration: 'none',
+                                                            margin: 'auto',
+                                                            display: 'flex',
+                                                            justifyContent: 'center',
+                                                        })}
                                                         onClick={() => setShowMoreGWUrls(!showMoreGWUrls)}
                                                         onKeyDown={() => setShowMoreGWUrls(!showMoreGWUrls)}
                                                     >
@@ -945,4 +977,4 @@ TryOutController.propTypes = {
     }).isRequired,
 };
 
-export default withStyles(makeStyles)(TryOutController);
+export default TryOutController;
