@@ -31,13 +31,13 @@ import { Icon as Icons } from '@iconify/react';
 import fileDownload from 'js-file-download';
 import openapiToPostman from 'openapi-to-postmanv2';
 import swaggerToPostman from 'swagger2-postman2-converter';
-// import FileCopyIcon from '@mui/icons-material/FileCopy';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
 // import CopyToClipboard from 'react-copy-to-clipboard';
 import Tooltip from '@mui/material/Tooltip';
 import CloudDownloadRounded from '@mui/icons-material/CloudDownloadRounded';
 import queryString from 'query-string';
 import Settings from 'Settings';
-// import Utils from 'AppData/Utils';
+import Utils from 'AppData/Utils';
 import { ApiContext } from '../ApiContext';
 import Progress from '../../../Shared/Progress';
 import Api from '../../../../data/api';
@@ -106,9 +106,9 @@ class ApiConsole extends React.Component {
             sandboxApiKey: '',
             selectedKeyManager: 'Resident Key Manager',
             urlCopied: false,
-            // accessTokenPart: Utils.getCookieWithoutEnvironment('WSO2_AM_TOKEN_1_Default'),
-            // tenant: '',
-            // selectedAttribute: null,
+            accessTokenPart: Utils.getCookieWithoutEnvironment('WSO2_AM_TOKEN_1_Default'),
+            tenant: '',
+            selectedAttribute: null,
             advAuthHeader: 'Authorization',
             advAuthHeaderValue: '',
             selectedEndpoint: 'PRODUCTION',
@@ -148,22 +148,22 @@ class ApiConsole extends React.Component {
         let productionAccessToken;
         let sandboxAccessToken;
         const { app: { customUrl: { tenantDomain: customUrlEnabledDomain } } } = Settings;
-        // const tenantDomain = '';
+        let tenantDomain = '';
         if (customUrlEnabledDomain !== 'null') {
-            // tenantDomain = customUrlEnabledDomain;
+            tenantDomain = customUrlEnabledDomain;
         } else {
             const { location } = window;
             if (location) {
                 const { tenant } = queryString.parse(location.search);
                 if (tenant) {
-                    // tenantDomain = tenant;
+                    tenantDomain = tenant;
                 }
             }
         }
-        // this.setState({ tenant: tenantDomain });
+        this.setState({ tenant: tenantDomain });
         this.apiClient = new Api();
         const promiseAPI = this.apiClient.getAPIById(apiID);
-        // let selectedAttribute = null;
+        let selectedAttribute = null;
 
         promiseAPI
             .then((apiResponse) => {
@@ -179,10 +179,10 @@ class ApiConsole extends React.Component {
                 }
                 if (environments && environments.length > 0) {
                     selectedEnvironment = environments[0].name;
-                    // selectedAttribute = 'environmentName';
+                    selectedAttribute = 'environmentName';
                     return this.apiClient.getSwaggerByAPIIdAndEnvironment(apiID, selectedEnvironment);
                 } else {
-                    // selectedAttribute = '';
+                    selectedAttribute = '';
                     return this.apiClient.getSwaggerByAPIId(apiID);
                 }
             })
@@ -202,7 +202,7 @@ class ApiConsole extends React.Component {
                     sandboxAccessToken,
                     selectedEnvironment,
                     securitySchemeType: defaultSecurityScheme,
-                    // selectedAttribute,
+                    selectedAttribute,
                 });
                 if (user != null) {
                     return this.apiClient.getSubscriptions(apiID);
@@ -490,12 +490,12 @@ class ApiConsole extends React.Component {
         const {
             api, notFound, swagger, securitySchemeType, selectedEnvironment, environments, scopes,
             username, password, productionAccessToken, sandboxAccessToken, selectedKeyType,
-            // accessTokenPart,
+            accessTokenPart,
             sandboxApiKey, productionApiKey, selectedKeyManager, advAuthHeader, advAuthHeaderValue, selectedEndpoint,
             urlCopied,
-            // tenant, selectedAttribute,
+            tenant, selectedAttribute,
         } = this.state;
-        // const { location } = window;
+        const { location } = window;
         const user = AuthManager.getUser();
         const downloadSwagger = JSON.stringify({ ...swagger });
         const downloadLink = 'data:text/json;charset=utf-8, ' + encodeURIComponent(downloadSwagger);
@@ -665,16 +665,21 @@ class ApiConsole extends React.Component {
                                     placement='top'
                                 >
                                     {/* <CopyToClipboard */}
-                                    {/*    text='thisal' */}
-                                    {/*    onCopy={this.onCopy} */}
-                                    {/*    size='small' */}
+                                    {/*  text={location.origin + '/api/am/devportal/v3/apis/' + api.id + '/swagger?accessToken=' */}
+                                    {/*      + accessTokenPart + '&X-WSO2-Tenant-Q=' + tenant + '&' + selectedAttribute + '=' */}
+                                    {/*      + selectedEnvironment} */}
+                                    {/*  onCopy={this.onCopy} */}
+                                    {/*  size='small' */}
                                     {/* > */}
-                                    {/*     <Button aria-label='Copy to clipboard'> */}
-                                    {/*        <FileCopyIcon sx={{ */}
-                                    {/*            marginRight: 10, */}
-                                    {/*        }} */}
-                                    {/*        /> */}
-                                    {/*     </Button> */}
+                                    <Button aria-label='Copy to clipboard'>
+                                        <FileCopyIcon sx={{
+                                            marginRight: 10,
+                                        }}
+                                        />
+                                        {location.origin + '/api/am/devportal/v3/apis/' + api.id + '/swagger?accessToken='
+                                            + accessTokenPart + '&X-WSO2-Tenant-Q=' + tenant + '&' + selectedAttribute + '='
+                                            + selectedEnvironment}
+                                    </Button>
                                     {/* </CopyToClipboard> */}
                                 </Tooltip>
                             </Grid>
