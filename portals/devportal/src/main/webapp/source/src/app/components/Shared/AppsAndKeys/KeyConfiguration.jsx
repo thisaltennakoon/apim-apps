@@ -23,7 +23,7 @@ import TextField from '@mui/material/TextField';
 import FormHelperText from '@mui/material/FormHelperText';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import CopyToClipboard from 'react-copy-to-clipboard';
+// import CopyToClipboard from 'react-copy-to-clipboard';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import Icon from '@mui/material/Icon';
@@ -269,17 +269,17 @@ const KeyConfiguration = (props) => {
                                     placement='right'
                                     className={classes.iconStyle}
                                 >
-                                    <CopyToClipboard
-                                        text={tokenEndpoint}
-                                        onCopy={onCopy}
-                                    >
+                                    {/*<CopyToClipboard*/}
+                                    {/*    text={tokenEndpoint}*/}
+                                    {/*    onCopy={onCopy}*/}
+                                    {/*>*/}
                                         <IconButton
                                             aria-label='Copy to clipboard'
                                             classes={{ root: classes.iconButton }}
                                             size="large">
                                             <Icon color='secondary'>file_copy</Icon>
                                         </IconButton>
-                                    </CopyToClipboard>
+                                    {/*</CopyToClipboard>*/}
                                 </Tooltip>
                             </TableCell>
                         </TableRow>
@@ -309,17 +309,17 @@ const KeyConfiguration = (props) => {
                                     placement='right'
                                     className={classes.iconStyle}
                                 >
-                                    <CopyToClipboard
-                                        text={revokeEndpoint}
-                                        onCopy={onCopy}
-                                    >
+                                    {/*<CopyToClipboard*/}
+                                    {/*    text={revokeEndpoint}*/}
+                                    {/*    onCopy={onCopy}*/}
+                                    {/*>*/}
                                         <IconButton
                                             aria-label='Copy to clipboard'
                                             classes={{ root: classes.iconButton }}
                                             size="large">
                                             <Icon color='secondary'>file_copy</Icon>
                                         </IconButton>
-                                    </CopyToClipboard>
+                                    {/*</CopyToClipboard>*/}
                                 </Tooltip>
                             </TableCell>
                         </TableRow>
@@ -349,17 +349,17 @@ const KeyConfiguration = (props) => {
                                     placement='right'
                                     className={classes.iconStyle}
                                 >
-                                    <CopyToClipboard
-                                        text={userInfoEndpoint}
-                                        onCopy={onCopy}
-                                    >
+                                    {/*<CopyToClipboard*/}
+                                    {/*    text={userInfoEndpoint}*/}
+                                    {/*    onCopy={onCopy}*/}
+                                    {/*>*/}
                                         <IconButton
                                             aria-label='Copy to clipboard'
                                             classes={{ root: classes.iconButton }}
                                             size="large">
                                             <Icon color='secondary'>file_copy</Icon>
                                         </IconButton>
-                                    </CopyToClipboard>
+                                    {/*</CopyToClipboard>*/}
                                 </Tooltip>
                             </TableCell>
                         </TableRow>

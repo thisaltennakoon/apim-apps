@@ -27,7 +27,7 @@ import VerticalDivider from 'AppComponents/Shared/VerticalDivider';
 import Avatar from '@mui/material/Avatar';
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
-import CopyToClipboard from 'react-copy-to-clipboard';
+// import CopyToClipboard from 'react-copy-to-clipboard';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
 import Icon from '@mui/material/Icon';
@@ -142,18 +142,18 @@ function Environments(props) {
                         placement='right'
                         className={classes.iconStyle}
                     >
-                        <CopyToClipboard
-                            text={defaultVersionURLs.https
-                                || defaultVersionURLs.http
-                                || defaultVersionURLs.ws
-                                || defaultVersionURLs.wss}
-                            // text={endpoint.URLs.http}
-                            onCopy={() => onCopy('urlCopied')}
-                        >
-                            <IconButton aria-label='Copy the Default Version URL to clipboard' size='large'>
-                                <Icon color='secondary'>file_copy</Icon>
-                            </IconButton>
-                        </CopyToClipboard>
+                        {/* <CopyToClipboard */}
+                        {/*    text={defaultVersionURLs.https */}
+                        {/*        || defaultVersionURLs.http */}
+                        {/*        || defaultVersionURLs.ws */}
+                        {/*        || defaultVersionURLs.wss} */}
+                        {/*    // text={endpoint.URLs.http} */}
+                        {/*    onCopy={() => onCopy('urlCopied')} */}
+                        {/* > */}
+                        <IconButton aria-label='Copy the Default Version URL to clipboard' size='large' onClick={() => onCopy('urlCopied')}>
+                            <Icon color='secondary'>file_copy</Icon>
+                        </IconButton>
+                        {/* </CopyToClipboard> */}
                     </Tooltip>
                 </>
             );
@@ -252,18 +252,18 @@ function Environments(props) {
                                             placement='right'
                                             className={classes.iconStyle}
                                         >
-                                            <CopyToClipboard
-                                                text={selectedEndpoint.URLs.https
-                                            || selectedEndpoint.URLs.http
-                                            || selectedEndpoint.URLs.wss
-                                            || selectedEndpoint.URLs.ws}
-                                                // text={endpoint.URLs.http}
-                                                onCopy={() => onCopy('urlCopied')}
-                                            >
-                                                <IconButton aria-label='Copy the API URL to clipboard' size='large'>
-                                                    <Icon color='secondary'>file_copy</Icon>
-                                                </IconButton>
-                                            </CopyToClipboard>
+                                            {/* <CopyToClipboard */}
+                                            {/*    text={selectedEndpoint.URLs.https */}
+                                            {/* || selectedEndpoint.URLs.http */}
+                                            {/* || selectedEndpoint.URLs.wss */}
+                                            {/* || selectedEndpoint.URLs.ws} */}
+                                            {/*    // text={endpoint.URLs.http} */}
+                                            {/*    onCopy={() => onCopy('urlCopied')} */}
+                                            {/* > */}
+                                            <IconButton aria-label='Copy the API URL to clipboard' size='large'>
+                                                <Icon color='secondary'>file_copy</Icon>
+                                            </IconButton>
+                                            {/* </CopyToClipboard> */}
                                         </Tooltip>
                                     </Avatar>
                                 </Box>
@@ -309,15 +309,15 @@ function Environments(props) {
                                                     placement='right'
                                                     className={classes.iconStyle}
                                                 >
-                                                    <CopyToClipboard
-                                                        text={selectedEndpoint.URLs.wss
-                                                            || selectedEndpoint.URLs.ws}
-                                                        onCopy={() => onCopy('urlCopied')}
-                                                    >
-                                                        <IconButton aria-label='Copy the API URL to clipboard' size='large'>
-                                                            <Icon color='secondary'>file_copy</Icon>
-                                                        </IconButton>
-                                                    </CopyToClipboard>
+                                                    {/* <CopyToClipboard */}
+                                                    {/*    text={selectedEndpoint.URLs.wss */}
+                                                    {/*        || selectedEndpoint.URLs.ws} */}
+                                                    {/*    onCopy={() => onCopy('urlCopied')} */}
+                                                    {/* > */}
+                                                    <IconButton aria-label='Copy the API URL to clipboard' size='large'>
+                                                        <Icon color='secondary'>file_copy</Icon>
+                                                    </IconButton>
+                                                    {/* </CopyToClipboard> */}
                                                 </Tooltip>
                                             </Avatar>
                                         </>
@@ -384,15 +384,15 @@ function Environments(props) {
                                             placement='right'
                                             className={classes.iconStyle}
                                         >
-                                            <CopyToClipboard
-                                                text={advertiseInfo.apiExternalProductionEndpoint}
-                                                // text={endpoint.URLs.http}
-                                                onCopy={() => onCopy('urlCopied')}
-                                            >
-                                                <IconButton aria-label='Copy the API URL to clipboard' size='large'>
-                                                    <Icon color='secondary'>file_copy</Icon>
-                                                </IconButton>
-                                            </CopyToClipboard>
+                                            {/* <CopyToClipboard */}
+                                            {/*    text={advertiseInfo.apiExternalProductionEndpoint} */}
+                                            {/*    // text={endpoint.URLs.http} */}
+                                            {/*    onCopy={() => onCopy('urlCopied')} */}
+                                            {/* > */}
+                                            <IconButton aria-label='Copy the API URL to clipboard' size='large'>
+                                                <Icon color='secondary'>file_copy</Icon>
+                                            </IconButton>
+                                            {/* </CopyToClipboard> */}
                                         </Tooltip>
                                     </Avatar>
                                 </Box>
@@ -435,14 +435,14 @@ function Environments(props) {
                                                         placement='right'
                                                         className={classes.iconStyle}
                                                     >
-                                                        <CopyToClipboard
-                                                            text={advertiseInfo.apiExternalSandboxEndpoint}
-                                                            onCopy={() => onCopy('urlCopied')}
-                                                        >
-                                                            <IconButton aria-label='Copy the API URL to clipboard' size='large'>
-                                                                <Icon color='secondary'>file_copy</Icon>
-                                                            </IconButton>
-                                                        </CopyToClipboard>
+                                                        {/* <CopyToClipboard */}
+                                                        {/*    text={advertiseInfo.apiExternalSandboxEndpoint} */}
+                                                        {/*    onCopy={() => onCopy('urlCopied')} */}
+                                                        {/* > */}
+                                                        <IconButton aria-label='Copy the API URL to clipboard' size='large'>
+                                                            <Icon color='secondary'>file_copy</Icon>
+                                                        </IconButton>
+                                                        {/* </CopyToClipboard> */}
                                                     </Tooltip>
                                                 </Avatar>
                                             </>
