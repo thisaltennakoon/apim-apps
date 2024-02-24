@@ -19,13 +19,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React, { useState, useEffect } from 'react';
+import { styled } from '@mui/material/styles';
 import {
     Button,
     Grid,
     IconButton,
     Tooltip,
     Typography,
-    makeStyles,
     Chip,
     TableCell,
     TableRow,
@@ -35,28 +35,46 @@ import {
     DialogContent,
     DialogActions,
     DialogContentText,
-    useTheme 
-} from '@material-ui/core';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+    useTheme,
+    Theme,
+} from '@mui/material';
+import Autocomplete from '@mui/lab/Autocomplete';
 import APIMAlert from 'AppComponents/Shared/Alert';
-import Icon from '@material-ui/core/Icon';
-import CloudOffRoundedIcon from '@material-ui/icons/CloudOffRounded';
-import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
+import Icon from '@mui/material/Icon';
+import CloudOffRoundedIcon from '@mui/icons-material/CloudOffRounded';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { isRestricted } from 'AppData/AuthManager';
 import API from 'AppData/api';
 import { Progress } from 'AppComponents/Shared';
 import { useIntl, FormattedMessage } from 'react-intl';
-import AddCircle from '@material-ui/icons/AddCircle';
+import AddCircle from '@mui/icons-material/AddCircle';
 import MUIDataTable, { MUIDataTableOptions, MUIDataTableColumnDef } from 'mui-datatables';
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 import OnboardingMenuCard from 'AppComponents/Shared/Onboarding/OnboardingMenuCard';
 import Onboarding from 'AppComponents/Shared/Onboarding/Onboarding';
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import ResourceNotFoundError from 'AppComponents/Base/Errors/ResourceNotFoundError';
 import { Link } from 'react-router-dom';
 
-const useStyles = makeStyles((theme) => ({
-    table: {
+const PREFIX = 'Listing';
+
+const classes = {
+    table: `${PREFIX}-table`,
+    heading: `${PREFIX}-heading`,
+    titleWrapper: `${PREFIX}-titleWrapper`,
+    mainTitle: `${PREFIX}-mainTitle`,
+    buttonIcon: `${PREFIX}-buttonIcon`,
+    button: `${PREFIX}-button`,
+    icon: `${PREFIX}-icon`,
+    chip: `${PREFIX}-chip`,
+    dialogBackdrop: `${PREFIX}-dialogBackdrop`,
+    dialogPaper: `${PREFIX}-dialogPaper`,
+    noDeployedGateways: `${PREFIX}-noDeployedGateways`,
+    iconSmall: `${PREFIX}-iconSmall`
+};
+
+const Root = styled('div')(({ theme }: { theme: Theme }) => ({
+    [`& .${classes.table}`]: {
         marginLeft: 'auto',
         marginRight: 'auto',
         '& > td[class^=MUIDataTableBodyCell-cellHide-]': {
@@ -72,11 +90,13 @@ const useStyles = makeStyles((theme) => ({
             minWidth: '150px',
         },
     },
-    heading: {
+
+    [`& .${classes.heading}`]: {
         flexGrow: 1,
         marginTop: 10,
     },
-    titleWrapper: {
+
+    [`& .${classes.titleWrapper}`]: {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
@@ -84,37 +104,46 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: 'auto',
         marginRight: 'auto',
     },
-    mainTitle: {
+
+    [`& .${classes.mainTitle}`]: {
         paddingLeft: 0,
     },
-    buttonIcon: {
+
+    [`& .${classes.buttonIcon}`]: {
         marginRight: theme.spacing(1),
     },
-    button: {
+
+    [`& .${classes.button}`]: {
         width: '112px',
         height: '37px',
     },
-    icon: {
+
+    [`& .${classes.icon}`]: {
         marginRight: theme.spacing(0.5),
     },
-    chip: {
+
+    [`& .${classes.chip}`]: {
         marginRight: '8px',
         marginBottom: '4px',
         marginTop: '4px',
     },
-    dialogBackdrop: {
+
+    [`& .${classes.dialogBackdrop}`]: {
         backgroundColor: 'rgba(0, 0, 0, 0.08)'
     },
-    dialogPaper: {
+
+    [`& .${classes.dialogPaper}`]: {
         boxShadow: 'none'
     },
-    noDeployedGateways: {
+
+    [`& .${classes.noDeployedGateways}`]: {
         color: 'grey', 
         fontStyle: 'italic'
     },
-    iconSmall: {
+
+    [`& .${classes.iconSmall}`]: {
         fontSize: '16px'
-    },
+    }
 }));
 
 interface Policy {
@@ -152,7 +181,7 @@ interface SelectedGateway {
  * @returns {TSX} - Listing Page.
  */
 const Listing: React.FC = () => {
-    const classes = useStyles();
+
     const [policies, setPolicies] = useState<Policy[]>([]);
     const [selectedGateways, setSelectedGateways] = useState<SelectedGateway[]>([]);
     const [environments, setEnvironments] = useState<Environment[]>([]);
@@ -684,7 +713,7 @@ const Listing: React.FC = () => {
                 customBodyRender: (value: string, tableMeta: any) => {        
                     const policyDescription = tableMeta.rowData[3];          
                     return (
-                        <div>
+                        <Root>
                             <Grid container alignItems='center'>
                                 <Grid item>
                                     {value}
@@ -697,7 +726,7 @@ const Listing: React.FC = () => {
                                     </Tooltip>
                                 </Grid>
                             </Grid>
-                        </div>
+                        </Root>
                     );
                 }
             }      
@@ -1005,34 +1034,54 @@ const Listing: React.FC = () => {
      */
     if (policies && policies.length === 0 && !loading) {
         return (
-            <Onboarding
-                title={
-                    <FormattedMessage
-                        id='GlobalPolicies.Listing.onboarding.create.new'
-                        defaultMessage='Let’s get started!'
-                    />
-                }
-                subTitle={
-                    <FormattedMessage
-                        id='GlobalPolicies.Listing.onboarding.policies.tooltip'
-                        defaultMessage='Global policies provide you the ability to deploy policy mappings to 
-                        all the APIs deployed in a specific gateway and not just one single 
-                        API. Click below to create your first global policy'
-                    />
-                }
-            >
-                <OnboardingMenuCard
-                    id='itest-id-create-global-policy'
-                    to='global-policies/create'
-                    name={(
-                        <FormattedMessage
-                            id='Global.Policies'
-                            defaultMessage='Global Policies'
+            <>
+                {!isRestricted(['apim:gateway_policy_manage']) ? 
+                    <Onboarding
+                        title={
+                            <FormattedMessage
+                                id='GlobalPolicies.Listing.onboarding.create.new'
+                                defaultMessage='Let’s get started!'
+                            />
+                        }
+                        subTitle={
+                            <FormattedMessage
+                                id='GlobalPolicies.Listing.onboarding.policies.tooltip'
+                                defaultMessage='Global policies provide you the ability to deploy policy mappings to 
+                                all the APIs deployed in a specific gateway and not just one single 
+                                API. Click below to create your first global policy.'
+                            />
+                        }
+                    >
+                        <OnboardingMenuCard 
+                            id='itest-id-create-global-policy'
+                            to='global-policies/create'
+                            name={(
+                                <FormattedMessage
+                                    id='Global.Policies'
+                                    defaultMessage='Global Policies'
+                                />
+                            )} 
+                            iconName={globalPolicyAddIcon}
                         />
-                    )} 
-                    iconName={globalPolicyAddIcon}
-                />
-            </Onboarding>
+                    </Onboarding>
+                    : <Onboarding 
+                        title={
+                            <FormattedMessage
+                                id='GlobalPolicies.Listing.onboarding.create.new'
+                                defaultMessage='Let’s get started!'
+                            />
+                        }
+                        subTitle={
+                            <FormattedMessage
+                                id='GlobalPolicies.Listing.onboarding.policies.tooltip.not.allowed'
+                                defaultMessage='Global policies provide you the ability to deploy policy mappings to 
+                                all the APIs deployed in a specific gateway and not just one single 
+                                API. Please contact a privileged user to create a global policy.'
+                            />
+                        }
+                    />
+                }
+            </>    
         );
     }
 

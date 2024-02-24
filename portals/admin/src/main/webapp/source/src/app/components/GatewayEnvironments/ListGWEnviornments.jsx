@@ -19,11 +19,12 @@
 import React from 'react';
 import API from 'AppData/api';
 import { FormattedMessage, useIntl } from 'react-intl';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 import ListBase from 'AppComponents/AdminPages/Addons/ListBase';
 import Delete from 'AppComponents/GatewayEnvironments/DeleteGWEnvironment';
 import AddEdit from 'AppComponents/GatewayEnvironments/AddEditGWEnvironment';
-import EditIcon from '@material-ui/icons/Edit';
+import { useAppContext } from 'AppComponents/Shared/AppContext';
+import EditIcon from '@mui/icons-material/Edit';
 
 /**
  * API call to get Gateway labels
@@ -47,62 +48,134 @@ function apiCall() {
  */
 export default function ListGWEnviornments() {
     const intl = useIntl();
-    const columProps = [
-        { name: 'id', options: { display: false } },
-        { name: 'name', options: { display: false } },
-        {
-            name: 'displayName',
-            label: intl.formatMessage({
-                id: 'AdminPages.Gateways.table.header.displayName',
-                defaultMessage: 'Name',
-            }),
-            options: {
-                sort: true,
-            },
-        },
-        {
-            name: 'gatewayType',
-            label: intl.formatMessage({
-                id: 'AdminPages.Gateways.table.header.gatewayType',
-                defaultMessage: 'Gateway Type',
-            }),
-            options: {
-                sort: false,
-            },
-        },
-        {
-            name: 'description',
-            label: intl.formatMessage({
-                id: 'AdminPages.Gateways.table.header.description',
-                defaultMessage: 'Description',
-            }),
-            options: {
-                sort: false,
-            },
-        },
-        {
-            name: 'vhosts',
-            label: intl.formatMessage({
-                id: 'AdminPages.Gateways.table.header.vhosts',
-                defaultMessage: 'Virtual Host(s)',
-            }),
-            options: {
-                sort: false,
-                customBodyRender: (vhosts) => {
-                    return (
-                        vhosts.map((vhost) => (
-                            <div>
-                                {
-                                    'https://' + vhost.host + (vhost.httpsPort === 443 ? '' : ':' + vhost.httpsPort)
-                                    + (vhost.httpContext ? '/' + vhost.httpContext.replace(/^\//g, '') : '')
-                                }
-                            </div>
-                        ))
-                    );
+    let columProps;
+    const { settings } = useAppContext();
+    const isGatewayTypeAvailable = settings.gatewayTypes.length === 2;
+    if (isGatewayTypeAvailable) {
+        columProps = [
+            { name: 'id', options: { display: false } },
+            { name: 'name', options: { display: false } },
+            {
+                name: 'displayName',
+                label: intl.formatMessage({
+                    id: 'AdminPages.Gateways.table.header.displayName',
+                    defaultMessage: 'Name',
+                }),
+                options: {
+                    sort: true,
                 },
             },
-        },
-    ];
+            {
+                name: 'gatewayType',
+                label: intl.formatMessage({
+                    id: 'AdminPages.Gateways.table.header.gatewayType',
+                    defaultMessage: 'Gateway Type',
+                }),
+                options: {
+                    sort: false,
+                },
+            },
+            {
+                name: 'type',
+                label: intl.formatMessage({
+                    id: 'AdminPages.Gateways.table.header.type',
+                    defaultMessage: 'Type',
+                }),
+                options: {
+                    sort: false,
+                },
+            },
+            {
+                name: 'description',
+                label: intl.formatMessage({
+                    id: 'AdminPages.Gateways.table.header.description',
+                    defaultMessage: 'Description',
+                }),
+                options: {
+                    sort: false,
+                },
+            },
+            {
+                name: 'vhosts',
+                label: intl.formatMessage({
+                    id: 'AdminPages.Gateways.table.header.vhosts',
+                    defaultMessage: 'Virtual Host(s)',
+                }),
+                options: {
+                    sort: false,
+                    customBodyRender: (vhosts) => {
+                        return (
+                            vhosts.map((vhost) => (
+                                <div>
+                                    {
+                                        'https://' + vhost.host + (vhost.httpsPort === 443 ? '' : ':' + vhost.httpsPort)
+                                        + (vhost.httpContext ? '/' + vhost.httpContext.replace(/^\//g, '') : '')
+                                    }
+                                </div>
+                            ))
+                        );
+                    },
+                },
+            },
+        ];
+    } else {
+        columProps = [
+            { name: 'id', options: { display: false } },
+            { name: 'name', options: { display: false } },
+            {
+                name: 'displayName',
+                label: intl.formatMessage({
+                    id: 'AdminPages.Gateways.table.header.displayName',
+                    defaultMessage: 'Name',
+                }),
+                options: {
+                    sort: true,
+                },
+            },
+            {
+                name: 'type',
+                label: intl.formatMessage({
+                    id: 'AdminPages.Gateways.table.header.type',
+                    defaultMessage: 'Type',
+                }),
+                options: {
+                    sort: false,
+                },
+            },
+            {
+                name: 'description',
+                label: intl.formatMessage({
+                    id: 'AdminPages.Gateways.table.header.description',
+                    defaultMessage: 'Description',
+                }),
+                options: {
+                    sort: false,
+                },
+            },
+            {
+                name: 'vhosts',
+                label: intl.formatMessage({
+                    id: 'AdminPages.Gateways.table.header.vhosts',
+                    defaultMessage: 'Virtual Host(s)',
+                }),
+                options: {
+                    sort: false,
+                    customBodyRender: (vhosts) => {
+                        return (
+                            vhosts.map((vhost) => (
+                                <div>
+                                    {
+                                        'https://' + vhost.host + (vhost.httpsPort === 443 ? '' : ':' + vhost.httpsPort)
+                                        + (vhost.httpContext ? '/' + vhost.httpContext.replace(/^\//g, '') : '')
+                                    }
+                                </div>
+                            ))
+                        );
+                    },
+                },
+            },
+        ];
+    }
     const addButtonProps = {
         triggerButtonText: intl.formatMessage({
             id: 'AdminPages.Gateways.List.addButtonProps.triggerButtonText',

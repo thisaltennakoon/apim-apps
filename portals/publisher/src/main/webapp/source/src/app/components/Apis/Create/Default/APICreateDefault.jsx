@@ -17,19 +17,19 @@
  */
 import React, { useReducer, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import Alert from 'AppComponents/Shared/Alert';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from '@mui/material/CircularProgress';
 import API from 'AppData/api';
 import { usePublisherSettings } from 'AppComponents/Shared/AppContext';
 import Banner from 'AppComponents/Shared/Banner';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import LinearProgress from '@mui/material/LinearProgress';
 
 import APICreateBase from 'AppComponents/Apis/Create/Components/APICreateBase';
 import DefaultAPIForm from 'AppComponents/Apis/Create/Components/DefaultAPIForm';
@@ -55,17 +55,31 @@ const getPolicies = async () => {
  * @returns {JSX} API creation form.
  */
 function APICreateDefault(props) {
+    // const theme = useTheme();
     const {
         isWebSocket, isAPIProduct, history, intl, multiGateway
     } = props;
     const { data: settings, isLoading, error: settingsError } = usePublisherSettings();
-
+    const [isAvailbaleGateway, setIsAvailableGateway] = useState(false);
     const [pageError, setPageError] = useState(null);
     useEffect(() => {
         if (settingsError) {
             setPageError(settingsError.message);
         }
     }, [settingsError]);
+
+    useEffect(() => {
+        if (settings != null) {
+            if (settings.gatewayTypes && settings.gatewayTypes.length === 1) {
+                for (const env of settings.environment) {
+                    if (env.gatewayType === settings.gatewayTypes[0]) {
+                        setIsAvailableGateway(true);
+                        break;
+                    }
+                }
+            }
+        }
+    }, [settings]);
     const [isCreating, setIsCreating] = useState();
     const [isPublishing, setIsPublishing] = useState(false);
 
@@ -106,6 +120,23 @@ function APICreateDefault(props) {
     function handleOnChange(event) {
         const { name: action, value } = event.target;
         inputsDispatcher({ action, value });
+        const settingsEnvList = settings && settings.environment;
+        if (settings && settings.gatewayTypes.length === 2 && (value === 'wso2/synapse' || value === 'wso2/apk')) {
+            for (const env of settingsEnvList) {
+                let tmpEnv = '';
+                if (env.gatewayType === 'APK') {
+                    tmpEnv = 'wso2/apk';
+                } else if (env.gatewayType === 'Regular') {
+                    tmpEnv = 'wso2/synapse';
+                }
+                if (tmpEnv === value) {
+                    setIsAvailableGateway(true);
+                    break;
+                } else {
+                    setIsAvailableGateway(false);
+                }
+            }
+        }
     }
 
     /**
@@ -131,7 +162,7 @@ function APICreateDefault(props) {
 
     useEffect(() => {
         getDefaultCustomProperties();
-    }, [settings]);
+    }, [settings]);  
 
     /**
      *
@@ -212,7 +243,7 @@ function APICreateDefault(props) {
             promisedCreatedAPI = newAPI
                 .save();
             Alert.loading(promisedCreatedAPI, {
-                loading: 'Creating API...' + apiData.gatewayType,
+                loading: 'Creating API...',
                 success: 'API created successfully',
                 error: (error) => {
                     console.error(error);
@@ -273,20 +304,39 @@ function APICreateDefault(props) {
                     );
                     return env && env.vhosts[0].host;
                 };
-                if (envList && envList.length > 0) {
-                    if (envList.includes('Default') && getFirstVhost('Default')) {
-                        body1.push({
-                            name: 'Default',
-                            displayOnDevportal: true,
-                            vhost: getFirstVhost('Default'),
-                        });
-                    } else if (getFirstVhost(envList[0])) {
-                        body1.push({
-                            name: envList[0],
-                            displayOnDevportal: true,
-                            vhost: getFirstVhost(envList[0]),
-                        });
+                if (settings.gatewayTypes && settings.gatewayTypes.length === 1) {
+                    if (envList && envList.length > 0) {
+                        if (envList.includes('Default') && getFirstVhost('Default')) {
+                            body1.push({
+                                name: 'Default',
+                                displayOnDevportal: true,
+                                vhost: getFirstVhost('Default'),
+                            });
+                        } else if (getFirstVhost(envList[0])) {
+                            body1.push({
+                                name: envList[0],
+                                displayOnDevportal: true,
+                                vhost: getFirstVhost(envList[0]),
+                            });
+                        }
                     }
+                } else {
+                    const envList1 = settings.environment;
+                    envList1.forEach((env) => {
+                        let tmpEnv = '';
+                        if (env.gatewayType === 'APK') {
+                            tmpEnv = 'wso2/apk';
+                        } else if (env.gatewayType === 'Regular') {
+                            tmpEnv = 'wso2/synapse';
+                        }
+                        if (tmpEnv === apiInputs.gatewayType && getFirstVhost(env.name)) {
+                            body1.push({
+                                name: env.name,
+                                displayOnDevportal: true,
+                                vhost: getFirstVhost(env.name),
+                            });
+                        }
+                    });
                 }
                 setIsDeploying(true);
                 const promisedDeployment = restApi.deployRevision(api.id, revisionId, body1);
@@ -425,7 +475,7 @@ function APICreateDefault(props) {
 
     return (
         <APICreateBase title={pageTitle}>
-            <Grid container direction='row' justify='center' alignItems='center' spacing={2}>
+            <Grid container direction='row' justifyContent='center' alignItems='center'>
                 {/* Page error banner */}
                 {(pageError) && (
                     <Grid item xs={11}>
@@ -448,9 +498,7 @@ function APICreateDefault(props) {
                         </Box>
                     )}
                 </Grid>
-                <Grid item md={1} xs={0} />
-                <Grid item md={11} xs={12} data-testid='default-api-form'>
-
+                <Grid item xs={12} data-testid='default-api-form'>
                     <DefaultAPIForm
                         onValidate={handleOnValidate}
                         onChange={handleOnChange}
@@ -460,9 +508,8 @@ function APICreateDefault(props) {
                         isWebSocket={isWebSocket}
                     />
                 </Grid>
-                <Grid item md={1} xs={0} />
-                <Grid item md={11} xs={12}>
-                    <Grid container direction='row' justify='flex-start' alignItems='center' spacing={2}>
+                <Grid item xs={12}>
+                    <Grid container direction='row' justifyContent='flex-start' alignItems='center' spacing={2}>
                         <Grid item>
                             <Button
                                 id='itest-create-default-api-button'
@@ -482,7 +529,7 @@ function APICreateDefault(props) {
                                     id='itest-id-apicreatedefault-createnpublish'
                                     variant='contained'
                                     color='primary'
-                                    disabled={isDeploying || isRevisioning || !isPublishable
+                                    disabled={!isAvailbaleGateway || isDeploying || isRevisioning || !isPublishable
                                         || isAPICreateDisabled || !apiInputs.isFormValid}
                                     onClick={createAndPublish}
                                 >

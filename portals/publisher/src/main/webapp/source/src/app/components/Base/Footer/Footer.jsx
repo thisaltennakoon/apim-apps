@@ -17,23 +17,33 @@
  */
 
 import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import { styled, useTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 import { FormattedMessage } from 'react-intl';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 import Configurations from 'Config';
 
 import FeedbackForm from './FeedbackForm';
 
-const useStyles = makeStyles((theme) => ({
-    footer: {
+const PREFIX = 'Footer';
+
+const classes = {
+    footer: `${PREFIX}-footer`
+};
+
+const Root = styled('footer')((
+    {
+        theme
+    }
+) => ({
+    [`&.${classes.footer}`]: {
         background: theme.custom.footer.background,
         paddingLeft: theme.spacing(3),
         height: theme.custom.footer.height,
         alignItems: 'center',
         display: 'flex',
         color: theme.custom.footer.color,
-    },
+    }
 }));
 
 /**
@@ -43,18 +53,18 @@ const useStyles = makeStyles((theme) => ({
  * @returns
  */
 function Footer() {
-    const classes = useStyles();
+
     const theme = useTheme();
 
     return (
-        <footer className={classes.footer}>
-            <Grid container direction='row' justify='space-between' alignItems='center'>
+        <Root className={classes.footer}>
+            <Grid container direction='row' justifyContent='space-between' alignItems='center'>
                 <Grid item>
                     {theme.custom.footer.text ? theme.custom.footer.text : (
                         <Typography noWrap>
                             <FormattedMessage
                                 id='Base.Footer.Footer.product_details'
-                                defaultMessage='WSO2 API-M v4.2.0 | © 2023 WSO2 LLC'
+                                defaultMessage='WSO2 API-M v4.3.0 | © 2024 WSO2 LLC'
                             />
                         </Typography>
                     )}
@@ -66,7 +76,7 @@ function Footer() {
                 )}
                 <Grid item />
             </Grid>
-        </footer>
+        </Root>
     );
 }
 
