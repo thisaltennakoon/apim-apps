@@ -28,7 +28,7 @@ export default {
             },
         },
         MuiButton: {
-            label: {
+            root: {
                 textTransform: 'none',
             },
             contained: {
@@ -51,6 +51,9 @@ export default {
         MuiDivider: {
             root: {
                 backgroundColor: '#404854',
+                marginLeft: 0,
+                marginRight: 0,
+                opacity: 0.2,
             },
         },
         MuiListItemIcon: {

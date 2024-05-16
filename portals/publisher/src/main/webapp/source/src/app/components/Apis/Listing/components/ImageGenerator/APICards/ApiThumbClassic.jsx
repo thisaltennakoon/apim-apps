@@ -79,7 +79,11 @@ const StyledCard = styled(Card)((
 
     [`& .${classes.apiDetails}`]: { padding: theme.spacing(1), paddingBottom: 0 },
 
-    [`& .${classes.apiActions}`]: { justifyContent: 'space-between', padding: `0px 0px ${theme.spacing(1)} 8px` },
+    [`& .${classes.apiActions}`]: { 
+        justifyContent: 'space-between',
+        padding: `0px 0px ${theme.spacing(1)} 8px`,
+        height: 48
+    },
 
     [`& .${classes.deleteProgress}`]: {
         color: green[200],
@@ -396,7 +400,7 @@ class APIThumb extends Component {
                                         </Typography>
                                     </div>
                                     {tileDisplayInfo.showBusinessDetails &&
-                                        <div>
+                                        <div style={{ paddingLeft: '5px' }}>
                                             <Typography
                                                 variant='caption'
                                                 gutterBottom
@@ -405,36 +409,22 @@ class APIThumb extends Component {
                                                 onMouseLeave={this.handleBusinessPopoverClose}
                                                 className={classes.typo}
                                             >
-                                                <div style={{
-                                                    paddingLeft: '5px',
-                                                    whiteSpace: 'nowrap',
-                                                    paddingRight: '5px'
-                                                }}
-                                                >
-                                                    <FormattedMessage
-                                                        defaultMessage='Business'
-                                                        id='Apis.Listing.ApiThumb.owners.business'
-                                                    />
-                                                    {' : '}
-                                                </div>
-                                                <div className={classes.truncate}>
-                                                    {api.businessOwner
-                                                        ? (api.businessOwner)
-                                                        : (
-                                                            <span
-                                                                style={{ color: '#808080', fontWeight: 'bold' }}
-                                                            >
-                                                                Not Provided
-                                                            </span>
-                                                        )}
-                                                </div>
+                                                <FormattedMessage
+                                                    defaultMessage='Business'
+                                                    id='Apis.Listing.ApiThumb.owners.business'
+                                                />
+                                                {' : '}
+                                                {api.businessOwner ? (api.businessOwner): (
+                                                    <span style={{ color: '#808080' }}>
+                                                        Not Provided
+                                                    </span>
+                                                )}
                                             </Typography>
                                             {api.businessOwnerEmail && (
                                                 <Popover
                                                     id='mouse-over-popover'
-                                                    className={classes.popover}
-                                                    classes={{
-                                                        paper: classes.paper,
+                                                    sx={{
+                                                        pointerEvents: 'none',
                                                     }}
                                                     open={this.state.businessOpenPopover}
                                                     anchorEl={this.state.businessAnchorEl}
@@ -454,7 +444,7 @@ class APIThumb extends Component {
                                                         flexDirection: 'column'
                                                     }}
                                                     >
-                                                        <div style={{ display: 'flex' }}>
+                                                        <div style={{ display: 'flex', padding: '4px' }}>
                                                             <EmailIcon fontSize='small' />
                                                             <Typography
                                                                 variant='body2'
@@ -468,7 +458,7 @@ class APIThumb extends Component {
                                             )}
                                         </div>}
                                     {tileDisplayInfo.showTechnicalDetails &&
-                                        <div>
+                                        <div style={{ paddingLeft: '5px' }}>
                                             <Typography
                                                 variant='caption'
                                                 gutterBottom align='left'
@@ -476,36 +466,22 @@ class APIThumb extends Component {
                                                 onMouseLeave={this.handleTechnicalPopoverClose}
                                                 className={classes.typo}
                                             >
-                                                <div style={{
-                                                    paddingLeft: '5px',
-                                                    whiteSpace: 'nowrap',
-                                                    paddingRight: '5px'
-                                                }}
-                                                >
-                                                    <FormattedMessage
-                                                        defaultMessage='Technical'
-                                                        id='Apis.Listing.ApiThumb.owners.technical'
-                                                    />
-                                                    {' : '}
-                                                </div>
-                                                <div className={classes.truncate}>
-                                                    {api.technicalOwner 
-                                                        ? (api.technicalOwner)
-                                                        : (
-                                                            <span
-                                                                style={{ color: '#808080', fontWeight: 'bold' }}
-                                                            >
-                                                                Not Provided
-                                                            </span>
-                                                        )}
-                                                </div>
+                                                <FormattedMessage
+                                                    defaultMessage='Technical'
+                                                    id='Apis.Listing.ApiThumb.owners.technical'
+                                                />
+                                                {' : '}
+                                                {api.technicalOwner ? (api.technicalOwner): (
+                                                    <span style={{ color: '#808080' }}>
+                                                        Not Provided
+                                                    </span>
+                                                )}
                                             </Typography>
                                             {api.technicalOwnerEmail && (
                                                 <Popover
                                                     id='mouse-over-popover'
-                                                    className={classes.popover}
-                                                    classes={{
-                                                        paper: classes.paper,
+                                                    sx={{
+                                                        pointerEvents: 'none',
                                                     }}
                                                     open={this.state.technicalOpenPopover}
                                                     anchorEl={this.state.technicalAnchorEl}
@@ -525,7 +501,7 @@ class APIThumb extends Component {
                                                         flexDirection: 'column'
                                                     }}
                                                     >
-                                                        <div style={{ display: 'flex' }}>
+                                                        <div style={{ display: 'flex', padding: '4px' }}>
                                                             <EmailIcon fontSize='small' />
                                                             <Typography
                                                                 variant='body2'

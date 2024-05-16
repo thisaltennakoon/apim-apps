@@ -29,13 +29,12 @@ import Banner from 'AppComponents/Shared/Banner';
 import API from 'AppData/api';
 import CircularProgress from '@mui/material/CircularProgress';
 import PropTypes from 'prop-types';
-import SwaggerParser from '@apidevtools/swagger-parser';
+import SwaggerClient from 'swagger-client';
 import { isRestricted } from 'AppData/AuthManager';
 import CONSTS from 'AppData/Constants';
 import Configurations from 'Config';
 import Operation from './components/Operation';
 import GroupOfOperations from './components/GroupOfOperations';
-import SpecErrors from './components/SpecErrors';
 import AddOperation from './components/AddOperation';
 import GoToDefinitionLink from './components/GoToDefinitionLink';
 import APIRateLimiting from './components/APIRateLimiting';
@@ -315,7 +314,7 @@ export default function Resources(props) {
      */
     function setSecurityDefScopesFromSpec(spec) {
         const openAPIVersion = getVersion(spec);
-        if (VERSIONS.V3.test(openAPIVersion)) {
+        if (VERSIONS.V3.test(openAPIVersion) || VERSIONS.V3_1.test(openAPIVersion)) {
             if (spec.components && spec.components.securitySchemes && spec.components.securitySchemes.default) {
                 const { flows } = spec.components.securitySchemes.default;
                 if (flows.implicit.scopes) {
@@ -336,7 +335,7 @@ export default function Resources(props) {
      */
     function setSpecScopesFromSecurityDefScopes() {
         const openAPIVersion = getVersion(openAPISpec);
-        if (VERSIONS.V3.test(openAPIVersion)) {
+        if (VERSIONS.V3.test(openAPIVersion) || VERSIONS.V3_1.test(openAPIVersion)) {
             if (openAPISpec.components
                 && openAPISpec.components.securitySchemes
                 && openAPISpec.components.securitySchemes.default) {
@@ -364,18 +363,15 @@ export default function Resources(props) {
         /*
         * Used SwaggerParser.validate() because we can get the errors as well.
         */
-        SwaggerParser.validate(specCopy, (err, result) => {
-            setResolvedSpec(() => {
-                const errors = err ? [err] : [];
-                return {
-                    spec: result,
-                    errors,
-                };
+        SwaggerClient.resolve({ spec: specCopy })
+            .then(specR => {
+                setResolvedSpec(specR);
+            })
+            .finally(() => {
+                operationsDispatcher({ action: 'init', data: rawSpec.paths });
+                setOpenAPISpec(rawSpec);
+                setSecurityDefScopesFromSpec(rawSpec);
             });
-        });
-        operationsDispatcher({ action: 'init', data: rawSpec.paths });
-        setOpenAPISpec(rawSpec);
-        setSecurityDefScopesFromSpec(rawSpec);
     }
 
     /**
@@ -618,7 +614,6 @@ export default function Resources(props) {
                     <AddOperation operationsDispatcher={operationsDispatcher} />
                 </Grid>
             )}
-            {resolvedSpec.errors.length > 0 && <SpecErrors specErrors={resolvedSpec.errors} />}
             <Grid item md={12}>
                 <Paper>
                     {!disableMultiSelect && (

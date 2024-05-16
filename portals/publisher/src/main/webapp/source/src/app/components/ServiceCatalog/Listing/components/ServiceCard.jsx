@@ -29,13 +29,9 @@ const classes = {
     usageChip: `${PREFIX}-usageChip`
 };
 
-const StyledPaper = styled(Paper)((
-    {
-        theme
-    }
-) => ({
-    [`& .${classes.root}`]: {
-        width: theme.spacing(25),
+const StyledPaper = styled(Paper)(({ theme }) => ({
+    [`&.${classes.root}`]: {
+        width: theme.spacing(27),
         height: theme.spacing(35),
         backgroundColor: theme.palette.background.paper,
         '&:hover': {
@@ -108,7 +104,7 @@ export default function ServiceCard(props) {
                 <CardMedia
                     className={classes.media}
                     component={LetterGenerator}
-                    width={theme.spacing(25)}
+                    width={theme.spacing(27)}
                     height={theme.spacing(15)}
                     artifact={service}
                 />
@@ -208,7 +204,7 @@ export default function ServiceCard(props) {
                             </Grid>
                         </Box>
                         {!isRestricted(['apim:api_create']) && (
-                            <Grid item>
+                            <Grid item display='flex' flexDirection='row'>
                                 <CreateAPIButton
                                     isIconButton
                                     serviceDisplayName={service.name}

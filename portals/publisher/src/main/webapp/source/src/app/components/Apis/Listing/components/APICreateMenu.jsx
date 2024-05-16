@@ -104,7 +104,7 @@ const APICreateMenu = () => {
         streamingApiIcon,
     } = theme.custom.landingPage.icons;
     return (
-        !AuthManager.isNotCreator() && (
+        !AuthManager.isNotCreator() && (settings && !settings.portalConfigurationOnlyModeEnabled) &&(
             <Root>
                 <MenuButton
                     buttonProps={{
@@ -128,7 +128,7 @@ const APICreateMenu = () => {
                                 <GraphqlAPIMenu isCreateMenu icon={graphqlIcon} />
                                 <StreamingAPIMenu isCreateMenu icon={streamingApiIcon} />
                                 <Box display={{ xs: 'none', md: 'block' }} mx={2}>
-                                    <Divider className={classes.dividerCls} light orientation='vertical' 
+                                    <Divider className={classes.dividerCls} orientation='vertical' 
                                         variant='inset' />
                                 </Box>
                                 <ServiceCatalogMenu isCreateMenu icon={streamingApiIcon} />

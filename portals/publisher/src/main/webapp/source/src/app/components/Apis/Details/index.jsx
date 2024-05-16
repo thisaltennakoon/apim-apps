@@ -330,9 +330,11 @@ class Details extends Component {
             const promisedApi = API.get(apiUUID);
             promisedApi
                 .then((api) => {
-                    this.setState({ api });
-                    this.getRevision();
-                    this.getDeployedEnv();
+                    this.setState({ api }, () => {
+                        // This code will run after the state has been updated
+                        this.getRevision();
+                        this.getDeployedEnv();
+                    });
                 })
                 .catch((error) => {
                     if (process.env.NODE_ENV !== 'production') {
@@ -373,10 +375,11 @@ class Details extends Component {
         const promisedApi = APIProduct.get(apiProdUUID);
         promisedApi
             .then((api) => {
-                this.setState({ isAPIProduct });
-                this.setState({ api });
-                this.getRevision();
-                this.getDeployedEnv();
+                this.setState({ isAPIProduct, api }, () => {
+                    // This code will run after the state has been updated
+                    this.getRevision();
+                    this.getDeployedEnv();
+                });
             })
             .catch((error) => {
                 if (process.env.NODE_ENV !== 'production') {
@@ -407,7 +410,7 @@ class Details extends Component {
                     id: 'Apis.Details.index.api.definition2',
                     defaultMessage: 'API definition',
                 })}
-                route='api definition'
+                route='api-definition'
                 to={pathPrefix + 'api-definition'}
                 Icon={<CodeIcon />}
                 id='left-menu-itemAPIdefinition'
@@ -440,8 +443,8 @@ class Details extends Component {
                                 id: 'Apis.Details.index.asyncApi.definition',
                                 defaultMessage: 'AsyncAPI Definition',
                             })}
-                            route='asyncApi definition'
-                            to={pathPrefix + 'asyncApi definition'}
+                            route='asyncApi-definition'
+                            to={pathPrefix + 'asyncApi-definition'}
                             Icon={<CodeIcon />}
                         />
                     </>
@@ -1090,7 +1093,7 @@ Details.subPaths = {
     TRYOUT_PRODUCT: '/api-products/:apiprod_uuid/test-console',
     QUERYANALYSIS: '/apis/:api_uuid/queryanalysis',
     TOPICS: '/apis/:api_uuid/topics',
-    ASYNCAPI_DEFINITION: '/apis/:api_uuid/asyncApi definition',
+    ASYNCAPI_DEFINITION: '/apis/:api_uuid/asyncApi-definition',
     POLICIES: '/apis/:api_uuid/policies',
 };
 

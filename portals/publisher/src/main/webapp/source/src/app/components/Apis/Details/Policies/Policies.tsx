@@ -35,7 +35,6 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import PolicyList from './PolicyList';
 import type { ApiPolicy, Policy, PolicySpec, ApiLevelPolicy } from './Types';
-import GatewaySelector from './GatewaySelector';
 import { ApiOperationContextProvider } from './ApiOperationContext';
 import { uuidv4 } from './Utils';
 import SaveOperationPolicies from './SaveOperationPolicies';
@@ -461,6 +460,13 @@ const Policies: React.FC = () => {
             gatewayType: getewayTypeForPolicies
         });
         updatePromise
+            .catch((error: any) => {
+                if (error.response) {
+                    Alert.error(error.response.body.description);
+                } else {
+                    Alert.error('Error occurred while updating the policies');
+                }
+            })
             .finally(() => {
                 setUpdating(false);
             });

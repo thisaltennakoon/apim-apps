@@ -35,7 +35,7 @@ import DefaultAPIForm from 'AppComponents/Apis/Create/Components/DefaultAPIForm'
 import ProductResourcesEditWorkspace from 'AppComponents/Apis/Details/ProductResources/ProductResourcesEditWorkspace';
 import API from 'AppData/api';
 import AuthManager from 'AppData/AuthManager';
-import { useAppContext } from 'AppComponents/Shared/AppContext';
+import { usePublisherSettings } from 'AppComponents/Shared/AppContext';
 
 const PREFIX = 'APIProductCreateWrapper';
 
@@ -85,7 +85,7 @@ export default function ApiProductCreateWrapper(props) {
     const intl = useIntl();
     const [wizardStep, setWizardStep] = useState(0);
     const [apiResources, setApiResources] = useState([]);
-    const { settings } = useAppContext();
+    const { data: settings } = usePublisherSettings();
     const [isPublishButtonClicked, setIsPublishButtonClicked] = useState(false);
     const [isRevisioning, setIsRevisioning] = useState(false);
     const [isDeploying, setIsDeploying] = useState(false);
@@ -341,7 +341,7 @@ export default function ApiProductCreateWrapper(props) {
         <APICreateProductBase
             title={pageTitle}
         >
-            <Box>
+            <Box sx={{ mb: 3 }}>
                 {wizardStep === 0 && (
                     <Stepper alternativeLabel activeStep={0}>
                         {steps.map((label) => (
@@ -382,7 +382,7 @@ export default function ApiProductCreateWrapper(props) {
                     )}
                 </Grid>
                 {/* {wizardStep === 0 && <Grid item md={1} />} */}
-                <Grid item md={12}>
+                <Grid item md={12} sx={{ mt: 3 }}>
                     <Grid
                         className={wizardStep === 1 && classes.saveButton}
                         container

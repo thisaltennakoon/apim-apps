@@ -41,16 +41,17 @@ const classes = {
     topMargin: `${PREFIX}-topMargin`
 };
 
-
-const Root = styled('div')(() => ({
+const Root = styled('div')(({ theme }) => ({
     [`& .${classes.editorPane}`]: {
-        width: '50%',
+        width: `calc(50% - ${theme.spacing(1)})`,
         height: '100%',
         overflow: 'auto',
     },
 
     [`& .${classes.editorRoot}`]: {
         height: '100%',
+        marginTop: theme.spacing(-1),
+        marginLeft: theme.spacing(-1),
     },
 
     [`& .${classes.glyphMargin}`]: {
@@ -160,7 +161,6 @@ class SwaggerEditorDrawer extends React.Component {
     render() {
         const { language, swagger, errors, setErrors, isSwaggerUI, linterResults, severityMap, 
             linterSelectedSeverity } = this.props;
-        const swaggerUrl = 'data:text/' + language + ',' + encodeURIComponent(swagger);
         return (
             <Root>
                 <Grid container spacing={2} className={classes.editorRoot}>
@@ -206,7 +206,7 @@ class SwaggerEditorDrawer extends React.Component {
                             </Box>
                         )}
                         { isSwaggerUI && (
-                            <SwaggerUI url={swaggerUrl}/>
+                            <SwaggerUI spec={swagger} />
                         )}
                         { !isSwaggerUI && linterResults.length > 0 && (
                             <div data-testid='testid-linter-ui'>

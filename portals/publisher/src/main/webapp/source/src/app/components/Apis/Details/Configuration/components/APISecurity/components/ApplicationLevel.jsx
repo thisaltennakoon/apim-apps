@@ -16,7 +16,7 @@
  * under the License.
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
@@ -46,6 +46,7 @@ import {
     API_SECURITY_BASIC_AUTH,
     API_SECURITY_API_KEY,
     API_SECURITY_OAUTH_BASIC_AUTH_API_KEY_MANDATORY,
+    API_SECURITY_OAUTH_BASIC_AUTH_API_KEY_OPTIONAL,
     API_SECURITY_MUTUAL_SSL,
 } from './apiSecurityConstants';
 
@@ -121,7 +122,7 @@ export default function ApplicationLevel(props) {
         hasResourceWithSecurity = apiFromContext.operations.findIndex((op) => op.authType !== 'None') > -1;
     }
 
-    mandatoryValue = 'optional';
+    mandatoryValue = API_SECURITY_OAUTH_BASIC_AUTH_API_KEY_OPTIONAL;
     // If not Oauth2, Basic auth or ApiKey security is selected, no mandatory values should be pre-selected
     if (!(securityScheme.includes(DEFAULT_API_SECURITY_OAUTH2) || securityScheme.includes(API_SECURITY_BASIC_AUTH)
         || securityScheme.includes(API_SECURITY_API_KEY))) {
@@ -130,7 +131,26 @@ export default function ApplicationLevel(props) {
         mandatoryValue = API_SECURITY_OAUTH_BASIC_AUTH_API_KEY_MANDATORY;
     } else if (securityScheme.includes(API_SECURITY_OAUTH_BASIC_AUTH_API_KEY_MANDATORY)) {
         mandatoryValue = API_SECURITY_OAUTH_BASIC_AUTH_API_KEY_MANDATORY;
+    } else {
+        mandatoryValue = API_SECURITY_OAUTH_BASIC_AUTH_API_KEY_OPTIONAL;
     }
+
+    useEffect(() => {
+        if (mandatoryValue !== null) {
+            const name = API_SECURITY_OAUTH_BASIC_AUTH_API_KEY_MANDATORY.slice(0);
+            const value = mandatoryValue.slice(0);
+            configDispatcher({
+                action: 'securityScheme',
+                event: { name, value },
+            });
+        }
+    }, []);
+
+    const [mandatoryValueRef, setMandatoryValueRef] = useState(mandatoryValue);
+
+    useEffect(() => {
+        setMandatoryValueRef(mandatoryValue);
+    });
 
     return (
         (<Root>
@@ -181,7 +201,8 @@ export default function ApplicationLevel(props) {
                                 )}
                                 label='OAuth2'
                             />
-                            {apiFromContext.gatewayType === 'wso2/synapse' && (
+                            {(apiFromContext.gatewayType === 'wso2/synapse' ||
+                                apiFromContext.apiType === API.CONSTS.APIProduct) && (
                                 <FormControlLabel
                                     control={(
                                         <Checkbox
@@ -199,34 +220,35 @@ export default function ApplicationLevel(props) {
                                     label='Basic'
                                 />
                             )}
-                            {apiFromContext.gatewayType === 'wso2/synapse' && (
-                                <FormControlLabel
-                                    control={(
-                                        <Checkbox
-                                            checked={securityScheme.includes(API_SECURITY_API_KEY)}
-                                            disabled={isRestricted(['apim:api_create'], apiFromContext)}
-                                            onChange={({ target: { checked, value } }) => configDispatcher({
-                                                action: 'securityScheme',
-                                                event: { checked, value },
-                                            })}
-                                            value={API_SECURITY_API_KEY}
-                                            color='primary'
-                                            id='api-security-api-key-checkbox'
-                                        />
-                                    )}
-                                    label='Api Key'
-                                />
-                            )}
+                            <FormControlLabel
+                                control={(
+                                    <Checkbox
+                                        checked={securityScheme.includes(API_SECURITY_API_KEY)}
+                                        disabled={isRestricted(['apim:api_create'], apiFromContext)}
+                                        onChange={({ target: { checked, value } }) => configDispatcher({
+                                            action: 'securityScheme',
+                                            event: { checked, value },
+                                        })}
+                                        value={API_SECURITY_API_KEY}
+                                        color='primary'
+                                        id='api-security-api-key-checkbox'
+                                    />
+                                )}
+                                label='Api Key'
+                            />
                         </FormGroup>
                         <FormControl className={classes.bottomSpace} component='fieldset'>
                             <RadioGroup
                                 aria-label='HTTP security HTTP mandatory selection'
                                 name={API_SECURITY_OAUTH_BASIC_AUTH_API_KEY_MANDATORY}
-                                value={mandatoryValue}
-                                onChange={({ target: { name, value } }) => configDispatcher({
-                                    action: 'securityScheme',
-                                    event: { name, value },
-                                })}
+                                value={mandatoryValueRef}
+                                onChange={({ target: { name, value } }) => {
+                                    setMandatoryValueRef(value);
+                                    configDispatcher({
+                                        action: 'securityScheme',
+                                        event: { name, value },
+                                    });
+                                }}
                                 row
                             >
                                 <FormControlLabel
@@ -242,7 +264,7 @@ export default function ApplicationLevel(props) {
                                     labelPlacement='end'
                                 />
                                 <FormControlLabel
-                                    value='optional'
+                                    value={API_SECURITY_OAUTH_BASIC_AUTH_API_KEY_OPTIONAL}
                                     control={(
                                         <Radio
                                             disabled={!haveMultiLevelSecurity
